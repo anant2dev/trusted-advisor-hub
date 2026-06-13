@@ -1,4 +1,4 @@
-import { MessageCircle } from "lucide-react";
+import { Whatsapp } from "iconsax-react";
 import { WHATSAPP_NUMBER } from "@/lib/site";
 
 export function WhatsAppFab() {
@@ -12,7 +12,7 @@ export function WhatsAppFab() {
       aria-label="Chat on WhatsApp"
       className="animate-pulse-ring fixed bottom-5 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-xl transition-transform hover:scale-110"
     >
-      <MessageCircle className="h-7 w-7" strokeWidth={2.2} />
+      <Whatsapp size={28} variant="Bold" color="#FFFFFF" />
     </a>
   );
 }

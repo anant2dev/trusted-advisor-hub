@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ShieldCheck, Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react";
+import { ShieldTick, Call, Sms, Location, Clock, Whatsapp } from "iconsax-react";
 import { NAV_LINKS, WHATSAPP_NUMBER, EMAIL } from "@/lib/site";
 
 export function Footer() {
@@ -9,7 +9,7 @@ export function Footer() {
         <div>
           <div className="flex items-center gap-2.5">
             <span className="grid h-10 w-10 place-items-center rounded-lg bg-white/10">
-              <ShieldCheck className="h-5 w-5 text-gold" />
+              <ShieldTick size={20} variant="Bold" color="#F4C430" />
             </span>
             <div>
               <p className="text-sm font-bold text-white">LIC Advisor</p>
@@ -39,9 +39,9 @@ export function Footer() {
         <div>
           <h4 className="text-sm font-semibold text-gold">Office Hours</h4>
           <ul className="mt-4 space-y-2.5 text-sm text-white/75">
-            <li className="flex items-center gap-2"><Clock className="h-4 w-4 text-gold" /> Mon – Sat · 10:00 – 19:00</li>
-            <li className="flex items-center gap-2"><Clock className="h-4 w-4 text-gold" /> Sun · By appointment</li>
-            <li className="flex items-center gap-2"><MapPin className="h-4 w-4 text-gold" /> India · Serving NRIs worldwide</li>
+            <li className="flex items-center gap-2"><Clock size={16} variant="Bold" color="#F4C430" /> Mon – Sat · 10:00 – 19:00</li>
+            <li className="flex items-center gap-2"><Clock size={16} variant="Bold" color="#F4C430" /> Sun · By appointment</li>
+            <li className="flex items-center gap-2"><Location size={16} variant="Bold" color="#F4C430" /> India · Serving NRIs worldwide</li>
           </ul>
         </div>
 
@@ -50,12 +50,12 @@ export function Footer() {
           <ul className="mt-4 space-y-2.5 text-sm text-white/75">
             <li>
               <a href={`tel:+${WHATSAPP_NUMBER}`} className="flex items-center gap-2 hover:text-gold">
-                <Phone className="h-4 w-4 text-gold" /> +91 99999 99999
+                <Call size={16} variant="Bold" color="#F4C430" /> +91 99999 99999
               </a>
             </li>
             <li>
               <a href={`mailto:${EMAIL}`} className="flex items-center gap-2 hover:text-gold">
-                <Mail className="h-4 w-4 text-gold" /> {EMAIL}
+                <Sms size={16} variant="Bold" color="#F4C430" /> {EMAIL}
               </a>
             </li>
             <li>
@@ -65,7 +65,7 @@ export function Footer() {
                 rel="noreferrer"
                 className="flex items-center gap-2 hover:text-gold"
               >
-                <MessageCircle className="h-4 w-4 text-gold" /> WhatsApp Chat
+                <Whatsapp size={16} variant="Bold" color="#F4C430" /> WhatsApp Chat
               </a>
             </li>
           </ul>

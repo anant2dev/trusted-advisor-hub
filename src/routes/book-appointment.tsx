@@ -1,14 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState, type FormEvent } from "react";
 import {
-  MessageCircle,
-  Mail,
-  Lock,
-  CheckCircle2,
+  Whatsapp,
+  Sms,
+  Lock1,
+  TickCircle,
   Clock,
-  Shield,
-  User,
-} from "lucide-react";
+  ShieldTick,
+  Profile,
+  SecuritySafe,
+} from "iconsax-react";
 import { PLANS, WHATSAPP_NUMBER, EMAIL } from "@/lib/site";
 
 type Search = { plan?: string };
@@ -47,10 +48,10 @@ const ageGroups = [
 ] as const;
 
 const reasons = [
-  { icon: Shield, title: "Honest, IRDAI-compliant advice", desc: "Plans matched to your goals, not commissions." },
+  { icon: ShieldTick, title: "Honest, IRDAI-compliant advice", desc: "Plans matched to your goals, not commissions." },
   { icon: Clock, title: "Lifetime after-sales service", desc: "Renewals, claims and revivals — handled personally." },
-  { icon: Lock, title: "Absolute privacy", desc: "No CRM, no database, no third-party leak risk." },
-  { icon: User, title: "1:1 family-style consultation", desc: "Patient listening before any recommendation." },
+  { icon: SecuritySafe, title: "Absolute privacy", desc: "No CRM, no database, no third-party leak risk." },
+  { icon: Profile, title: "1:1 family-style consultation", desc: "Patient listening before any recommendation." },
 ];
 
 function AppointmentPage() {
@@ -132,7 +133,7 @@ function AppointmentPage() {
               {reasons.map((r) => (
                 <li key={r.title} className="flex items-start gap-3.5 rounded-xl bg-white p-4 shadow-sm">
                   <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-navy text-gold">
-                    <r.icon className="h-5 w-5" />
+                    <r.icon size={20} variant="Bold" color="#F4C430" />
                   </span>
                   <div className="min-w-0">
                     <p className="text-sm font-bold text-navy">{r.title}</p>
@@ -188,7 +189,7 @@ function AppointmentPage() {
                 </select>
                 {planFromUrl && planNames.includes(planFromUrl) && (
                   <p className="mt-1.5 inline-flex items-center gap-1.5 text-xs font-medium text-navy">
-                    <CheckCircle2 className="h-3.5 w-3.5 text-gold" />
+                    <TickCircle size={14} variant="Bold" color="#F4C430" />
                     Auto-selected from your previous page
                   </p>
                 )}
@@ -214,19 +215,19 @@ function AppointmentPage() {
                 onClick={(e) => handleFormSubmit(e, "whatsapp")}
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-5 py-3.5 text-sm font-bold text-white shadow-md transition-all hover:scale-[1.02] hover:opacity-95"
               >
-                <MessageCircle className="h-5 w-5" /> Send via WhatsApp
+                <Whatsapp size={20} variant="Bold" color="#FFFFFF" /> Send via WhatsApp
               </button>
               <button
                 type="submit"
                 onClick={(e) => handleFormSubmit(e, "email")}
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-navy px-5 py-3.5 text-sm font-bold text-white shadow-md transition-all hover:scale-[1.02] hover:bg-navy-deep"
               >
-                <Mail className="h-5 w-5 text-gold" /> Send via Email
+                <Sms size={20} variant="Bold" color="#F4C430" /> Send via Email
               </button>
             </div>
 
             <p className="mt-5 flex items-start gap-2 rounded-lg bg-slate-bg px-3.5 py-3 text-xs leading-relaxed text-ink-soft">
-              <Lock className="mt-0.5 h-4 w-4 shrink-0 text-navy" />
+              <Lock1 size={16} variant="Bold" color="#003262" className="mt-0.5 shrink-0" />
               Your data is processed directly on your device and sent via secure
               messaging. We do not store your details on any external database.
             </p>

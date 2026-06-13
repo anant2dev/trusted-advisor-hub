@@ -1,17 +1,19 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import {
-  ShieldCheck,
+  ShieldTick,
   ArrowRight,
   Award,
-  Users,
-  Trophy,
-  Lock,
-  Sparkles,
-  CheckCircle2,
-} from "lucide-react";
+  People,
+  Cup,
+  Lock1,
+  MagicStar,
+  TickCircle,
+} from "iconsax-react";
 import advisorImg from "@/assets/advisor.jpg";
 import { PLANS } from "@/lib/site";
+import { SplitText } from "@/components/reactbits/SplitText";
+import { ShinyText } from "@/components/reactbits/ShinyText";
+import { FadeIn } from "@/components/reactbits/FadeIn";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -43,16 +45,18 @@ function Index() {
         <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-24">
           <div className="animate-fade-up">
             <span className="inline-flex items-center gap-2 rounded-full border border-navy/15 bg-white px-3.5 py-1.5 text-xs font-semibold text-navy shadow-sm">
-              <Sparkles className="h-3.5 w-3.5 text-gold" />
+              <MagicStar size={14} variant="Bold" color="#F4C430" />
               Authorized LIC of India Advisor
             </span>
             <h1 className="mt-5 text-4xl font-extrabold leading-[1.1] text-navy sm:text-5xl lg:text-6xl">
-              Securing Families for Over{" "}
+              <SplitText text="Securing Families for Over" />{" "}
               <span className="relative inline-block">
-                <span className="relative z-10">20 Years</span>
+                <span className="relative z-10">
+                  <SplitText text="20 Years" delay={0.4} />
+                </span>
                 <span className="absolute inset-x-0 bottom-1 -z-0 h-3 bg-gold/40" />
               </span>{" "}
-              with Trust &amp; Transparency.
+              <SplitText text="with Trust & Transparency." delay={0.6} />
             </h1>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
               Expert financial planning and life insurance solutions tailored to
@@ -65,7 +69,7 @@ function Index() {
                 className="group inline-flex items-center gap-2 rounded-xl bg-navy px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-navy/20 transition-all hover:bg-navy-deep hover:scale-[1.02]"
               >
                 Secure Your Future
-                <ArrowRight className="h-4 w-4 text-gold transition-transform group-hover:translate-x-1" />
+                <ArrowRight size={16} variant="Bold" color="#F4C430" className="transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
                 to="/plans"
@@ -75,7 +79,7 @@ function Index() {
               </Link>
             </div>
             <div className="mt-8 flex items-center gap-2 text-xs text-ink-soft">
-              <ShieldCheck className="h-4 w-4 text-navy" />
+              <ShieldTick size={16} variant="Bold" color="#003262" />
               IRDAI-compliant · Strictly confidential consultations
             </div>
           </div>
@@ -92,7 +96,7 @@ function Index() {
               />
               <div className="absolute bottom-5 left-5 right-5 flex items-center gap-3 rounded-2xl bg-white/95 p-3.5 shadow-lg backdrop-blur">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-navy text-gold">
-                  <Trophy className="h-5 w-5" />
+                  <Cup size={20} variant="Bold" color="#F4C430" />
                 </span>
                 <div className="min-w-0">
                   <p className="truncate text-sm font-bold text-navy">Distinguished DM Club Member</p>
@@ -109,20 +113,20 @@ function Index() {
         <div className="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-white/10 px-4 py-12 sm:grid-cols-3 sm:divide-y-0 sm:divide-x sm:px-6 sm:py-14 lg:px-8">
           {[
             { icon: Award, value: "20+", label: "Years of Experience" },
-            { icon: Users, value: "1000+", label: "Families Protected" },
-            { icon: Trophy, value: "DM", label: "Club Member · LIC" },
+            { icon: People, value: "1000+", label: "Families Protected" },
+            { icon: Cup, value: "DM", label: "Club Member · LIC" },
           ].map((s, i) => (
-            <div key={i} className="flex items-center gap-5 px-2 py-5 sm:justify-center sm:py-0">
+            <FadeIn key={i} delay={i * 0.1} className="flex items-center gap-5 px-2 py-5 sm:justify-center sm:py-0">
               <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-white/10 text-gold">
-                <s.icon className="h-7 w-7" />
+                <s.icon size={28} variant="Bold" color="#F4C430" />
               </span>
               <div className="min-w-0">
                 <p className="text-3xl font-extrabold tracking-tight sm:text-4xl">
-                  <span className="text-gold">{s.value}</span>
+                  <ShinyText text={s.value} className="text-gold" />
                 </p>
                 <p className="text-sm text-white/75">{s.label}</p>
               </div>
-            </div>
+            </FadeIn>
           ))}
         </div>
       </section>
@@ -143,17 +147,18 @@ function Index() {
               to="/plans"
               className="inline-flex items-center gap-2 text-sm font-semibold text-navy hover:text-navy-deep"
             >
-              View All Plans <ArrowRight className="h-4 w-4" />
+              View All Plans <ArrowRight size={16} variant="Bold" />
             </Link>
           </div>
 
           <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {PLANS.slice(0, 3).map((p) => (
+            {PLANS.slice(0, 3).map((p, idx) => (
+              <FadeIn key={p.slug} delay={idx * 0.08}>
               <Link
                 key={p.slug}
                 to="/book-appointment"
                 search={{ plan: p.name }}
-                className="group relative flex flex-col rounded-2xl border border-border bg-white p-6 shadow-md transition-all hover:-translate-y-1 hover:border-navy/30 hover:shadow-xl"
+                className="group relative flex h-full flex-col rounded-2xl border border-border bg-white p-6 shadow-md transition-all hover:-translate-y-1 hover:border-navy/30 hover:shadow-xl"
               >
                 <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-gold/15 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-navy">
                   {p.tag}
@@ -163,16 +168,17 @@ function Index() {
                 <ul className="mt-4 space-y-2">
                   {p.benefits.map((b) => (
                     <li key={b} className="flex items-start gap-2 text-sm text-ink">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-navy" />
+                      <TickCircle size={16} variant="Bold" color="#003262" className="mt-0.5 shrink-0" />
                       <span>{b}</span>
                     </li>
                   ))}
                 </ul>
                 <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-navy">
                   Check Eligibility / Inquire
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight size={16} variant="Bold" className="transition-transform group-hover:translate-x-1" />
                 </span>
               </Link>
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -188,7 +194,7 @@ function Index() {
         <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[auto_1fr] lg:gap-14 lg:px-8 lg:py-24">
           <div className="flex lg:block">
             <span className="grid h-20 w-20 shrink-0 place-items-center rounded-2xl bg-gold/15 text-gold ring-1 ring-gold/30">
-              <Lock className="h-9 w-9" />
+              <Lock1 size={36} variant="Bold" color="#F4C430" />
             </span>
           </div>
           <div>
@@ -213,7 +219,7 @@ function Index() {
                 to="/book-appointment"
                 className="inline-flex items-center gap-2 rounded-xl bg-gold px-5 py-3 text-sm font-bold text-navy shadow-lg transition-all hover:scale-[1.02]"
               >
-                Book a Private Consultation <ArrowRight className="h-4 w-4" />
+                Book a Private Consultation <ArrowRight size={16} variant="Bold" />
               </Link>
               <Link
                 to="/about"
