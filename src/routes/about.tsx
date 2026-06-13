@@ -1,14 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import {
-  Trophy,
+  Cup,
   Medal,
   Award,
-  ShieldCheck,
+  ShieldTick,
   ArrowRight,
-  Sparkles,
+  MagicStar,
   Star,
   Crown,
-} from "lucide-react";
+} from "iconsax-react";
+import { FadeIn } from "@/components/reactbits/FadeIn";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -70,7 +71,7 @@ function AboutPage() {
       <section className="bg-gradient-to-b from-slate-bg to-white">
         <div className="mx-auto max-w-5xl px-4 py-20 sm:px-6 lg:px-8">
           <span className="inline-flex items-center gap-2 rounded-full border border-navy/15 bg-white px-3.5 py-1.5 text-xs font-semibold text-navy shadow-sm">
-            <ShieldCheck className="h-3.5 w-3.5 text-gold" /> About the Advisor
+            <ShieldTick size={14} variant="Bold" color="#F4C430" /> About the Advisor
           </span>
           <h1 className="mt-5 text-4xl font-extrabold leading-tight text-navy sm:text-5xl">
             Two decades of quiet, consistent service —{" "}
@@ -110,8 +111,8 @@ function AboutPage() {
           <div className="relative mt-14">
             <div className="absolute left-1/2 top-7 hidden h-0.5 w-full -translate-x-1/2 bg-gradient-to-r from-gold via-navy/40 to-white md:block" />
             <div className="grid gap-8 md:grid-cols-3">
-              {clubs.map((c) => (
-                <div key={c.label} className="relative">
+              {clubs.map((c, idx) => (
+                <FadeIn key={c.label} delay={idx * 0.1} className="relative">
                   <div
                     className={
                       "mx-auto grid h-14 w-14 place-items-center rounded-full ring-4 ring-white shadow-md " +
@@ -122,7 +123,7 @@ function AboutPage() {
                           : "bg-white text-navy/60 ring-border")
                     }
                   >
-                    <c.icon className="h-6 w-6" />
+                    <c.icon size={24} variant="Bold" color={c.state === "active" ? "#003262" : c.state === "done" ? "#F4C430" : "#003262"} />
                   </div>
                   <div className="mt-5 rounded-2xl border border-border bg-white p-5 text-center shadow-md transition-all hover:-translate-y-1 hover:shadow-xl">
                     <p className="text-xs font-semibold uppercase tracking-wider text-ink-soft">
@@ -131,7 +132,7 @@ function AboutPage() {
                     <p className="mt-1 text-xl font-bold text-navy">{c.label}</p>
                     <p className="mt-2 text-sm leading-relaxed text-ink-soft">{c.desc}</p>
                   </div>
-                </div>
+                </FadeIn>
               ))}
             </div>
           </div>
@@ -154,18 +155,19 @@ function AboutPage() {
                 LIC excellence — quietly earned, never advertised.
               </p>
             </div>
-            <Sparkles className="h-7 w-7 text-gold" />
+            <MagicStar size={28} variant="Bold" color="#F4C430" />
           </div>
 
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {trophies.map((t, i) => (
-              <div
+              <FadeIn
                 key={t}
+                delay={i * 0.05}
                 className="group relative overflow-hidden rounded-2xl border border-border bg-white p-6 shadow-md transition-all hover:-translate-y-1 hover:border-gold hover:shadow-xl"
               >
                 <div className="flex items-start gap-4">
                   <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-navy text-gold">
-                    {i % 2 === 0 ? <Trophy className="h-6 w-6" /> : <Medal className="h-6 w-6" />}
+                    {i % 2 === 0 ? <Cup size={24} variant="Bold" color="#F4C430" /> : <Medal size={24} variant="Bold" color="#F4C430" />}
                   </span>
                   <div className="min-w-0">
                     <p className="text-xs font-semibold uppercase tracking-wider text-ink-soft">
@@ -178,7 +180,7 @@ function AboutPage() {
                   <div className="h-2 w-3/4 animate-pulse rounded-full bg-slate-bg" />
                   <div className="h-2 w-1/2 animate-pulse rounded-full bg-slate-bg" />
                 </div>
-              </div>
+              </FadeIn>
             ))}
           </div>
 
@@ -187,7 +189,7 @@ function AboutPage() {
               type="button"
               className="inline-flex items-center gap-2 rounded-xl border border-navy/20 bg-white px-6 py-3 text-sm font-semibold text-navy shadow-sm transition-all hover:border-navy hover:bg-white"
             >
-              Load More Achievements <ArrowRight className="h-4 w-4" />
+              Load More Achievements <ArrowRight size={16} variant="Bold" />
             </button>
           </div>
         </div>
@@ -209,7 +211,7 @@ function AboutPage() {
               to="/book-appointment"
               className="inline-flex items-center gap-2 rounded-xl bg-gold px-5 py-3 text-sm font-bold text-navy shadow-lg transition-all hover:scale-[1.02]"
             >
-              Book Appointment <ArrowRight className="h-4 w-4" />
+              Book Appointment <ArrowRight size={16} variant="Bold" />
             </Link>
           </div>
         </div>
