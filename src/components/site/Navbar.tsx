@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { Menu, X, ShieldCheck, PhoneCall } from "lucide-react";
+import { HambergerMenu, CloseSquare, ShieldTick, Call } from "iconsax-react";
 import { NAV_LINKS } from "@/lib/site";
 
 export function Navbar() {
@@ -11,7 +11,7 @@ export function Navbar() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-2.5">
           <span className="grid h-10 w-10 place-items-center rounded-lg bg-navy text-white shadow-md">
-            <ShieldCheck className="h-5 w-5 text-gold" strokeWidth={2.2} />
+            <ShieldTick size={20} variant="Bold" color="#F4C430" />
           </span>
           <span className="flex flex-col leading-tight">
             <span className="text-sm font-bold tracking-tight text-navy">LIC Advisor</span>
@@ -40,7 +40,7 @@ export function Navbar() {
             to="/book-appointment"
             className="group inline-flex items-center gap-2 rounded-lg bg-navy px-4 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:bg-navy-deep hover:scale-[1.02] active:scale-100"
           >
-            <PhoneCall className="h-4 w-4 text-gold transition-transform group-hover:rotate-12" />
+            <Call size={16} variant="Bold" color="#F4C430" className="transition-transform group-hover:rotate-12" />
             Consult Now
           </Link>
         </div>
@@ -50,7 +50,7 @@ export function Navbar() {
           onClick={() => setOpen((v) => !v)}
           className="grid h-10 w-10 place-items-center rounded-md text-navy md:hidden"
         >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {open ? <CloseSquare size={22} variant="Linear" /> : <HambergerMenu size={22} variant="Linear" />}
         </button>
       </div>
 
@@ -74,7 +74,7 @@ export function Navbar() {
               onClick={() => setOpen(false)}
               className="mt-2 inline-flex items-center justify-center gap-2 rounded-lg bg-navy px-4 py-3 text-sm font-semibold text-white shadow-md"
             >
-              <PhoneCall className="h-4 w-4 text-gold" />
+              <Call size={16} variant="Bold" color="#F4C430" />
               Consult Now
             </Link>
           </nav>
