@@ -142,6 +142,16 @@ function AppointmentPage() {
                 </li>
               ))}
             </ul>
+
+            <div className="mt-6 rounded-2xl border border-border bg-card p-5 shadow-sm">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-navy/70">Direct Contact</p>
+              <p className="mt-2 text-sm font-bold text-foreground">{ADVISOR_NAME}</p>
+              <p className="mt-0.5 text-sm text-muted-foreground">{ADDRESS}</p>
+              <div className="mt-3 flex flex-wrap gap-2 text-sm">
+                <a href={`tel:+${WHATSAPP_NUMBER}`} className="rounded-md bg-navy px-3 py-1.5 font-semibold text-white hover:bg-navy-deep">{PHONE_DISPLAY}</a>
+                <a href={`mailto:${EMAIL}`} className="rounded-md border border-border px-3 py-1.5 font-semibold text-foreground hover:bg-accent/20">Email</a>
+              </div>
+            </div>
           </aside>
 
           {/* Form */}
