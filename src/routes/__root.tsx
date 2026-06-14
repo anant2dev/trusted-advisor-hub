@@ -6,6 +6,7 @@ import {
   useRouter,
   HeadContent,
   Scripts,
+  ScriptOnce,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
@@ -14,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navbar } from "../components/site/Navbar";
 import { Footer } from "../components/site/Footer";
 import { WhatsAppFab } from "../components/site/WhatsAppFab";
+import { ThemeProvider } from "../components/site/ThemeProvider";
 
 function NotFoundComponent() {
   return (
@@ -125,9 +127,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
+        <ScriptOnce>{`(function(){try{var t=localStorage.getItem('theme');var m=window.matchMedia('(prefers-color-scheme: dark)').matches;if(t==='dark'||(!t&&m)){document.documentElement.classList.add('dark');}}catch(e){}})();`}</ScriptOnce>
       </head>
       <body>
         {children}
@@ -142,15 +145,17 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="flex min-h-screen flex-col bg-background">
-        <Navbar />
-        <main className="flex-1">
-          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-          <Outlet />
-        </main>
-        <Footer />
-        <WhatsAppFab />
-      </div>
+      <ThemeProvider>
+        <div className="flex min-h-screen flex-col bg-background text-foreground">
+          <Navbar />
+          <main className="flex-1">
+            {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+            <Outlet />
+          </main>
+          <Footer />
+          <WhatsAppFab />
+        </div>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }

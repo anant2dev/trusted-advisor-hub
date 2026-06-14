@@ -10,6 +10,11 @@ import {
   Crown,
 } from "iconsax-react";
 import { FadeIn } from "@/components/reactbits/FadeIn";
+import trophy1 from "@/assets/trophies/1781413121551.asset.json";
+import trophy2 from "@/assets/trophies/IMG_20260614_104134.asset.json";
+import trophy3 from "@/assets/trophies/IMG_20260614_104441.asset.json";
+import trophy4 from "@/assets/trophies/IMG_20260614_104949.asset.json";
+import trophy5 from "@/assets/trophies/IMG_20260614_110820.asset.json";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -56,12 +61,11 @@ const clubs = [
 ];
 
 const trophies = [
-  "Excellence Award Placeholder",
-  "Highest Premium Collection Placeholder",
-  "Top Performer Placeholder",
-  "Million Dollar Round Table Placeholder",
-  "Branch Star Performer Placeholder",
-  "Decade of Service Medal Placeholder",
+  { src: trophy1.url, title: "Ram Singh Rathore Honour Plaque", year: "FY 2017–18", caption: "25-policy flag-bearer recognition by LIC Agra Mandal." },
+  { src: trophy5.url, title: "Republic Day Sammaan", year: "2025", caption: "Awarded for utkarsh karya & sustained performance — Agra Mandal." },
+  { src: trophy2.url, title: "Mandal Flag-Bearer Shield", year: "FY 2018–19", caption: "Awarded for exemplary 25-policy contribution to the Mandal." },
+  { src: trophy4.url, title: "SDM Trophy · North Central Zone", year: "2024–25", caption: "Senior Development Manager Trophy recognising zonal excellence." },
+  { src: trophy3.url, title: "Independence Day Memento", year: "Azadi ka Amrit Mahotsav", caption: "Commemorative LIC Independence Day recognition." },
 ];
 
 function AboutPage() {
@@ -161,36 +165,44 @@ function AboutPage() {
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {trophies.map((t, i) => (
               <FadeIn
-                key={t}
+                key={t.title}
                 delay={i * 0.05}
-                className="group relative overflow-hidden rounded-2xl border border-border bg-white p-6 shadow-md transition-all hover:-translate-y-1 hover:border-gold hover:shadow-xl"
+                className="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-md transition-all hover:-translate-y-1 hover:border-gold hover:shadow-xl"
               >
-                <div className="flex items-start gap-4">
-                  <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-navy text-gold">
-                    {i % 2 === 0 ? <Cup size={24} variant="Bold" color="#F4C430" /> : <Medal size={24} variant="Bold" color="#F4C430" />}
+                <div className="relative aspect-[4/5] w-full overflow-hidden bg-slate-bg">
+                  <img
+                    src={t.src}
+                    alt={t.title}
+                    loading="lazy"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-navy/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-gold backdrop-blur">
+                    {i % 2 === 0 ? <Cup size={12} variant="Bold" color="#F4C430" /> : <Medal size={12} variant="Bold" color="#F4C430" />}
+                    {t.year}
                   </span>
-                  <div className="min-w-0">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-ink-soft">
-                      Award #{String(i + 1).padStart(2, "0")}
-                    </p>
-                    <p className="mt-1 truncate text-base font-bold text-navy">{t}</p>
-                  </div>
                 </div>
-                <div className="mt-5 space-y-2">
-                  <div className="h-2 w-3/4 animate-pulse rounded-full bg-slate-bg" />
-                  <div className="h-2 w-1/2 animate-pulse rounded-full bg-slate-bg" />
+                <div className="p-5">
+                  <p className="text-base font-bold text-foreground">{t.title}</p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{t.caption}</p>
                 </div>
               </FadeIn>
             ))}
-          </div>
 
-          <div className="mt-10 flex justify-center">
-            <button
-              type="button"
-              className="inline-flex items-center gap-2 rounded-xl border border-navy/20 bg-white px-6 py-3 text-sm font-semibold text-navy shadow-sm transition-all hover:border-navy hover:bg-white"
-            >
-              Load More Achievements <ArrowRight size={16} variant="Bold" />
-            </button>
+            {/* Humble note */}
+            <FadeIn delay={trophies.length * 0.05}>
+              <div className="flex h-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-gold/40 bg-gradient-to-br from-gold/10 via-transparent to-navy/5 p-8 text-center">
+                <span className="grid h-14 w-14 place-items-center rounded-2xl bg-navy text-gold">
+                  <MagicStar size={26} variant="Bold" color="#F4C430" />
+                </span>
+                <p className="mt-4 text-base font-bold text-foreground">
+                  …and many more in the cabinet.
+                </p>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  Photographing every trophy from 20+ years takes time — so only a
+                  handful are shown here. We prefer quiet service over loud display.
+                </p>
+              </div>
+            </FadeIn>
           </div>
         </div>
       </section>

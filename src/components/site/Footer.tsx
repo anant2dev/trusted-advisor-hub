@@ -1,20 +1,19 @@
 import { Link } from "@tanstack/react-router";
-import { ShieldTick, Call, Sms, Location, Clock, Whatsapp } from "iconsax-react";
-import { NAV_LINKS, WHATSAPP_NUMBER, EMAIL } from "@/lib/site";
+import { Call, Sms, Location, Clock, Whatsapp } from "iconsax-react";
+import { NAV_LINKS, WHATSAPP_NUMBER, EMAIL, ADVISOR_NAME, ADDRESS, PHONE_DISPLAY } from "@/lib/site";
+import logo from "@/assets/bima-secure-logo.asset.json";
 
 export function Footer() {
   return (
     <footer className="bg-navy-deep text-white/90">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-4 lg:px-8">
         <div>
-          <div className="flex items-center gap-2.5">
-            <span className="grid h-10 w-10 place-items-center rounded-lg bg-white/10">
-              <ShieldTick size={20} variant="Bold" color="#F4C430" />
-            </span>
+          <div className="flex items-center gap-3">
+            <img src={logo.url} alt="Bima Secure logo" className="h-12 w-12 object-contain" />
             <div>
-              <p className="text-sm font-bold text-white">LIC Advisor</p>
+              <p className="text-sm font-bold text-white">{ADVISOR_NAME}</p>
               <p className="text-[10px] uppercase tracking-[0.18em] text-white/60">
-                Authorized LIC Agent
+                Authorized LIC of India Agent
               </p>
             </div>
           </div>
@@ -41,7 +40,7 @@ export function Footer() {
           <ul className="mt-4 space-y-2.5 text-sm text-white/75">
             <li className="flex items-center gap-2"><Clock size={16} variant="Bold" color="#F4C430" /> Mon – Sat · 10:00 – 19:00</li>
             <li className="flex items-center gap-2"><Clock size={16} variant="Bold" color="#F4C430" /> Sun · By appointment</li>
-            <li className="flex items-center gap-2"><Location size={16} variant="Bold" color="#F4C430" /> India · Serving NRIs worldwide</li>
+            <li className="flex items-start gap-2"><Location size={16} variant="Bold" color="#F4C430" className="mt-0.5 shrink-0" /> {ADDRESS}</li>
           </ul>
         </div>
 
@@ -50,11 +49,11 @@ export function Footer() {
           <ul className="mt-4 space-y-2.5 text-sm text-white/75">
             <li>
               <a href={`tel:+${WHATSAPP_NUMBER}`} className="flex items-center gap-2 hover:text-gold">
-                <Call size={16} variant="Bold" color="#F4C430" /> +91 99999 99999
+                <Call size={16} variant="Bold" color="#F4C430" /> {PHONE_DISPLAY}
               </a>
             </li>
             <li>
-              <a href={`mailto:${EMAIL}`} className="flex items-center gap-2 hover:text-gold">
+              <a href={`mailto:${EMAIL}`} className="flex items-center gap-2 break-all hover:text-gold">
                 <Sms size={16} variant="Bold" color="#F4C430" /> {EMAIL}
               </a>
             </li>
@@ -74,7 +73,7 @@ export function Footer() {
 
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-2 px-4 py-5 text-xs text-white/55 sm:flex-row sm:items-center sm:px-6 lg:px-8">
-          <p>© {new Date().getFullYear()} LIC Advisor · Authorized Life Insurance Corporation of India Agent.</p>
+          <p>© {new Date().getFullYear()} {ADVISOR_NAME} · Authorized Life Insurance Corporation of India Agent.</p>
           <p>Insurance is the subject matter of solicitation. Information is indicative — please verify policy T&amp;C.</p>
         </div>
       </div>

@@ -14,6 +14,7 @@ import { PLANS } from "@/lib/site";
 import { SplitText } from "@/components/reactbits/SplitText";
 import { ShinyText } from "@/components/reactbits/ShinyText";
 import { FadeIn } from "@/components/reactbits/FadeIn";
+import Aurora from "@/components/reactbits/Aurora";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -39,10 +40,13 @@ function Index() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-white via-slate-bg to-white">
+      <section className="relative overflow-hidden bg-gradient-to-br from-background via-slate-bg to-background">
+        <div className="pointer-events-none absolute inset-0 opacity-70">
+          <Aurora colorStops={["#003262", "#F4C430", "#1a4b8c"]} amplitude={1.1} blend={0.55} speed={0.8} />
+        </div>
         <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-gold/10 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-navy/10 blur-3xl" />
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-24">
+        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-24">
           <div className="animate-fade-up">
             <span className="inline-flex items-center gap-2 rounded-full border border-navy/15 bg-white px-3.5 py-1.5 text-xs font-semibold text-navy shadow-sm">
               <MagicStar size={14} variant="Bold" color="#F4C430" />

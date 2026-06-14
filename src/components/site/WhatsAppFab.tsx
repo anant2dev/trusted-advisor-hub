@@ -5,7 +5,7 @@ export function WhatsAppFab() {
   return (
     <a
       href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-        "Namaste! I'd like to know more about LIC plans."
+        "Namaste Ram Singh Rathore ji! I'd like to know more about LIC plans."
       )}`}
       target="_blank"
       rel="noreferrer"
