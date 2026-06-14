@@ -10,7 +10,7 @@ import {
   Profile,
   SecuritySafe,
 } from "iconsax-react";
-import { PLANS, WHATSAPP_NUMBER, EMAIL } from "@/lib/site";
+import { ALL_PLANS, WHATSAPP_NUMBER, EMAIL, ADDRESS, PHONE_DISPLAY, ADVISOR_NAME } from "@/lib/site";
 
 type Search = { plan?: string };
 
@@ -36,7 +36,7 @@ export const Route = createFileRoute("/book-appointment")({
   component: AppointmentPage,
 });
 
-const planNames = PLANS.map((p) => p.name);
+const planNames = ALL_PLANS.map((p) => p.name);
 
 const beneficiaries = ["Self", "Spouse", "Child", "Parents", "Dependent"] as const;
 const ageGroups = [
