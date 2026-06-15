@@ -15,6 +15,7 @@ import { SplitText } from "@/components/reactbits/SplitText";
 import { ShinyText } from "@/components/reactbits/ShinyText";
 import { FadeIn } from "@/components/reactbits/FadeIn";
 import Aurora from "@/components/reactbits/Aurora";
+import { useTheme } from "@/components/site/ThemeProvider";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -37,13 +38,20 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
+  const { theme } = useTheme();
+  const auroraStops: [string, string, string] =
+    theme === "dark"
+      ? ["#0a1f3d", "#F4C430", "#1a4b8c"]
+      : ["#cfe0f5", "#fff0b8", "#e9d27a"];
   return (
     <>
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-background via-slate-bg to-background">
-        <div className="pointer-events-none absolute inset-0 opacity-70">
-          <Aurora colorStops={["#003262", "#F4C430", "#1a4b8c"]} amplitude={1.1} blend={0.55} speed={0.8} />
+        <div className="pointer-events-none absolute inset-0 opacity-40 dark:opacity-70">
+          <Aurora colorStops={auroraStops} amplitude={1.1} blend={0.55} speed={0.8} />
         </div>
+        {/* Readability scrim: lifts text contrast over aurora */}
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-background/0 dark:from-background/80 dark:via-background/40" />
         <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-gold/10 blur-3xl" />
         <div className="pointer-events-none absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-navy/10 blur-3xl" />
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-24">
@@ -171,7 +179,7 @@ function Index() {
                 <p className="mt-1 text-sm text-ink-soft">{p.tagline}</p>
                 <ul className="mt-4 space-y-2">
                   {p.benefits.map((b) => (
-                    <li key={b} className="flex items-start gap-2 text-sm text-ink">
+                    <li key={b} className="flex items-start gap-2 text-sm text-foreground/85">
                       <TickCircle size={16} variant="Bold" color="#003262" className="mt-0.5 shrink-0" />
                       <span>{b}</span>
                     </li>

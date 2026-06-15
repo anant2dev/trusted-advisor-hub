@@ -154,12 +154,17 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-family: "Inter", "Hind", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Devanagari", sans-serif;
     -webkit-font-smoothing: antialiased;
   }
 
   h1, h2, h3, h4 {
     letter-spacing: -0.02em;
+    font-family: "Inter", "Hind", "Tiro Devanagari Hindi", system-ui, sans-serif;
+  }
+
+  :lang(hi), .font-devanagari {
+    font-family: "Hind", "Tiro Devanagari Hindi", "Noto Sans Devanagari", sans-serif;
   }
 }
 
