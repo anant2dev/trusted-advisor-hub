@@ -16,6 +16,11 @@ import { ShinyText } from "@/components/reactbits/ShinyText";
 import { FadeIn } from "@/components/reactbits/FadeIn";
 import Aurora from "@/components/reactbits/Aurora";
 import { useTheme } from "@/components/site/ThemeProvider";
+import { BorderBeam } from "@/components/reactbits/BorderBeam";
+import { NumberTicker } from "@/components/reactbits/NumberTicker";
+import { Marquee } from "@/components/reactbits/Marquee";
+import { Spotlight } from "@/components/reactbits/Spotlight";
+import { ShimmerButton } from "@/components/reactbits/ShimmerButton";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -50,6 +55,7 @@ function Index() {
         <div className="pointer-events-none absolute inset-0 opacity-40 dark:opacity-70">
           <Aurora colorStops={auroraStops} amplitude={1.1} blend={0.55} speed={0.8} />
         </div>
+        <Spotlight className="-top-40 left-0 md:-top-20 md:left-60" fill="#F4C430" />
         {/* Readability scrim: lifts text contrast over aurora */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-background/0 dark:from-background/80 dark:via-background/40" />
         <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-gold/10 blur-3xl" />
@@ -76,12 +82,11 @@ function Index() {
               privacy.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Link
-                to="/book-appointment"
-                className="group inline-flex items-center gap-2 rounded-xl bg-navy px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-navy/20 transition-all hover:bg-navy-deep hover:scale-[1.02]"
-              >
-                Secure Your Future
-                <ArrowRight size={16} variant="Bold" color="#F4C430" className="transition-transform group-hover:translate-x-1" />
+              <Link to="/book-appointment">
+                <ShimmerButton className="group">
+                  Secure Your Future
+                  <ArrowRight size={16} variant="Bold" color="#F4C430" className="ml-2 transition-transform group-hover:translate-x-1" />
+                </ShimmerButton>
               </Link>
               <Link
                 to="/plans"
@@ -106,6 +111,7 @@ function Index() {
                 height={1024}
                 className="aspect-square w-full rounded-2xl object-cover"
               />
+              <BorderBeam size={260} duration={10} colorFrom="#F4C430" colorTo="#003262" />
               <div className="absolute bottom-5 left-5 right-5 flex items-center gap-3 rounded-2xl bg-white/95 p-3.5 shadow-lg backdrop-blur">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-navy text-gold">
                   <Cup size={20} variant="Bold" color="#F4C430" />
@@ -124,22 +130,46 @@ function Index() {
       <section className="bg-navy text-white">
         <div className="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-white/10 px-4 py-12 sm:grid-cols-3 sm:divide-y-0 sm:divide-x sm:px-6 sm:py-14 lg:px-8">
           {[
-            { icon: Award, value: "20+", label: "Years of Experience" },
-            { icon: People, value: "1000+", label: "Families Protected" },
-            { icon: Cup, value: "DM", label: "Club Member · LIC" },
+            { icon: Award, value: 20, suffix: "+", label: "Years of Experience" },
+            { icon: People, value: 1000, suffix: "+", label: "Families Protected" },
+            { icon: Cup, value: 0, suffix: "DM", label: "Club Member · LIC", text: true },
           ].map((s, i) => (
             <FadeIn key={i} delay={i * 0.1} className="flex items-center gap-5 px-2 py-5 sm:justify-center sm:py-0">
               <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-white/10 text-gold">
                 <s.icon size={28} variant="Bold" color="#F4C430" />
               </span>
               <div className="min-w-0">
-                <p className="text-3xl font-extrabold tracking-tight sm:text-4xl">
-                  <ShinyText text={s.value} className="text-gold" />
+                <p className="text-3xl font-extrabold tracking-tight text-gold sm:text-4xl">
+                  {s.text ? (
+                    <ShinyText text={s.suffix} className="text-gold" />
+                  ) : (
+                    <NumberTicker value={s.value} suffix={s.suffix} />
+                  )}
                 </p>
                 <p className="text-sm text-white/75">{s.label}</p>
               </div>
             </FadeIn>
           ))}
+        </div>
+        {/* Trust Marquee */}
+        <div className="border-t border-white/10 bg-navy-deep py-3">
+          <Marquee className="[--duration:38s] [--gap:3rem] text-xs font-semibold uppercase tracking-[0.22em] text-white/60">
+            {[
+              "IRDAI Compliant",
+              "DM Club Member",
+              "20+ Years Service",
+              "1000+ Families",
+              "100% Confidential",
+              "Trusted Across India",
+              "Personal Advisory",
+              "Zero Pressure Consults",
+            ].map((t) => (
+              <span key={t} className="flex items-center gap-3">
+                <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+                {t}
+              </span>
+            ))}
+          </Marquee>
         </div>
       </section>
 
