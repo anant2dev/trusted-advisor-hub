@@ -179,7 +179,7 @@ function Index() {
                 <p className="mt-1 text-sm text-ink-soft">{p.tagline}</p>
                 <ul className="mt-4 space-y-2">
                   {p.benefits.map((b) => (
-                    <li key={b} className="flex items-start gap-2 text-sm text-ink">
+                    <li key={b} className="flex items-start gap-2 text-sm text-foreground/85">
                       <TickCircle size={16} variant="Bold" color="#003262" className="mt-0.5 shrink-0" />
                       <span>{b}</span>
                     </li>
