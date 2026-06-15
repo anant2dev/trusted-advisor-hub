@@ -49,19 +49,19 @@ function PlansPage() {
               <FadeIn
                 key={p.slug}
                 delay={i * 0.06}
-                className="group relative flex flex-col rounded-2xl border border-border bg-white p-6 shadow-md transition-all hover:-translate-y-1.5 hover:border-navy/30 hover:shadow-2xl"
+                className="group relative flex flex-col rounded-2xl border border-border bg-card p-6 shadow-md transition-all hover:-translate-y-1.5 hover:border-navy/30 hover:shadow-2xl"
               >
                 <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-gold/15 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-navy">
                   {p.tag}
                 </span>
-                <h3 className="mt-4 text-lg font-bold leading-snug text-navy">
+                <h3 className="mt-4 text-lg font-bold leading-snug text-foreground">
                   {p.name}
                 </h3>
-                <p className="mt-1 text-sm text-ink-soft">{p.tagline}</p>
+                <p className="mt-1 text-sm text-muted-foreground">{p.tagline}</p>
 
                 <ul className="mt-5 flex-1 space-y-2.5">
                   {p.benefits.map((b) => (
-                    <li key={b} className="flex items-start gap-2 text-sm text-ink">
+                    <li key={b} className="flex items-start gap-2 text-sm text-foreground/85">
                       <TickCircle size={16} variant="Bold" color="#003262" className="mt-0.5 shrink-0" />
                       <span className="leading-snug">{b}</span>
                     </li>
