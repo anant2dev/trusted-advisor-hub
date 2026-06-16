@@ -46,8 +46,8 @@ function Index() {
   const { theme } = useTheme();
   const auroraStops: [string, string, string] =
     theme === "dark"
-      ? ["#0a1f3d", "#F4C430", "#1a4b8c"]
-      : ["#cfe0f5", "#fff0b8", "#e9d27a"];
+      ? ["#0a1929", "#1F4E79", "#6FA1C7"]
+      : ["#E6ECF0", "#B5DCF7", "#6FA1C7"];
   return (
     <>
       {/* Hero */}
@@ -103,7 +103,7 @@ function Index() {
 
           <div className="relative animate-fade-up">
             <div className="absolute -inset-3 rounded-3xl bg-gradient-to-tr from-navy/20 via-gold/30 to-transparent blur-2xl" />
-            <div className="relative overflow-hidden rounded-3xl bg-white p-2 shadow-2xl ring-1 ring-black/5">
+            <div className="clay relative overflow-hidden p-2 ring-1 ring-black/5">
               <img
                 src={advisorImg}
                 alt="Senior LIC advisor portrait"
