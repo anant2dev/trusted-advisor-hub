@@ -24,7 +24,6 @@ import { ShimmerButton } from "@/components/reactbits/ShimmerButton";
 import { Particles } from "@/components/reactbits/Particles";
 import { AnimatedGridPattern } from "@/components/reactbits/AnimatedGridPattern";
 import { BentoGrid } from "@/components/reactbits/BentoGrid";
-import { CardContainer, CardBody, CardItem } from "@/components/aceternity/3d-card";
 import { HoverEffect } from "@/components/aceternity/hover-effect";
 import { Globe } from "@/components/aceternity/Globe";
 import { cn } from "@/lib/utils";
