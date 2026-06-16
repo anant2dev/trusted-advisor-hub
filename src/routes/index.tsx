@@ -23,7 +23,7 @@ import { Spotlight } from "@/components/reactbits/Spotlight";
 import { ShimmerButton } from "@/components/reactbits/ShimmerButton";
 import { Particles } from "@/components/reactbits/Particles";
 import { AnimatedGridPattern } from "@/components/reactbits/AnimatedGridPattern";
-import { BentoGrid, BentoCard } from "@/components/reactbits/BentoGrid";
+import { BentoGrid } from "@/components/reactbits/BentoGrid";
 import { cn } from "@/lib/utils";
 import trophy1 from "@/assets/trophies/1781413121551.asset.json";
 import trophy2 from "@/assets/trophies/IMG_20260614_104134.asset.json";
