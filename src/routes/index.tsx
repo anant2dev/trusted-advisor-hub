@@ -21,6 +21,15 @@ import { NumberTicker } from "@/components/reactbits/NumberTicker";
 import { Marquee } from "@/components/reactbits/Marquee";
 import { Spotlight } from "@/components/reactbits/Spotlight";
 import { ShimmerButton } from "@/components/reactbits/ShimmerButton";
+import { Particles } from "@/components/reactbits/Particles";
+import { AnimatedGridPattern } from "@/components/reactbits/AnimatedGridPattern";
+import { BentoGrid } from "@/components/reactbits/BentoGrid";
+import { cn } from "@/lib/utils";
+import trophy1 from "@/assets/trophies/1781413121551.asset.json";
+import trophy2 from "@/assets/trophies/IMG_20260614_104134.asset.json";
+import trophy3 from "@/assets/trophies/IMG_20260614_104441.asset.json";
+import trophy4 from "@/assets/trophies/IMG_20260614_104949.asset.json";
+import trophy5 from "@/assets/trophies/IMG_20260614_110820.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -128,6 +137,8 @@ function Index() {
 
       {/* Stats Banner */}
       <section className="bg-navy text-white">
+        <div className="relative">
+        <Particles className="!absolute inset-0" quantity={60} color="#F4C430" size={0.5} />
         <div className="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-white/10 px-4 py-12 sm:grid-cols-3 sm:divide-y-0 sm:divide-x sm:px-6 sm:py-14 lg:px-8">
           {[
             { icon: Award, value: 20, suffix: "+", label: "Years of Experience" },
@@ -151,6 +162,7 @@ function Index() {
             </FadeIn>
           ))}
         </div>
+        </div>
         {/* Trust Marquee */}
         <div className="border-t border-white/10 bg-navy-deep py-3">
           <Marquee className="[--duration:38s] [--gap:3rem] text-xs font-semibold uppercase tracking-[0.22em] text-white/60">
@@ -170,6 +182,43 @@ function Index() {
               </span>
             ))}
           </Marquee>
+        </div>
+      </section>
+
+      {/* Achievements / Trophies */}
+      <section className="relative overflow-hidden bg-slate-bg">
+        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <div className="max-w-2xl">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-navy/70">Recognition</p>
+            <h2 className="mt-2 text-3xl font-extrabold text-navy sm:text-4xl">Awards &amp; Achievements</h2>
+            <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+              Over two decades there have been many — we have kept things minimal here to let the work speak. A small selection is shown below; the rest sit quietly on the shelf.
+            </p>
+          </div>
+          <BentoGrid className="mt-10 auto-rows-[14rem] grid-cols-1 md:auto-rows-[18rem] md:grid-cols-3">
+            {[
+              { src: trophy1.url, name: "DM Club Member", desc: "Distinguished Member recognition by LIC of India.", span: "md:col-span-2" },
+              { src: trophy2.url, name: "Top Advisor", desc: "Year-on-year top advisor citations.", span: "md:col-span-1" },
+              { src: trophy3.url, name: "Service Excellence", desc: "Awarded for client retention and service standards.", span: "md:col-span-1" },
+              { src: trophy4.url, name: "Branch Honour", desc: "Branch-level honours across multiple years.", span: "md:col-span-1" },
+              { src: trophy5.url, name: "Premium Achiever", desc: "Premium business milestones consistently met.", span: "md:col-span-1" },
+            ].map((t) => (
+              <div
+                key={t.name}
+                className={cn(
+                  "group relative col-span-1 overflow-hidden rounded-2xl border border-border/60 bg-card transition-all hover:-translate-y-1 hover:shadow-xl",
+                  t.span,
+                )}
+              >
+                <img src={t.src} alt={t.name} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/40 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
+                  <h3 className="text-lg font-bold">{t.name}</h3>
+                  <p className="mt-1 text-xs text-white/80">{t.desc}</p>
+                </div>
+              </div>
+            ))}
+          </BentoGrid>
         </div>
       </section>
 
@@ -228,11 +277,12 @@ function Index() {
 
       {/* Anti-Testimonial */}
       <section className="relative overflow-hidden bg-navy-deep text-white">
-        <div className="pointer-events-none absolute inset-0 opacity-[0.06]" style={{
-          backgroundImage:
-            "radial-gradient(circle at 20% 20%, white 1px, transparent 1px), radial-gradient(circle at 80% 60%, white 1px, transparent 1px)",
-          backgroundSize: "32px 32px",
-        }} />
+        <AnimatedGridPattern
+          numSquares={36}
+          maxOpacity={0.08}
+          duration={3}
+          className="[mask-image:radial-gradient(600px_circle_at_center,white,transparent)] text-gold/40 inset-x-0 inset-y-[-30%] h-[160%] skew-y-12"
+        />
         <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[auto_1fr] lg:gap-14 lg:px-8 lg:py-24">
           <div className="flex lg:block">
             <span className="grid h-20 w-20 shrink-0 place-items-center rounded-2xl bg-gold/15 text-gold ring-1 ring-gold/30">
