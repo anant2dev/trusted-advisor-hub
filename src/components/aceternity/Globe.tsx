@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import createGlobe, { type COBEOptions } from "cobe";
+import createGlobe from "cobe";
 
 // Aceternity-style interactive Globe (cobe). Lightweight, no Three.js.
 export function Globe({ className }: { className?: string }) {
@@ -7,7 +7,7 @@ export function Globe({ className }: { className?: string }) {
   useEffect(() => {
     let phi = 0;
     if (!canvasRef.current) return;
-    const opts: COBEOptions = {
+    const opts = {
       devicePixelRatio: 2,
       width: 600 * 2,
       height: 600 * 2,
@@ -31,7 +31,7 @@ export function Globe({ className }: { className?: string }) {
         { location: [51.5074, -0.1278], size: 0.05 }, // London
       ],
       onRender: (state: Record<string, number>) => { state.phi = phi; phi += 0.004; },
-    };
+    } as unknown as Parameters<typeof createGlobe>[1];
     const globe = createGlobe(canvasRef.current, opts);
     return () => globe.destroy();
   }, []);
