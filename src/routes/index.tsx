@@ -26,6 +26,8 @@ import { AnimatedGridPattern } from "@/components/reactbits/AnimatedGridPattern"
 import { BentoGrid } from "@/components/reactbits/BentoGrid";
 import { HoverEffect } from "@/components/aceternity/hover-effect";
 import { Globe } from "@/components/aceternity/Globe";
+import { PageTransition } from "@/components/site/PageTransition";
+import { FAQSection } from "@/components/site/FAQSection";
 import { cn } from "@/lib/utils";
 import trophy1 from "@/assets/trophies/1781413121551.asset.json";
 import trophy2 from "@/assets/trophies/IMG_20260614_104134.asset.json";
@@ -60,7 +62,7 @@ function Index() {
       ? ["#0a1929", "#1F4E79", "#6FA1C7"]
       : ["#E6ECF0", "#B5DCF7", "#6FA1C7"];
   return (
-    <>
+    <PageTransition>
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-background via-slate-bg to-background">
         <div className="pointer-events-none absolute inset-0 opacity-40 dark:opacity-70">
@@ -370,6 +372,7 @@ function Index() {
           </div>
         </div>
       </section>
-    </>
+      <FAQSection />
+    </PageTransition>
   );
 }

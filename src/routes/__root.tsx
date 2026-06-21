@@ -15,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Navbar } from "../components/site/Navbar";
 import { Footer } from "../components/site/Footer";
 import { WhatsAppFab } from "../components/site/WhatsAppFab";
+import { StickyCTA } from "../components/site/StickyCTA";
 import { ThemeProvider } from "../components/site/ThemeProvider";
 
 function NotFoundComponent() {
@@ -158,6 +159,9 @@ function RootComponent() {
           </main>
           <Footer />
           <WhatsAppFab />
+          <StickyCTA />
+          {/* Spacer so sticky CTA never overlaps footer content */}
+          <div aria-hidden className="h-16 md:h-20" />
         </div>
       </ThemeProvider>
     </QueryClientProvider>
