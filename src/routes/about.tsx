@@ -8,8 +8,16 @@ import {
   MagicStar,
   Star,
   Crown,
+  Clock,
+  SecuritySafe,
+  Profile,
+  Verify,
 } from "iconsax-react";
 import { FadeIn } from "@/components/reactbits/FadeIn";
+import { PageTransition } from "@/components/site/PageTransition";
+import { HoverEffect } from "@/components/aceternity/hover-effect";
+import { TrustBadges } from "@/components/site/TrustBadges";
+import { FAQSection } from "@/components/site/FAQSection";
 import trophy1 from "@/assets/trophies/1781413121551.asset.json";
 import trophy2 from "@/assets/trophies/IMG_20260614_104134.asset.json";
 import trophy3 from "@/assets/trophies/IMG_20260614_104441.asset.json";
