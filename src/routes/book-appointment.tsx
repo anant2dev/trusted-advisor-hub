@@ -11,6 +11,9 @@ import {
   SecuritySafe,
 } from "iconsax-react";
 import { ALL_PLANS, WHATSAPP_NUMBER, EMAIL, ADDRESS, PHONE_DISPLAY, ADVISOR_NAME } from "@/lib/site";
+import { PageTransition } from "@/components/site/PageTransition";
+import { TrustBadges } from "@/components/site/TrustBadges";
+import { FAQSection } from "@/components/site/FAQSection";
 
 type Search = { plan?: string };
 
@@ -114,8 +117,14 @@ function AppointmentPage() {
   const labelCls = "mb-1.5 block text-xs font-semibold uppercase tracking-wider text-ink-soft";
 
   return (
-    <section className="bg-slate-bg">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+    <PageTransition>
+      <section className="bg-slate-bg">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+          <TrustBadges />
+        </div>
+      </section>
+      <section className="bg-slate-bg">
+        <div className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8 lg:pb-20">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-14">
           {/* Left */}
           <aside className="lg:sticky lg:top-24 lg:self-start">
@@ -243,7 +252,12 @@ function AppointmentPage() {
             </p>
           </form>
         </div>
-      </div>
-    </section>
+        </div>
+      </section>
+      <FAQSection
+        title="Before you book — common questions"
+        intro="Read these once; they answer 80% of what first-time clients ask."
+      />
+    </PageTransition>
   );
 }
