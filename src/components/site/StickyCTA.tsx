@@ -40,7 +40,7 @@ export function StickyCTA() {
                 className="inline-flex items-center justify-center gap-1.5 rounded-lg bg-[#25D366] px-3.5 py-2.5 text-sm font-bold text-white shadow-md transition-all hover:scale-[1.02]"
               >
                 <Whatsapp size={16} variant="Bold" color="#FFFFFF" />
-                <span className="hidden xs:inline sm:inline">WhatsApp</span>
+                <span className="hidden sm:inline">WhatsApp</span>
               </a>
               <Link
                 to="/book-appointment"
