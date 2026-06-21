@@ -78,7 +78,7 @@ const trophies = [
 
 function AboutPage() {
   return (
-    <>
+    <PageTransition>
       {/* Profile */}
       <section className="bg-gradient-to-b from-slate-bg to-white">
         <div className="mx-auto max-w-5xl px-4 py-20 sm:px-6 lg:px-8">
@@ -105,6 +105,7 @@ function AboutPage() {
               service.
             </p>
           </div>
+          <TrustBadges className="mt-10" />
         </div>
       </section>
 
@@ -236,6 +237,39 @@ function AboutPage() {
           </div>
         </div>
       </section>
-    </>
+
+      {/* What you actually get */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-navy/70">
+              The Promise
+            </p>
+            <h2 className="mt-2 text-3xl font-extrabold text-navy sm:text-4xl">
+              What you actually get — not what brochures promise.
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+              Six things every family I serve receives, written down so we both stay honest.
+            </p>
+          </div>
+          <HoverEffect
+            className="mt-8"
+            items={[
+              { title: "IRDAI-Compliant Advice", description: "Recommendations matched to your goals — never to a commission slab. Paperwork stays in your name, never a nominee proxy.", icon: <ShieldTick size={24} variant="Bold" color="#003262" /> },
+              { title: "Lifetime After-Sales Service", description: "Premium reminders, NACH fixes, revivals, loans and claim filing — handled personally, decades after the policy is issued.", icon: <Clock size={24} variant="Bold" color="#003262" /> },
+              { title: "Absolute Privacy", description: "No CRM, no third-party leak risk. Your financial details never sit on a server, only on the LIC of India portal.", icon: <SecuritySafe size={24} variant="Bold" color="#003262" /> },
+              { title: "Family-Style 1:1 Consultation", description: "Patient listening before any recommendation. No slide decks, no scripts, no closing pressure on a first call.", icon: <Profile size={24} variant="Bold" color="#003262" /> },
+              { title: "Verified Track Record", description: "DM Club Distinguished Member · multiple Zonal & Mandal trophies · 1000+ Indian and NRI families served.", icon: <Verify size={24} variant="Bold" color="#003262" /> },
+              { title: "Pan-India & NRI Reach", description: "From Agra to the GCC, UK, Singapore and the USA — digital KYC, medicals and signatures handled end-to-end.", icon: <Award size={24} variant="Bold" color="#003262" /> },
+            ]}
+          />
+        </div>
+      </section>
+
+      <FAQSection
+        title="Questions families ask before our first call"
+        intro="Twenty years of conversations distilled into the questions that come up the most."
+      />
+    </PageTransition>
   );
 }
