@@ -1,12 +1,26 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import createGlobe from "cobe";
 
-// Aceternity-style interactive Globe (cobe). Lightweight, no Three.js.
+// Aceternity-style interactive Globe (cobe). Lazy-mounted: only spins when
+// the canvas is actually visible in the viewport, which cuts idle CPU.
 export function Globe({ className }: { className?: string }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [visible, setVisible] = useState(false);
+
   useEffect(() => {
+    const el = canvasRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => setVisible(entry.isIntersecting),
+      { threshold: 0.05 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!visible || !canvasRef.current) return;
     let phi = 0;
-    if (!canvasRef.current) return;
     const opts = {
       devicePixelRatio: 2,
       width: 600 * 2,
@@ -15,7 +29,7 @@ export function Globe({ className }: { className?: string }) {
       theta: 0.3,
       dark: 1,
       diffuse: 1.2,
-      mapSamples: 16000,
+      mapSamples: 9000,
       mapBrightness: 6,
       baseColor: [0.12, 0.18, 0.36],
       markerColor: [0.96, 0.78, 0.19],
@@ -30,11 +44,11 @@ export function Globe({ className }: { className?: string }) {
         { location: [40.7128, -74.006], size: 0.05 }, // NYC
         { location: [51.5074, -0.1278], size: 0.05 }, // London
       ],
-      onRender: (state: Record<string, number>) => { state.phi = phi; phi += 0.004; },
+      onRender: (state: Record<string, number>) => { state.phi = phi; phi += 0.003; },
     } as unknown as Parameters<typeof createGlobe>[1];
     const globe = createGlobe(canvasRef.current, opts);
     return () => globe.destroy();
-  }, []);
+  }, [visible]);
   return (
     <canvas
       ref={canvasRef}
