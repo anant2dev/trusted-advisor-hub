@@ -142,7 +142,6 @@ function Index() {
       {/* Stats Banner */}
       <section className="bg-navy text-white">
         <div className="relative">
-        <Particles className="!absolute inset-0" quantity={60} color="#F4C430" size={0.5} />
         <div className="mx-auto grid max-w-7xl grid-cols-1 divide-y divide-white/10 px-4 py-12 sm:grid-cols-3 sm:divide-y-0 sm:divide-x sm:px-6 sm:py-14 lg:px-8">
           {[
             { icon: Award, value: 20, suffix: "+", label: "Years of Experience" },
