@@ -9,7 +9,7 @@ import {
   MagicStar,
   TickCircle,
 } from "iconsax-react";
-import advisorImg from "@/assets/advisor.jpg";
+import advisorAsset from "@/assets/advisor.jpg.asset.json";
 import { PLANS } from "@/lib/site";
 import { SplitText } from "@/components/reactbits/SplitText";
 import { ShinyText } from "@/components/reactbits/ShinyText";
@@ -57,14 +57,14 @@ function Index() {
   const { theme } = useTheme();
   const auroraStops: [string, string, string] =
     theme === "dark"
-      ? ["#0a1929", "#1F4E79", "#6FA1C7"]
-      : ["#E6ECF0", "#B5DCF7", "#6FA1C7"];
+      ? ["#0a1929", "#2A6BB0", "#F4C430"]
+      : ["#7FB5E6", "#3E8FD6", "#F4C430"];
   return (
     <PageTransition>
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-br from-background via-slate-bg to-background">
         <div className="pointer-events-none absolute inset-0 opacity-40 dark:opacity-70">
-          <Aurora colorStops={auroraStops} amplitude={1.1} blend={0.55} speed={0.8} />
+          <Aurora colorStops={auroraStops} amplitude={0.7} blend={0.5} speed={0.5} />
         </div>
         <Spotlight className="-top-40 left-0 md:-top-20 md:left-60" fill="#F4C430" />
         {/* Readability scrim: lifts text contrast over aurora */}
@@ -116,7 +116,7 @@ function Index() {
             <div className="absolute -inset-3 rounded-3xl bg-gradient-to-tr from-navy/20 via-gold/30 to-transparent blur-2xl" />
             <div className="clay relative overflow-hidden p-2 ring-1 ring-black/5">
               <img
-                src={advisorImg}
+                src={advisorAsset.url}
                 alt="Senior LIC advisor portrait"
                 width={1024}
                 height={1024}
@@ -284,9 +284,9 @@ function Index() {
       {/* Anti-Testimonial */}
       <section className="relative overflow-hidden bg-navy-deep text-white">
         <AnimatedGridPattern
-          numSquares={36}
+          numSquares={18}
           maxOpacity={0.08}
-          duration={3}
+          duration={5}
           className="[mask-image:radial-gradient(600px_circle_at_center,white,transparent)] text-gold/40 inset-x-0 inset-y-[-30%] h-[160%] skew-y-12"
         />
         <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[auto_1fr] lg:gap-14 lg:px-8 lg:py-24">
