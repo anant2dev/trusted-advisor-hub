@@ -23,7 +23,6 @@ import { Spotlight } from "@/components/reactbits/Spotlight";
 import { ShimmerButton } from "@/components/reactbits/ShimmerButton";
 import { AnimatedGridPattern } from "@/components/reactbits/AnimatedGridPattern";
 import { HoverEffect } from "@/components/aceternity/hover-effect";
-import { Globe } from "@/components/aceternity/Globe";
 import { PageTransition } from "@/components/site/PageTransition";
 import { FAQSection } from "@/components/site/FAQSection";
 import { cn } from "@/lib/utils";
@@ -351,29 +350,6 @@ function Index() {
         </div>
       </section>
 
-      {/* Global Coverage — cobe Globe */}
-      <section className="relative overflow-hidden bg-navy-deep text-white">
-        <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">Serving Globally</p>
-            <h2 className="mt-3 text-3xl font-extrabold leading-tight sm:text-4xl">
-              Rooted in Agra. <span className="text-gold">Trusted worldwide.</span>
-            </h2>
-            <p className="mt-5 max-w-xl text-base leading-[1.75] text-white/80">
-              From neighbours in Jawahar Nagar to NRI families across Dubai, Singapore, London, and New York — paperwork, claims, and policy servicing handled remotely with the same personal care.
-            </p>
-            <div className="mt-6 grid grid-cols-2 gap-3 text-sm sm:grid-cols-3">
-              {["Agra", "Delhi", "Mumbai", "Dubai", "London", "Singapore"].map((c) => (
-                <span key={c} className="rounded-xl border border-white/15 bg-white/5 px-3 py-2 text-center text-white/90">{c}</span>
-              ))}
-            </div>
-          </div>
-          <div className="relative flex items-center justify-center">
-            <div className="absolute inset-0 -z-0 bg-[radial-gradient(circle_at_center,rgba(244,196,48,0.18),transparent_60%)]" />
-            <Globe className="opacity-95" />
-          </div>
-        </div>
-      </section>
       <FAQSection />
     </PageTransition>
   );
