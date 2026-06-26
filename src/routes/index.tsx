@@ -198,7 +198,7 @@ function Index() {
               Over two decades there have been many — we have kept things minimal here to let the work speak. A small selection is shown below; the rest sit quietly on the shelf.
             </p>
           </div>
-          <BentoGrid className="mt-10 auto-rows-[14rem] grid-cols-1 md:auto-rows-[18rem] md:grid-cols-3">
+          <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
             {[
               { src: trophy1.url, name: "DM Club Member", desc: "Distinguished Member recognition by LIC of India.", span: "md:col-span-2" },
               { src: trophy2.url, name: "Top Advisor", desc: "Year-on-year top advisor citations.", span: "md:col-span-1" },
@@ -209,19 +209,24 @@ function Index() {
               <div
                 key={t.name}
                 className={cn(
-                  "group relative col-span-1 overflow-hidden rounded-2xl border border-border/60 bg-card transition-all hover:-translate-y-1 hover:shadow-xl",
-                  t.span,
+                  "group relative overflow-hidden rounded-2xl border border-border/60 bg-navy-deep/5 transition-all hover:-translate-y-1 hover:shadow-xl",
                 )}
               >
-                <img src={t.src} alt={t.name} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/90 via-navy-deep/40 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-5 text-white">
-                  <h3 className="text-lg font-bold">{t.name}</h3>
-                  <p className="mt-1 text-xs text-white/80">{t.desc}</p>
+                <div className="flex items-center justify-center bg-white p-3">
+                  <img
+                    src={t.src}
+                    alt={t.name}
+                    loading="lazy"
+                    className="h-auto w-full object-contain transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                </div>
+                <div className="p-4">
+                  <h3 className="text-base font-bold text-navy">{t.name}</h3>
+                  <p className="mt-1 text-xs text-ink-soft">{t.desc}</p>
                 </div>
               </div>
             ))}
-          </BentoGrid>
+          </div>
         </div>
       </section>
 
