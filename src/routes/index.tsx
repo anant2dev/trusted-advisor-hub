@@ -9,7 +9,7 @@ import {
   MagicStar,
   TickCircle,
 } from "iconsax-react";
-import advisorImg from "@/assets/advisor.jpg";
+import advisorAsset from "@/assets/advisor.jpg.asset.json";
 import { PLANS } from "@/lib/site";
 import { SplitText } from "@/components/reactbits/SplitText";
 import { ShinyText } from "@/components/reactbits/ShinyText";
@@ -116,7 +116,7 @@ function Index() {
             <div className="absolute -inset-3 rounded-3xl bg-gradient-to-tr from-navy/20 via-gold/30 to-transparent blur-2xl" />
             <div className="clay relative overflow-hidden p-2 ring-1 ring-black/5">
               <img
-                src={advisorImg}
+                src={advisorAsset.url}
                 alt="Senior LIC advisor portrait"
                 width={1024}
                 height={1024}
