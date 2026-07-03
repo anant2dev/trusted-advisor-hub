@@ -2,7 +2,6 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
   Link,
-  Navigate,
   createRootRouteWithContext,
   useRouter,
   useRouterState,
@@ -23,8 +22,12 @@ import { ThemeProvider } from "../components/site/ThemeProvider";
 function NotFoundComponent() {
   const pathname = useRouterState({ select: (state) => state.location.pathname });
 
+  useEffect(() => {
+    if (pathname === "/index") window.location.replace("/");
+  }, [pathname]);
+
   if (pathname === "/index") {
-    return <Navigate to="/" replace />;
+    return null;
   }
 
   return (
