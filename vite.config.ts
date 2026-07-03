@@ -12,4 +12,7 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // Vercel needs Nitro's Vercel output instead of the default Cloudflare module bundle.
+  // Lovable's sandbox overrides this back to Cloudflare internally, so emulator support stays intact.
+  nitro: process.env.VERCEL ? { preset: "vercel" } : undefined,
 });

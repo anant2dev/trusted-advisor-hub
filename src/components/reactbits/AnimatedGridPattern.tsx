@@ -14,6 +14,7 @@ export function AnimatedGridPattern({
   const id = useId();
   const containerRef = useRef<SVGSVGElement>(null);
   const [dim, setDim] = useState({ width: 0, height: 0 });
+  const [animated, setAnimated] = useState(false);
   const [squares, setSquares] = useState(() => generate(numSquares, { width: 0, height: 0 }, width, height));
 
   useEffect(() => {
@@ -24,6 +25,14 @@ export function AnimatedGridPattern({
     const el = containerRef.current; if (!el) return;
     const ro = new ResizeObserver(([e]) => setDim({ width: e.contentRect.width, height: e.contentRect.height }));
     ro.observe(el); return () => ro.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const media = window.matchMedia("(min-width: 768px) and (prefers-reduced-motion: no-preference)");
+    const sync = () => setAnimated(media.matches);
+    sync();
+    media.addEventListener("change", sync);
+    return () => media.removeEventListener("change", sync);
   }, []);
 
   return (
@@ -39,16 +48,25 @@ export function AnimatedGridPattern({
       </defs>
       <rect width="100%" height="100%" fill={`url(#${id})`} />
       <svg x={x} y={y} className="overflow-visible">
-        {squares.map(({ pos: [sx, sy], id: sid }, i) => (
-          <motion.rect
-            key={`${sx}-${sy}-${sid}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: maxOpacity }}
-            transition={{ duration, repeat: Infinity, delay: i * 0.1, repeatType: "reverse", repeatDelay }}
-            width={width - 1} height={height - 1} x={sx * width + 1} y={sy * height + 1} fill="currentColor"
-            strokeWidth="0"
-          />
-        ))}
+        {squares.map(({ pos: [sx, sy], id: sid }, i) =>
+          animated ? (
+            <motion.rect
+              key={`${sx}-${sy}-${sid}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: maxOpacity }}
+              transition={{ duration, repeat: Infinity, delay: i * 0.1, repeatType: "reverse", repeatDelay }}
+              width={width - 1} height={height - 1} x={sx * width + 1} y={sy * height + 1} fill="currentColor"
+              strokeWidth="0"
+            />
+          ) : (
+            <rect
+              key={`${sx}-${sy}-${sid}`}
+              opacity={maxOpacity * 0.35}
+              width={width - 1} height={height - 1} x={sx * width + 1} y={sy * height + 1} fill="currentColor"
+              strokeWidth="0"
+            />
+          ),
+        )}
       </svg>
     </svg>
   );
