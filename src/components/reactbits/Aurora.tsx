@@ -76,7 +76,12 @@ export default function Aurora(props: AuroraProps) {
     const ctn = ctnDom.current;
     if (!ctn || typeof window === "undefined") return;
 
-    const renderer = new Renderer({ alpha: true, premultipliedAlpha: true, antialias: true });
+    const canUseWebGL =
+      window.matchMedia("(min-width: 768px)").matches &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!canUseWebGL) return;
+
+    const renderer = new Renderer({ alpha: true, premultipliedAlpha: true, antialias: false, dpr: Math.min(window.devicePixelRatio || 1, 1.5) });
     const gl = renderer.gl;
     gl.clearColor(0, 0, 0, 0);
     gl.enable(gl.BLEND);
@@ -118,8 +123,15 @@ export default function Aurora(props: AuroraProps) {
     ctn.appendChild(gl.canvas);
 
     let animateId = 0;
+    let inView = true;
+    const io = new IntersectionObserver(([entry]) => {
+      inView = entry.isIntersecting;
+    }, { threshold: 0.01 });
+    io.observe(ctn);
+
     const update = (t: number) => {
       animateId = requestAnimationFrame(update);
+      if (document.hidden || !inView) return;
       const speed = propsRef.current.speed ?? 1.0;
       const time = t * 0.01;
       program.uniforms.uTime.value = time * speed * 0.1;
@@ -137,6 +149,7 @@ export default function Aurora(props: AuroraProps) {
 
     return () => {
       cancelAnimationFrame(animateId);
+      io.disconnect();
       window.removeEventListener("resize", resize);
       if (ctn && gl.canvas.parentNode === ctn) ctn.removeChild(gl.canvas);
       gl.getExtension("WEBGL_lose_context")?.loseContext();
@@ -144,5 +157,16 @@ export default function Aurora(props: AuroraProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [amplitude]);
 
-  return <div ref={ctnDom} className="aurora-container absolute inset-0 h-full w-full" />;
+  return (
+    <div
+      ref={ctnDom}
+      className="aurora-container absolute inset-0 h-full w-full"
+      style={{
+        background:
+          `radial-gradient(circle at 18% 28%, ${colorStops[1]}55, transparent 32%), ` +
+          `radial-gradient(circle at 78% 18%, ${colorStops[2]}45, transparent 34%), ` +
+          `linear-gradient(115deg, ${colorStops[0]}40, ${colorStops[1]}22, ${colorStops[2]}35)`,
+      }}
+    />
+  );
 }

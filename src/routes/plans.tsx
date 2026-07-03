@@ -4,7 +4,6 @@ import { ALL_PLANS } from "@/lib/site";
 import { FadeIn } from "@/components/reactbits/FadeIn";
 import { PageTransition } from "@/components/site/PageTransition";
 import { HoverEffect } from "@/components/aceternity/hover-effect";
-import { Globe } from "@/components/aceternity/Globe";
 import { TrustBadges } from "@/components/site/TrustBadges";
 import { FAQSection } from "@/components/site/FAQSection";
 
@@ -123,9 +122,8 @@ function PlansPage() {
 
       {/* Global Coverage */}
       <section className="relative overflow-hidden bg-navy text-white">
-        <div className="pointer-events-none absolute -top-20 -right-20 h-80 w-80 rounded-full bg-gold/10 blur-3xl" />
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8">
-          <div>
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-gold backdrop-blur">
               <Global size={14} variant="Bold" color="#F4C430" /> Pan-India · NRI Coverage
             </span>
@@ -144,10 +142,6 @@ function PlansPage() {
                 </li>
               ))}
             </ul>
-          </div>
-          <div className="relative mx-auto w-full max-w-lg">
-            <div className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(244,196,48,0.18),transparent_60%)]" />
-            <Globe />
           </div>
         </div>
       </section>
