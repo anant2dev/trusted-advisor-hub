@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { Call, Sms, Location, Clock, Whatsapp } from "iconsax-react";
 import { NAV_LINKS, WHATSAPP_NUMBER, EMAIL, ADVISOR_NAME, ADDRESS, PHONE_DISPLAY } from "@/lib/site";
 import logo from "@/assets/bima-secure-logo.asset.json";
+import { assetUrl } from "@/lib/assets";
 
 export function Footer() {
   return (
@@ -9,7 +10,7 @@ export function Footer() {
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-4 lg:px-8">
         <div>
           <div className="flex items-center gap-3">
-            <img src={logo.url} alt="Bima Secure logo" className="h-12 w-12 object-contain" />
+            <img src={assetUrl(logo.url)} alt="Bima Secure logo" className="h-12 w-12 object-contain" />
             <div>
               <p className="text-sm font-bold text-white">{ADVISOR_NAME}</p>
               <p className="text-[10px] uppercase tracking-[0.18em] text-white/60">

@@ -18,6 +18,7 @@ import { PageTransition } from "@/components/site/PageTransition";
 import { HoverEffect } from "@/components/aceternity/hover-effect";
 import { TrustBadges } from "@/components/site/TrustBadges";
 import { FAQSection } from "@/components/site/FAQSection";
+import { assetUrl } from "@/lib/assets";
 import trophy1 from "@/assets/trophies/1781413121551.asset.json";
 import trophy2 from "@/assets/trophies/IMG_20260614_104134.asset.json";
 import trophy3 from "@/assets/trophies/IMG_20260614_104441.asset.json";
@@ -69,11 +70,11 @@ const clubs = [
 ];
 
 const trophies = [
-  { src: trophy1.url, title: "Ram Singh Rathore Honour Plaque", year: "FY 2017–18", caption: "25-policy flag-bearer recognition by LIC Agra Mandal." },
-  { src: trophy5.url, title: "Republic Day Sammaan", year: "2025", caption: "Awarded for utkarsh karya & sustained performance — Agra Mandal." },
-  { src: trophy2.url, title: "Mandal Flag-Bearer Shield", year: "FY 2018–19", caption: "Awarded for exemplary 25-policy contribution to the Mandal." },
-  { src: trophy4.url, title: "SDM Trophy · North Central Zone", year: "2024–25", caption: "Senior Development Manager Trophy recognising zonal excellence." },
-  { src: trophy3.url, title: "Independence Day Memento", year: "Azadi ka Amrit Mahotsav", caption: "Commemorative LIC Independence Day recognition." },
+  { src: assetUrl(trophy1.url), title: "Ram Singh Rathore Honour Plaque", year: "FY 2017–18", caption: "25-policy flag-bearer recognition by LIC Agra Mandal." },
+  { src: assetUrl(trophy5.url), title: "Republic Day Sammaan", year: "2025", caption: "Awarded for utkarsh karya & sustained performance — Agra Mandal." },
+  { src: assetUrl(trophy2.url), title: "Mandal Flag-Bearer Shield", year: "FY 2018–19", caption: "Awarded for exemplary 25-policy contribution to the Mandal." },
+  { src: assetUrl(trophy4.url), title: "SDM Trophy · North Central Zone", year: "2024–25", caption: "Senior Development Manager Trophy recognising zonal excellence." },
+  { src: assetUrl(trophy3.url), title: "Independence Day Memento", year: "Azadi ka Amrit Mahotsav", caption: "Commemorative LIC Independence Day recognition." },
 ];
 
 function AboutPage() {
