@@ -18,6 +18,8 @@ import { Footer } from "../components/site/Footer";
 import { WhatsAppFab } from "../components/site/WhatsAppFab";
 import { StickyCTA } from "../components/site/StickyCTA";
 import { ThemeProvider } from "../components/site/ThemeProvider";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 function NotFoundComponent() {
   const pathname = useRouterState({ select: (state) => state.location.pathname });
@@ -101,6 +103,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Veteran LIC of India advisor with 20+ years of experience. Honest, transparent life insurance and financial planning for families in India and abroad.",
       },
       { name: "author", content: "LIC Advisor" },
+      { name: "google-site-verification", content: "EZ8LWE6LcRhOiM5yk1t9ZE1GNQY7g0-nj5QY4ijbXbU" },
       { property: "og:title", content: "LIC Advisor · 20+ Years of Trusted Planning" },
       {
         property: "og:description",
@@ -174,6 +177,8 @@ function RootComponent() {
           {/* Spacer so sticky CTA never overlaps footer content */}
           <div aria-hidden className="h-16 md:h-20" />
         </div>
+        <Analytics />
+        <SpeedInsights />
       </ThemeProvider>
     </QueryClientProvider>
   );
