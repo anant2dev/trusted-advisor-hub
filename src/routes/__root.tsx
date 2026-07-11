@@ -18,6 +18,8 @@ import { Footer } from "../components/site/Footer";
 import { WhatsAppFab } from "../components/site/WhatsAppFab";
 import { StickyCTA } from "../components/site/StickyCTA";
 import { ThemeProvider } from "../components/site/ThemeProvider";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 function NotFoundComponent() {
   const pathname = useRouterState({ select: (state) => state.location.pathname });
@@ -175,6 +177,8 @@ function RootComponent() {
           {/* Spacer so sticky CTA never overlaps footer content */}
           <div aria-hidden className="h-16 md:h-20" />
         </div>
+        <Analytics />
+        <SpeedInsights />
       </ThemeProvider>
     </QueryClientProvider>
   );
