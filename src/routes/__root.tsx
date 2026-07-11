@@ -101,6 +101,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Veteran LIC of India advisor with 20+ years of experience. Honest, transparent life insurance and financial planning for families in India and abroad.",
       },
       { name: "author", content: "LIC Advisor" },
+      { name: "google-site-verification", content: "EZ8LWE6LcRhOiM5yk1t9ZE1GNQY7g0-nj5QY4ijbXbU" },
       { property: "og:title", content: "LIC Advisor · 20+ Years of Trusted Planning" },
       {
         property: "og:description",
