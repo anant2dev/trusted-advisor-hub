@@ -3,6 +3,7 @@ import { useState } from "react";
 import { HambergerMenu, CloseSquare, Call, Location } from "iconsax-react";
 import { NAV_LINKS, ADVISOR_NAME, ADDRESS, PHONE_DISPLAY } from "@/lib/site";
 import logo from "@/assets/bima-secure-logo.asset.json";
+import { assetUrl } from "@/lib/assets";
 import { ThemeToggle } from "./ThemeToggle";
 
 export function Navbar() {
@@ -24,7 +25,7 @@ export function Navbar() {
 
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link to="/" className="flex items-center gap-3">
-          <img src={logo.url} alt="Bima Secure logo" className="h-12 w-12 object-contain" />
+          <img src={assetUrl(logo.url)} alt="Bima Secure logo" className="h-12 w-12 object-contain" />
           <span className="flex flex-col leading-tight">
             <span className="text-base font-extrabold tracking-tight text-foreground">{ADVISOR_NAME}</span>
             <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">

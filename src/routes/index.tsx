@@ -26,6 +26,7 @@ import { HoverEffect } from "@/components/aceternity/hover-effect";
 import { PageTransition } from "@/components/site/PageTransition";
 import { FAQSection } from "@/components/site/FAQSection";
 import { cn } from "@/lib/utils";
+import { assetUrl } from "@/lib/assets";
 import trophy1 from "@/assets/trophies/1781413121551.asset.json";
 import trophy2 from "@/assets/trophies/IMG_20260614_104134.asset.json";
 import trophy3 from "@/assets/trophies/IMG_20260614_104441.asset.json";
@@ -115,7 +116,7 @@ function Index() {
             <div className="absolute -inset-3 rounded-3xl bg-gradient-to-tr from-navy/20 via-gold/30 to-transparent blur-2xl" />
             <div className="clay relative overflow-hidden p-2 ring-1 ring-black/5">
               <img
-                src={advisorAsset.url}
+                src={assetUrl(advisorAsset.url)}
                 alt="Senior LIC advisor portrait"
                 width={1024}
                 height={1024}
@@ -197,11 +198,11 @@ function Index() {
           </div>
           <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
             {[
-              { src: trophy1.url, name: "DM Club Member", desc: "Distinguished Member recognition by LIC of India.", span: "md:col-span-2" },
-              { src: trophy2.url, name: "Top Advisor", desc: "Year-on-year top advisor citations.", span: "md:col-span-1" },
-              { src: trophy3.url, name: "Service Excellence", desc: "Awarded for client retention and service standards.", span: "md:col-span-1" },
-              { src: trophy4.url, name: "Branch Honour", desc: "Branch-level honours across multiple years.", span: "md:col-span-1" },
-              { src: trophy5.url, name: "Premium Achiever", desc: "Premium business milestones consistently met.", span: "md:col-span-1" },
+              { src: assetUrl(trophy1.url), name: "DM Club Member", desc: "Distinguished Member recognition by LIC of India.", span: "md:col-span-2" },
+              { src: assetUrl(trophy2.url), name: "Top Advisor", desc: "Year-on-year top advisor citations.", span: "md:col-span-1" },
+              { src: assetUrl(trophy3.url), name: "Service Excellence", desc: "Awarded for client retention and service standards.", span: "md:col-span-1" },
+              { src: assetUrl(trophy4.url), name: "Branch Honour", desc: "Branch-level honours across multiple years.", span: "md:col-span-1" },
+              { src: assetUrl(trophy5.url), name: "Premium Achiever", desc: "Premium business milestones consistently met.", span: "md:col-span-1" },
             ].map((t) => (
               <div
                 key={t.name}
