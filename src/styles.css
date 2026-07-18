@@ -249,6 +249,30 @@
 .dark .border-navy\/15 { border-color: color-mix(in oklab, var(--foreground) 20%, transparent) !important; }
 .dark .border-navy\/20 { border-color: color-mix(in oklab, var(--foreground) 25%, transparent) !important; }
 
+/* Extended dark-mode remaps for legacy tokens used across routes/sections. */
+.dark .bg-slate-bg { background-color: var(--background) !important; }
+.dark .from-slate-bg { --tw-gradient-from: var(--background) !important; }
+.dark .to-slate-bg { --tw-gradient-to: var(--background) !important; }
+.dark .via-slate-bg { --tw-gradient-via: var(--background) !important; }
+.dark .from-white { --tw-gradient-from: var(--card) !important; }
+.dark .to-white { --tw-gradient-to: var(--card) !important; }
+.dark .via-white { --tw-gradient-via: var(--card) !important; }
+.dark .bg-white\/80 { background-color: color-mix(in oklab, var(--card) 80%, transparent) !important; }
+.dark .bg-white\/70 { background-color: color-mix(in oklab, var(--card) 70%, transparent) !important; }
+.dark .bg-white\/60 { background-color: color-mix(in oklab, var(--card) 60%, transparent) !important; }
+.dark .bg-white\/50 { background-color: color-mix(in oklab, var(--card) 50%, transparent) !important; }
+.dark .text-ink { color: var(--foreground) !important; }
+.dark .text-ink-soft { color: color-mix(in oklab, var(--foreground) 70%, transparent) !important; }
+.dark .bg-ink { background-color: var(--foreground) !important; }
+.dark .text-navy\/80 { color: color-mix(in oklab, var(--foreground) 80%, transparent) !important; }
+.dark .text-navy\/50 { color: color-mix(in oklab, var(--foreground) 50%, transparent) !important; }
+.dark .text-navy\/40 { color: color-mix(in oklab, var(--foreground) 40%, transparent) !important; }
+.dark .border-navy\/10 { border-color: color-mix(in oklab, var(--foreground) 15%, transparent) !important; }
+.dark .border-navy\/25 { border-color: color-mix(in oklab, var(--foreground) 30%, transparent) !important; }
+.dark .bg-navy { background-color: var(--primary) !important; color: var(--primary-foreground) !important; }
+.dark .bg-navy\/5 { background-color: color-mix(in oklab, var(--primary) 12%, transparent) !important; }
+.dark .bg-navy\/10 { background-color: color-mix(in oklab, var(--primary) 18%, transparent) !important; }
+
 /* Claymorphism — soft, pillow-like surfaces with dual-shadow depth */
 @utility clay {
   background: linear-gradient(145deg, color-mix(in oklab, var(--card) 96%, white), color-mix(in oklab, var(--card) 90%, var(--primary) 4%));

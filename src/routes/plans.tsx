@@ -21,7 +21,16 @@ export const Route = createFileRoute("/plans")({
         property: "og:description",
         content: "Top plans for child, family income, lifetime cover and high-return planning.",
       },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/plans" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Curated LIC Plans" },
+      {
+        name: "twitter:description",
+        content: "Top LIC plans for child, family income, lifetime cover and high-return planning.",
+      },
     ],
+    links: [{ rel: "canonical", href: "/plans" }],
   }),
   component: PlansPage,
 });

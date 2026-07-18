@@ -34,7 +34,16 @@ export const Route = createFileRoute("/book-appointment")({
         property: "og:description",
         content: "Private, secure, no-database lead capture via WhatsApp or email.",
       },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/book-appointment" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Book an LIC Consultation" },
+      {
+        name: "twitter:description",
+        content: "Private WhatsApp or email consultation with a 20-year LIC advisor.",
+      },
     ],
+    links: [{ rel: "canonical", href: "/book-appointment" }],
   }),
   component: AppointmentPage,
 });

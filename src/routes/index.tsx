@@ -48,7 +48,17 @@ export const Route = createFileRoute("/")({
         content:
           "Expert life insurance and financial planning. DM Club Member. 1000+ families protected.",
       },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "LIC Advisor · 20+ Years of Trust" },
+      {
+        name: "twitter:description",
+        content:
+          "Expert life insurance and financial planning. DM Club Member. 1000+ families protected.",
+      },
     ],
+    links: [{ rel: "canonical", href: "/" }],
   }),
   component: Index,
 });

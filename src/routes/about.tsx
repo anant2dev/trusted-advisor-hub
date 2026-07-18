@@ -40,7 +40,17 @@ export const Route = createFileRoute("/about")({
         content:
           "Distinguished DM Club Member. Journey, recognitions and the practice behind 1000+ protected families.",
       },
+      { property: "og:type", content: "profile" },
+      { property: "og:url", content: "/about" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "About the Advisor · LIC" },
+      {
+        name: "twitter:description",
+        content:
+          "20+ years of LIC advisory. DM Club Member. 1000+ families protected.",
+      },
     ],
+    links: [{ rel: "canonical", href: "/about" }],
   }),
   component: AboutPage,
 });
