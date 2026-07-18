@@ -104,6 +104,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "author", content: "LIC Advisor" },
       { name: "google-site-verification", content: "EZ8LWE6LcRhOiM5yk1t9ZE1GNQY7g0-nj5QY4ijbXbU" },
+      { name: "google-site-verification", content: "pSPEqTvr4fwOE_WBmaMQCo1eZVF-wQ0l_AmGetaXY7Y" },
       { property: "og:title", content: "LIC Advisor · 20+ Years of Trusted Planning" },
       {
         property: "og:description",
