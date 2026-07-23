@@ -46,10 +46,11 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }
 
     const { x, y } = origin;
+    // Full diagonal distance so the reveal always reaches every corner.
     const endRadius = Math.hypot(
       Math.max(x, window.innerWidth - x),
       Math.max(y, window.innerHeight - y),
-    );
+    ) + 40;
 
     const transition = doc.startViewTransition(() => {
       setThemeState(next);
@@ -65,9 +66,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
             ],
           },
           {
-            duration: 600,
-            easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+            duration: 1100,
+            easing: "cubic-bezier(0.16, 1, 0.3, 1)",
             pseudoElement: "::view-transition-new(root)",
+            fill: "forwards",
           },
         );
       })

@@ -7,6 +7,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
   return (
     <button
       type="button"
+      data-sfx="toggle"
       aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
       onClick={(e) => {
         const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
