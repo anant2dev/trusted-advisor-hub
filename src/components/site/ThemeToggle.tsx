@@ -8,7 +8,10 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
     <button
       type="button"
       aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
-      onClick={toggle}
+      onClick={(e) => {
+        const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+        toggle({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
+      }}
       className={
         "grid h-10 w-10 place-items-center rounded-lg border border-border bg-card text-foreground transition-colors hover:bg-accent/30 " +
         className
