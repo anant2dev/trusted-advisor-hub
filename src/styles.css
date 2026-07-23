@@ -236,6 +236,19 @@
   animation: pulse-ring 1.8s cubic-bezier(0.66, 0, 0, 1) infinite;
 }
 
+/* View Transitions API — theme swap originates from toggle icon */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 2;
+}
+
 /* Dark-mode remap for legacy hardcoded utilities used throughout the site.
  * Many components/routes hardcode `bg-white` and `text-navy` (light-mode
  * design). In dark mode we transparently remap them to semantic tokens so

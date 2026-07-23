@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://bima-suraksha.vercel.app/sitemap.xml
