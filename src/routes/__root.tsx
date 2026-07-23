@@ -18,6 +18,7 @@ import { Footer } from "../components/site/Footer";
 import { WhatsAppFab } from "../components/site/WhatsAppFab";
 import { StickyCTA } from "../components/site/StickyCTA";
 import { ThemeProvider } from "../components/site/ThemeProvider";
+import { SoundLayer } from "../components/site/SoundLayer";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 
@@ -175,6 +176,7 @@ function RootComponent() {
           <Footer />
           <WhatsAppFab />
           <StickyCTA />
+          <SoundLayer />
           {/* Spacer so sticky CTA never overlaps footer content */}
           <div aria-hidden className="h-16 md:h-20" />
         </div>
