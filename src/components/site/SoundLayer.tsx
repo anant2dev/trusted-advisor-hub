@@ -73,7 +73,7 @@ export function SoundLayer() {
         data-sfx-skip
         onClick={toggle}
         aria-label={muted ? "Unmute interface sounds" : "Mute interface sounds"}
-        className="fixed bottom-24 right-4 z-50 grid h-11 w-11 place-items-center rounded-full border border-border/70 bg-card/80 text-foreground shadow-lg backdrop-blur transition hover:scale-105 md:bottom-28"
+        className="fixed bottom-44 right-5 z-50 grid h-11 w-11 place-items-center rounded-full border border-border/70 bg-card/80 text-foreground shadow-lg backdrop-blur transition hover:scale-105 md:bottom-44"
       >
         {muted ? <VolumeMute size={18} variant="Bold" /> : <VolumeHigh size={18} variant="Bold" color="#F4C430" />}
       </button>
