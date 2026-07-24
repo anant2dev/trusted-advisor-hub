@@ -168,6 +168,33 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
         <div className="flex min-h-screen flex-col bg-background text-foreground">
+          {/* Coding-editor ambient backdrop: grid + neon glows, visible on all viewports */}
+          <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+            <div
+              className="absolute inset-0 opacity-[0.35] dark:opacity-[0.55]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(to right, color-mix(in oklab, var(--primary) 22%, transparent) 1px, transparent 1px), linear-gradient(to bottom, color-mix(in oklab, var(--primary) 22%, transparent) 1px, transparent 1px)",
+                backgroundSize: "42px 42px",
+                maskImage:
+                  "radial-gradient(ellipse at 50% 0%, black 30%, transparent 75%)",
+                WebkitMaskImage:
+                  "radial-gradient(ellipse at 50% 0%, black 30%, transparent 75%)",
+              }}
+            />
+            <div
+              className="absolute -top-32 -left-24 h-[420px] w-[420px] rounded-full blur-3xl opacity-40 dark:opacity-60"
+              style={{ background: "radial-gradient(circle, #22d3ee, transparent 65%)" }}
+            />
+            <div
+              className="absolute top-40 -right-24 h-[420px] w-[420px] rounded-full blur-3xl opacity-40 dark:opacity-60"
+              style={{ background: "radial-gradient(circle, #a855f7, transparent 65%)" }}
+            />
+            <div
+              className="absolute bottom-0 left-1/3 h-[380px] w-[380px] rounded-full blur-3xl opacity-30 dark:opacity-50"
+              style={{ background: "radial-gradient(circle, #f472b6, transparent 65%)" }}
+            />
+          </div>
           <Navbar />
           <main className="flex-1">
             {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
