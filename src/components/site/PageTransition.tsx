@@ -1,9 +1,14 @@
 import { motion } from "motion/react";
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
+import { playSfx } from "@/lib/sfx";
 
 // Smooth premium page-mount transition. Per-route wrapper so it integrates
 // cleanly with TanStack Router's file-based routing.
 export function PageTransition({ children }: { children: ReactNode }) {
+  useEffect(() => {
+    playSfx("whoosh");
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 18, filter: "blur(6px)" }}

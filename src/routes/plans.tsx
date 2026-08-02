@@ -6,6 +6,9 @@ import { PageTransition } from "@/components/site/PageTransition";
 import { HoverEffect } from "@/components/aceternity/hover-effect";
 import { TrustBadges } from "@/components/site/TrustBadges";
 import { FAQSection } from "@/components/site/FAQSection";
+import { PlanDetails } from "@/components/site/PlanDetails";
+import { Glossary } from "@/components/site/Glossary";
+import { ProcessTimeline } from "@/components/site/ProcessTimeline";
 
 export const Route = createFileRoute("/plans")({
   head: () => ({
@@ -58,7 +61,7 @@ function PlansPage() {
 
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {ALL_PLANS.map((p, i) => (
               <FadeIn
                 key={p.slug}
@@ -81,6 +84,8 @@ function PlansPage() {
                     </li>
                   ))}
                 </ul>
+
+                <PlanDetails slug={p.slug} />
 
                 <Link
                   to="/book-appointment"
@@ -154,6 +159,10 @@ function PlansPage() {
           </div>
         </div>
       </section>
+
+      <ProcessTimeline />
+
+      <Glossary />
 
       <FAQSection
         title="About the plans — and how I work"
