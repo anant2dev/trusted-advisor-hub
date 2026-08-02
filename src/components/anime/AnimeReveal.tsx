@@ -54,8 +54,9 @@ export function AnimeReveal({
   }, [text, delay]);
 
   const words = text.split(" ");
+  const Component = Tag as React.ComponentType<{ className?: string; children?: ReactNode; ref?: React.Ref<HTMLElement> }>;
   return (
-    <Tag ref={ref as never} className={cn("inline-block", className)}>
+    <Component ref={ref} className={cn("inline-block", className)}>
       {words.map((w, i) => (
         <span
           key={`${w}-${i}`}
@@ -66,7 +67,7 @@ export function AnimeReveal({
           {w}
         </span>
       ))}
-    </Tag>
+    </Component>
   );
 }
 

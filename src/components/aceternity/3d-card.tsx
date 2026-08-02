@@ -53,5 +53,6 @@ export function CardItem({
       ? `translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`
       : `translateX(0px) translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
   }, [entered, translateX, translateY, translateZ, rotateX, rotateY, rotateZ]);
-  return <Tag ref={ref as never} className={cn("w-fit transition duration-200 ease-linear", className)} {...rest}>{children}</Tag>;
+  const Component = Tag as React.ComponentType<{ className?: string; children?: ReactNode; ref?: React.Ref<HTMLElement> }>;
+  return <Component ref={ref} className={cn("w-fit transition duration-200 ease-linear", className)} {...rest}>{children}</Component>;
 }
