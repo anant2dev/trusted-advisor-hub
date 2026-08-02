@@ -1,7 +1,19 @@
 // Lightweight Web Audio SFX — no external files, synthesized on the fly.
 // Respects a `sfx:muted` localStorage flag and prefers-reduced-motion.
 
-type Tone = "click" | "hover" | "toggle" | "success" | "open";
+type Tone =
+  | "click"
+  | "hover"
+  | "toggle"
+  | "success"
+  | "open"
+  | "close"
+  | "whoosh"
+  | "pop"
+  | "tick"
+  | "chime"
+  | "error"
+  | "boot";
 
 let ctx: AudioContext | null = null;
 let muted = false;
@@ -48,6 +60,13 @@ const presets: Record<Tone, { freq: number; freq2?: number; dur: number; type: O
   toggle:  { freq: 380,  freq2: 880, dur: 0.22, type: "sine",     gain: 0.07 },
   success: { freq: 660,  freq2: 990, dur: 0.28, type: "triangle", gain: 0.08 },
   open:    { freq: 520,  freq2: 720, dur: 0.14, type: "sine",     gain: 0.05 },
+  close:   { freq: 700,  freq2: 420, dur: 0.13, type: "sine",     gain: 0.045 },
+  whoosh:  { freq: 240,  freq2: 90,  dur: 0.32, type: "sawtooth", gain: 0.025 },
+  pop:     { freq: 900,  freq2: 1500,dur: 0.05, type: "sine",     gain: 0.045 },
+  tick:    { freq: 2100,             dur: 0.02, type: "square",   gain: 0.012 },
+  chime:   { freq: 880,  freq2: 1320,dur: 0.45, type: "sine",     gain: 0.06 },
+  error:   { freq: 300,  freq2: 160, dur: 0.24, type: "sawtooth", gain: 0.05 },
+  boot:    { freq: 180,  freq2: 620, dur: 0.6,  type: "triangle", gain: 0.05 },
 };
 
 export function playSfx(tone: Tone) {
