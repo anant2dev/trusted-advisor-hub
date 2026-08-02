@@ -6,6 +6,9 @@ import { PageTransition } from "@/components/site/PageTransition";
 import { HoverEffect } from "@/components/aceternity/hover-effect";
 import { TrustBadges } from "@/components/site/TrustBadges";
 import { FAQSection } from "@/components/site/FAQSection";
+import { PlanDetails } from "@/components/site/PlanDetails";
+import { Glossary } from "@/components/site/Glossary";
+import { ProcessTimeline } from "@/components/site/ProcessTimeline";
 
 export const Route = createFileRoute("/plans")({
   head: () => ({
@@ -82,6 +85,8 @@ function PlansPage() {
                   ))}
                 </ul>
 
+                <PlanDetails slug={p.slug} />
+
                 <Link
                   to="/book-appointment"
                   search={{ plan: p.name }}
@@ -154,6 +159,10 @@ function PlansPage() {
           </div>
         </div>
       </section>
+
+      <ProcessTimeline />
+
+      <Glossary />
 
       <FAQSection
         title="About the plans — and how I work"

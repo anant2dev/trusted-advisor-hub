@@ -204,6 +204,7 @@ function RootComponent() {
           <WhatsAppFab />
           <StickyCTA />
           <SoundLayer />
+          <Preloader />
           {/* Spacer so sticky CTA never overlaps footer content */}
           <div aria-hidden className="h-16 md:h-20" />
         </div>
