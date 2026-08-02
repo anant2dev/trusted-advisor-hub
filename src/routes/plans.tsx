@@ -61,7 +61,7 @@ function PlansPage() {
 
       <section className="bg-white">
         <div className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {ALL_PLANS.map((p, i) => (
               <FadeIn
                 key={p.slug}
