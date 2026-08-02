@@ -26,7 +26,7 @@ import { HoverEffect } from "@/components/aceternity/hover-effect";
 import { PageTransition } from "@/components/site/PageTransition";
 import { FAQSection } from "@/components/site/FAQSection";
 import { AnimeReveal, AnimeBlockReveal } from "@/components/anime/AnimeReveal";
-import { FloatingShield } from "@/components/three/FloatingShield";
+
 import { cn } from "@/lib/utils";
 import { assetUrl } from "@/lib/assets";
 import trophy1 from "@/assets/trophies/1781413121551.asset.json";
@@ -365,31 +365,30 @@ function Index() {
         </div>
       </section>
 
-      {/* 3D immersive showcase */}
+      {/* CTA showcase */}
       <section className="relative overflow-hidden bg-gradient-to-br from-navy-deep via-navy to-navy-deep text-white">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(244,196,48,0.18),transparent_55%)]" />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">Immersive Advisory</p>
-            <h2 className="mt-3 text-3xl font-extrabold leading-tight sm:text-4xl">
-              <AnimeReveal text="Protection you can feel — engineered in three dimensions." />
-            </h2>
-            <AnimeBlockReveal delay={200} className="mt-5 max-w-xl text-base leading-relaxed text-white/80">
-              Every policy is a promise. We shape yours with the same care a
-              jeweller gives a stone — turned in the light, examined from every
-              angle, then set to last a lifetime.
-            </AnimeBlockReveal>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                to="/plans"
-                className="inline-flex items-center gap-2 rounded-xl bg-gold px-5 py-3 text-sm font-bold text-navy shadow-lg transition-all hover:scale-[1.02]"
-              >
-                Explore Plans <ArrowRight size={16} variant="Bold" />
-              </Link>
-            </div>
-          </div>
-          <div className="relative h-[360px] sm:h-[420px] lg:h-[480px]">
-            <FloatingShield className="absolute inset-0" />
+        <div className="relative mx-auto flex max-w-4xl flex-col items-center px-4 py-20 text-center sm:px-6 lg:px-8">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-gold">Trusted Advisory</p>
+          <h2 className="mt-3 text-3xl font-extrabold leading-tight sm:text-4xl lg:text-5xl">
+            <AnimeReveal text="Protection built on two decades of trust." />
+          </h2>
+          <AnimeBlockReveal delay={200} className="mt-5 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
+            Every policy is a promise. Ram Singh Rathore shapes yours with the same care a jeweller gives a stone — examined from every angle, then set to last a lifetime.
+          </AnimeBlockReveal>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <Link
+              to="/plans"
+              className="inline-flex items-center gap-2 rounded-xl bg-gold px-5 py-3 text-sm font-bold text-navy shadow-lg transition-all hover:scale-[1.02]"
+            >
+              Explore Plans <ArrowRight size={16} variant="Bold" />
+            </Link>
+            <Link
+              to="/book-appointment"
+              className="inline-flex items-center gap-2 rounded-xl border border-white/20 px-5 py-3 text-sm font-semibold text-white hover:bg-white/5"
+            >
+              Book Consultation
+            </Link>
           </div>
         </div>
       </section>
