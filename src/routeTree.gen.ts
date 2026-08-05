@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as Char91indexChar93RouteImport } from './routes/[index]'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as PlansRouteImport } from './routes/plans'
+import { Route as PlanFinderRouteImport } from './routes/plan-finder'
 import { Route as BookAppointmentRouteImport } from './routes/book-appointment'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -29,6 +30,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
 const PlansRoute = PlansRouteImport.update({
   id: '/plans',
   path: '/plans',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlanFinderRoute = PlanFinderRouteImport.update({
+  id: '/plan-finder',
+  path: '/plan-finder',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BookAppointmentRoute = BookAppointmentRouteImport.update({
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/book-appointment': typeof BookAppointmentRoute
   '/index': typeof Char91indexChar93Route
+  '/plan-finder': typeof PlanFinderRoute
   '/plans': typeof PlansRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/book-appointment': typeof BookAppointmentRoute
   '/index': typeof Char91indexChar93Route
+  '/plan-finder': typeof PlanFinderRoute
   '/plans': typeof PlansRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/book-appointment': typeof BookAppointmentRoute
   '/index': typeof Char91indexChar93Route
+  '/plan-finder': typeof PlanFinderRoute
   '/plans': typeof PlansRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
@@ -79,6 +88,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/book-appointment'
     | '/index'
+    | '/plan-finder'
     | '/plans'
     | '/sitemap.xml'
   fileRoutesByTo: FileRoutesByTo
@@ -87,6 +97,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/book-appointment'
     | '/index'
+    | '/plan-finder'
     | '/plans'
     | '/sitemap.xml'
   id:
@@ -95,6 +106,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/book-appointment'
     | '/index'
+    | '/plan-finder'
     | '/plans'
     | '/sitemap.xml'
   fileRoutesById: FileRoutesById
@@ -104,6 +116,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   BookAppointmentRoute: typeof BookAppointmentRoute
   Char91indexChar93Route: typeof Char91indexChar93Route
+  PlanFinderRoute: typeof PlanFinderRoute
   PlansRoute: typeof PlansRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
@@ -129,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/plans'
       fullPath: '/plans'
       preLoaderRoute: typeof PlansRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/plan-finder': {
+      id: '/plan-finder'
+      path: '/plan-finder'
+      fullPath: '/plan-finder'
+      preLoaderRoute: typeof PlanFinderRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/book-appointment': {
@@ -160,19 +180,10 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   BookAppointmentRoute: BookAppointmentRoute,
   Char91indexChar93Route: Char91indexChar93Route,
+  PlanFinderRoute: PlanFinderRoute,
   PlansRoute: PlansRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
