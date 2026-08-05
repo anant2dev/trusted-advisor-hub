@@ -8,6 +8,7 @@ export const NAV_LINKS = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/plans", label: "Plans" },
+  { to: "/plan-finder", label: "Plan Finder" },
   { to: "/book-appointment", label: "Book Appointment" },
 ] as const;
 

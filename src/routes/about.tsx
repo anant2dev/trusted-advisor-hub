@@ -19,6 +19,7 @@ import { HoverEffect } from "@/components/aceternity/hover-effect";
 import { TrustBadges } from "@/components/site/TrustBadges";
 import { FAQSection } from "@/components/site/FAQSection";
 import { assetUrl } from "@/lib/assets";
+import { ldScript, personLd, breadcrumbLd } from "@/lib/seo";
 import trophy1 from "@/assets/trophies/1781413121551.asset.json";
 import trophy2 from "@/assets/trophies/IMG_20260614_104134.asset.json";
 import trophy3 from "@/assets/trophies/IMG_20260614_104441.asset.json";
@@ -51,6 +52,15 @@ export const Route = createFileRoute("/about")({
       },
     ],
     links: [{ rel: "canonical", href: "/about" }],
+    scripts: [
+      ldScript(personLd()),
+      ldScript(
+        breadcrumbLd([
+          { name: "Home", path: "/" },
+          { name: "About", path: "/about" },
+        ]),
+      ),
+    ],
   }),
   component: AboutPage,
 });

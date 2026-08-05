@@ -29,6 +29,7 @@ import { AnimeReveal, AnimeBlockReveal } from "@/components/anime/AnimeReveal";
 
 import { cn } from "@/lib/utils";
 import { assetUrl } from "@/lib/assets";
+import { ldScript, organizationLd, personLd, planCatalogLd, SITE_URL } from "@/lib/seo";
 import trophy1 from "@/assets/trophies/1781413121551.asset.json";
 import trophy2 from "@/assets/trophies/IMG_20260614_104134.asset.json";
 import trophy3 from "@/assets/trophies/IMG_20260614_104441.asset.json";
@@ -62,34 +63,17 @@ export const Route = createFileRoute("/")({
     ],
     links: [{ rel: "canonical", href: "/" }],
     scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "InsuranceAgency",
-          name: "Bima Suraksha — Ram Singh Rathore, LIC Advisor",
-          description:
-            "LIC of India life insurance advisory by Ram Singh Rathore, a veteran advisor with 20+ years of experience serving families in Agra and across India.",
-          url: "https://bima-suraksha.vercel.app/",
-          telephone: "+91-9837016351",
-          email: "ramsinghrathore250@gmail.com",
-          areaServed: "IN",
-          address: {
-            "@type": "PostalAddress",
-            streetAddress: "Jawahar Nagar, Khandari Road",
-            addressLocality: "Agra",
-            addressRegion: "Uttar Pradesh",
-            addressCountry: "IN",
-          },
-          founder: {
-            "@type": "Person",
-            name: "Ram Singh Rathore",
-            jobTitle: "LIC of India Advisor",
-            telephone: "+91-9837016351",
-            email: "ramsinghrathore250@gmail.com",
-          },
-        }),
-      },
+      ldScript(organizationLd()),
+      ldScript(personLd()),
+      ldScript(planCatalogLd()),
+      ldScript({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        name: "Bima Suraksha — Ram Singh Rathore, LIC Advisor",
+        url: `${SITE_URL}/`,
+        inLanguage: ["en-IN", "hi-IN"],
+        publisher: { "@id": `${SITE_URL}/#organization` },
+      }),
     ],
   }),
   component: Index,
@@ -266,6 +250,35 @@ function Index() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Plan Finder quiz CTA */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-3xl border border-border bg-card p-7 shadow-xl sm:p-10">
+            <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
+              <div className="max-w-xl">
+                <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-primary">
+                  <MagicStar size={13} variant="Bold" color="#F4C430" /> New · 60-second quiz
+                </span>
+                <h2 className="mt-3 text-2xl font-extrabold leading-tight text-foreground sm:text-3xl">
+                  Not sure which LIC plan fits you?
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  Answer six honest questions — goal, age, horizon, budget, priorities and
+                  dependents. We score all 18 plans and show your top two matches, then carry
+                  your choice straight into the booking form.
+                </p>
+              </div>
+              <Link
+                to="/plan-finder"
+                className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-bold text-primary-foreground shadow-lg transition-transform hover:scale-[1.03]"
+              >
+                Find my plan <ArrowRight size={18} variant="Bold" color="currentColor" />
+              </Link>
+            </div>
           </div>
         </div>
       </section>

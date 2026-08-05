@@ -14,6 +14,8 @@ import { ALL_PLANS, WHATSAPP_NUMBER, EMAIL, ADDRESS, PHONE_DISPLAY, ADVISOR_NAME
 import { PageTransition } from "@/components/site/PageTransition";
 import { TrustBadges } from "@/components/site/TrustBadges";
 import { FAQSection } from "@/components/site/FAQSection";
+import { DEFAULT_FAQ } from "@/components/site/FAQSection";
+import { ldScript, faqLd, breadcrumbLd, organizationLd, SITE_URL } from "@/lib/seo";
 
 type Search = { plan?: string };
 
@@ -44,6 +46,29 @@ export const Route = createFileRoute("/book-appointment")({
       },
     ],
     links: [{ rel: "canonical", href: "/book-appointment" }],
+    scripts: [
+      ldScript(organizationLd()),
+      ldScript(faqLd(DEFAULT_FAQ)),
+      ldScript(
+        breadcrumbLd([
+          { name: "Home", path: "/" },
+          { name: "Book Appointment", path: "/book-appointment" },
+        ]),
+      ),
+      ldScript({
+        "@context": "https://schema.org",
+        "@type": "Service",
+        serviceType: "Free LIC insurance consultation",
+        provider: { "@id": `${SITE_URL}/#organization` },
+        areaServed: ["Agra", "Uttar Pradesh", "India"],
+        offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
+        availableChannel: {
+          "@type": "ServiceChannel",
+          serviceUrl: `${SITE_URL}/book-appointment`,
+          servicePhone: "+91-9837016351",
+        },
+      }),
+    ],
   }),
   component: AppointmentPage,
 });
