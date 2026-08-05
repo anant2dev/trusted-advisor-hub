@@ -29,6 +29,7 @@ import { AnimeReveal, AnimeBlockReveal } from "@/components/anime/AnimeReveal";
 
 import { cn } from "@/lib/utils";
 import { assetUrl } from "@/lib/assets";
+import { ldScript, organizationLd, personLd, planCatalogLd, SITE_URL } from "@/lib/seo";
 import trophy1 from "@/assets/trophies/1781413121551.asset.json";
 import trophy2 from "@/assets/trophies/IMG_20260614_104134.asset.json";
 import trophy3 from "@/assets/trophies/IMG_20260614_104441.asset.json";
