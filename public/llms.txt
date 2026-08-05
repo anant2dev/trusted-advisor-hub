@@ -10,5 +10,6 @@ Contact: 9837016351 · ramsinghrathore250@gmail.com · Jawahar Nagar, Khandari R
 
 - [Home](/): Overview of the advisory, achievements, featured LIC plans and how the process works.
 - [About](/about): Ram Singh Rathore's background, 20+ year track record, awards and achievements.
+- [LIC Plan Finder Quiz](/plan-finder): A 60-second, 6-question quiz that scores all 18 LIC plans and recommends the top 2 matches with eligibility details, then preselects the chosen plan for booking.
 - [LIC Plans](/plans): Full catalogue of LIC policies with plain-English scope, eligibility, examples and an insurance jargon glossary.
 - [Book Appointment](/book-appointment): Request a free, no-obligation consultation by form, phone or WhatsApp.

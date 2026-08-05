@@ -9,6 +9,9 @@ import { FAQSection } from "@/components/site/FAQSection";
 import { PlanDetails } from "@/components/site/PlanDetails";
 import { Glossary } from "@/components/site/Glossary";
 import { ProcessTimeline } from "@/components/site/ProcessTimeline";
+import { PlanQuiz } from "@/components/site/PlanQuiz";
+import { ldScript, planCatalogLd, breadcrumbLd, faqLd } from "@/lib/seo";
+import { DEFAULT_FAQ } from "@/components/site/FAQSection";
 
 export const Route = createFileRoute("/plans")({
   head: () => ({
@@ -34,6 +37,16 @@ export const Route = createFileRoute("/plans")({
       },
     ],
     links: [{ rel: "canonical", href: "/plans" }],
+    scripts: [
+      ldScript(planCatalogLd()),
+      ldScript(faqLd(DEFAULT_FAQ)),
+      ldScript(
+        breadcrumbLd([
+          { name: "Home", path: "/" },
+          { name: "LIC Plans", path: "/plans" },
+        ]),
+      ),
+    ],
   }),
   component: PlansPage,
 });
@@ -56,6 +69,19 @@ function PlansPage() {
             recommended after 20+ years of advisory practice.
           </p>
           <TrustBadges className="mt-10 text-left" />
+        </div>
+      </section>
+      <section className="bg-background">
+        <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
+          <div className="mb-6 text-center">
+            <h2 className="text-2xl font-extrabold text-foreground sm:text-3xl">
+              Not sure which one? Take the 60-second quiz.
+            </h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Six questions — we score all 18 plans and show your top two matches.
+            </p>
+          </div>
+          <PlanQuiz />
         </div>
       </section>
 
