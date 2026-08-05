@@ -129,7 +129,8 @@ export type Recommendation = {
   reasons: string[];
 };
 
-const PLAN_BY_SLUG = new Map(ALL_PLANS.map((p) => [p.slug, p]));
+type PlanEntry = (typeof ALL_PLANS)[number];
+const PLAN_BY_SLUG = new Map<string, PlanEntry>(ALL_PLANS.map((p) => [p.slug, p] as [string, PlanEntry]));
 
 export function scoreQuiz(answers: QuizAnswers): Recommendation[] {
   const totals = new Map<string, number>();
