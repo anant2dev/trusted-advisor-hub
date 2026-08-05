@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/accordion";
 import { MessageQuestion } from "iconsax-react";
 
-const DEFAULT_FAQ = [
+export const DEFAULT_FAQ = [
   {
     q: "Are you an authorized LIC of India agent?",
     a: "Yes — IRDAI-licensed and attached to LIC of India, Agra Mandal, since 2003. My agency code can be verified on the official LIC agent portal. Every policy I service is issued directly by LIC; nothing is brokered through a third party.",
