@@ -254,9 +254,37 @@ function Index() {
         </div>
       </section>
 
+      {/* Plan Finder quiz CTA */}
+      <section className="bg-background">
+        <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-3xl border border-border bg-card p-7 shadow-xl sm:p-10">
+            <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
+              <div className="max-w-xl">
+                <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-primary">
+                  <MagicStar size={13} variant="Bold" color="#F4C430" /> New · 60-second quiz
+                </span>
+                <h2 className="mt-3 text-2xl font-extrabold leading-tight text-foreground sm:text-3xl">
+                  Not sure which LIC plan fits you?
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  Answer six honest questions — goal, age, horizon, budget, priorities and
+                  dependents. We score all 18 plans and show your top two matches, then carry
+                  your choice straight into the booking form.
+                </p>
+              </div>
+              <Link
+                to="/plan-finder"
+                className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-primary px-6 py-3.5 text-sm font-bold text-primary-foreground shadow-lg transition-transform hover:scale-[1.03]"
+              >
+                Find my plan <ArrowRight size={18} variant="Bold" color="currentColor" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Featured Plans */}
       <section className="bg-white">
-        {null}
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
             <div>
