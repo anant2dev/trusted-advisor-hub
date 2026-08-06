@@ -26,6 +26,8 @@ import { HoverEffect } from "@/components/aceternity/hover-effect";
 import { PageTransition } from "@/components/site/PageTransition";
 import { FAQSection } from "@/components/site/FAQSection";
 import { AnimeReveal, AnimeBlockReveal } from "@/components/anime/AnimeReveal";
+import { useEffect, useState } from "react";
+import { getHeroVariant, trackAb, HERO_COPY, type HeroVariant } from "@/lib/ab";
 
 import { cn } from "@/lib/utils";
 import { assetUrl } from "@/lib/assets";
@@ -81,6 +83,15 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const { theme } = useTheme();
+  const [variant, setVariant] = useState<HeroVariant>("a");
+  const copy = HERO_COPY[variant];
+
+  useEffect(() => {
+    const v = getHeroVariant();
+    setVariant(v);
+    trackAb("hero_view", v);
+  }, []);
+
   const auroraStops: [string, string, string] =
     theme === "dark"
       ? ["#0a1929", "#2A6BB0", "#FFC93C"]
@@ -104,32 +115,35 @@ function Index() {
               Authorized LIC of India Advisor
             </span>
             <h1 className="mt-5 text-4xl font-extrabold leading-[1.1] text-navy sm:text-5xl lg:text-6xl">
-              <SplitText text="Securing Families for Over" />{" "}
+              <SplitText key={`${variant}-lead`} text={copy.lead} />{" "}
               <span className="relative inline-block">
                 <span className="relative z-10">
-                  <SplitText text="20 Years" delay={0.4} />
+                  <SplitText key={`${variant}-hl`} text={copy.highlight} delay={0.4} />
                 </span>
                 <span className="absolute inset-x-0 bottom-1 -z-0 h-3 bg-gold/40" />
               </span>{" "}
-              <SplitText text="with Trust & Transparency." delay={0.6} />
+              <SplitText key={`${variant}-tail`} text={copy.tail} delay={0.6} />
             </h1>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
-              Expert financial planning and life insurance solutions tailored to
-              your family's future — honest advice, zero pressure, and absolute
-              privacy.
+              {copy.sub}
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Link to="/book-appointment">
-                <ShimmerButton className="group">
-                  Secure Your Future
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+              <Link
+                to="/plan-finder"
+                onClick={() => trackAb("hero_primary_cta_click", variant)}
+                className="w-full sm:w-auto"
+              >
+                <ShimmerButton className="group w-full justify-center sm:w-auto">
+                  {copy.primaryCta}
                   <ArrowRight size={16} variant="Bold" color="#FFC93C" className="ml-2 transition-transform group-hover:translate-x-1" />
                 </ShimmerButton>
               </Link>
               <Link
-                to="/plans"
-                className="inline-flex items-center gap-2 rounded-xl border border-navy/20 bg-white px-6 py-3.5 text-sm font-semibold text-navy shadow-sm transition-all hover:border-navy hover:bg-slate-bg"
+                to="/book-appointment"
+                onClick={() => trackAb("hero_secondary_cta_click", variant)}
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-navy/20 bg-white px-6 py-3.5 text-sm font-semibold text-navy shadow-sm transition-all hover:border-navy hover:bg-slate-bg sm:w-auto"
               >
-                Explore Plans
+                Talk to the advisor
               </Link>
             </div>
             <div className="mt-8 flex items-center gap-2 text-xs text-ink-soft">
