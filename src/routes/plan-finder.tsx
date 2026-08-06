@@ -90,30 +90,30 @@ function PlanFinderPage() {
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-card px-3.5 py-1.5 text-xs font-semibold text-primary shadow-sm">
               <ShieldTick size={14} variant="Bold" color="#FFC93C" /> Free · No sign-up
             </span>
-            <h1 className="mt-5 text-4xl font-extrabold leading-tight text-foreground sm:text-5xl">
+            <h1 className="mt-5 text-balance text-3xl font-extrabold leading-[1.12] tracking-tight text-foreground sm:text-5xl">
               Which LIC plan actually fits{" "}
               <span className="text-gold">your family?</span>
             </h1>
-            <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
+            <p className="mx-auto mt-5 max-w-2xl text-pretty text-[15px] leading-relaxed text-muted-foreground sm:text-base">
               Six honest questions about your goal, age, horizon and budget. We score all
               18 LIC plans we advise on and show you the top two — with eligibility, payout
               style and the caveats most agents skip.
             </p>
           </div>
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
             {points.map((p) => (
-              <div key={p.title} className="rounded-2xl border border-border bg-card p-4 shadow-sm">
+              <div key={p.title} className="rounded-2xl border border-border bg-card p-4 shadow-sm transition-shadow hover:shadow-md">
                 <span className="grid h-10 w-10 place-items-center rounded-lg bg-primary/10">
                   <p.icon size={20} variant="Bold" color="#FFC93C" />
                 </span>
                 <p className="mt-3 text-sm font-bold text-foreground">{p.title}</p>
-                <p className="mt-0.5 text-sm text-muted-foreground">{p.desc}</p>
+                <p className="mt-0.5 text-[13px] leading-relaxed text-muted-foreground sm:text-sm">{p.desc}</p>
               </div>
             ))}
           </div>
 
-          <div className="mx-auto mt-10 max-w-3xl">
+          <div className="mx-auto mt-10 max-w-3xl scroll-mt-24" id="quiz">
             <PlanQuiz />
           </div>
 
