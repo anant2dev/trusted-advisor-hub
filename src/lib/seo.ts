@@ -108,3 +108,26 @@ export function planCatalogLd() {
     }),
   };
 }
+
+/** Marks the key answer text as speakable for voice assistants. */
+export function speakableLd(paths: string[] = ["h1", ".seo-answer"]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    speakable: { "@type": "SpeakableSpecification", cssSelector: paths },
+    url: `${SITE_URL}/`,
+  };
+}
+
+/** Short Q&A block — the format AI answer engines quote most reliably. */
+export function qaLd(items: { q: string; a: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "QAPage",
+    mainEntity: items.map((i) => ({
+      "@type": "Question",
+      name: i.q,
+      acceptedAnswer: { "@type": "Answer", text: i.a },
+    })),
+  };
+}
