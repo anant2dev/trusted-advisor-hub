@@ -281,25 +281,50 @@ function AppointmentPage() {
             </div>
 
             {error && (
-              <p className="mt-4 rounded-lg border border-destructive/30 bg-destructive/5 px-3 py-2 text-sm text-destructive">
+              <p
+                role="alert"
+                aria-live="assertive"
+                className="mt-4 rounded-lg border border-destructive/30 bg-destructive/5 px-3 py-2 text-sm text-destructive"
+              >
                 {error}
               </p>
             )}
 
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            {/* Single, unmistakable primary action — email demoted to a quiet alternative. */}
+            <div className="mt-6">
+              <div className="mb-3 flex items-center gap-3">
+                <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-slate-bg">
+                  <div
+                    className="h-full rounded-full bg-gradient-to-r from-navy to-gold transition-[width] duration-300"
+                    style={{ width: `${Math.round((filled / 3) * 100)}%` }}
+                  />
+                </div>
+                <span className="text-[11px] font-semibold text-ink-soft" aria-live="polite">
+                  {readyToSend ? "Ready to send" : "2 quick fields left"}
+                </span>
+              </div>
+
               <button
                 type="submit"
                 onClick={(e) => handleFormSubmit(e, "whatsapp")}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-5 py-3.5 text-sm font-bold text-white shadow-md transition-all hover:scale-[1.02] hover:opacity-95"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#25D366] px-6 py-4 text-base font-bold text-white shadow-lg transition-all hover:scale-[1.01] hover:opacity-95 active:scale-[0.99]"
               >
-                <Whatsapp size={20} variant="Bold" color="#FFFFFF" /> Send via WhatsApp
+                <Whatsapp size={22} variant="Bold" color="#FFFFFF" /> Send on WhatsApp — instant reply
               </button>
+              <p className="mt-2 text-center text-xs text-ink-soft">
+                Opens WhatsApp with your details pre-filled. You send it — nothing is submitted here.
+              </p>
+
+              <div className="my-4 flex items-center gap-3 text-[11px] uppercase tracking-wider text-ink-soft">
+                <span className="h-px flex-1 bg-border" /> or <span className="h-px flex-1 bg-border" />
+              </div>
+
               <button
                 type="submit"
                 onClick={(e) => handleFormSubmit(e, "email")}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-navy px-5 py-3.5 text-sm font-bold text-white shadow-md transition-all hover:scale-[1.02] hover:bg-navy-deep"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-navy/25 bg-white px-5 py-3 text-sm font-semibold text-navy transition-all hover:bg-slate-bg"
               >
-                <Sms size={20} variant="Bold" color="#FFC93C" /> Send via Email
+                <Sms size={18} variant="Bold" color="#003262" /> Send by email instead
               </button>
             </div>
 
