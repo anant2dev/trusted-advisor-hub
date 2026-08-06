@@ -15,9 +15,17 @@ type Tone =
   | "error"
   | "boot";
 
+import { prefersReducedMotion, isTouchOnly } from "./motion";
+
 let ctx: AudioContext | null = null;
 let muted = false;
 let ready = false;
+let reduced = false;
+let touch = false;
+let lastPlay = 0;
+
+// Tones that are pure decoration — suppressed for reduced-motion users.
+const DECORATIVE: ReadonlySet<string> = new Set(["hover", "whoosh", "tick", "boot"]);
 
 function getCtx(): AudioContext | null {
   if (typeof window === "undefined") return null;
@@ -36,6 +44,12 @@ export function initSfx() {
   try {
     muted = localStorage.getItem("sfx:muted") === "1";
   } catch { /* ignore */ }
+  reduced = prefersReducedMotion();
+  touch = isTouchOnly();
+  if (typeof window !== "undefined" && window.matchMedia) {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    mq.addEventListener?.("change", (e) => { reduced = e.matches; });
+  }
   // Unlock AudioContext after first user gesture (browser autoplay policy).
   const unlock = () => {
     const c = getCtx();
@@ -48,6 +62,9 @@ export function initSfx() {
 }
 
 export function isMuted() { return muted; }
+
+/** Hover chirps are noise on touch screens and for reduced-motion users. */
+export function hoverSfxEnabled() { return !muted && !reduced && !touch; }
 
 export function setMuted(v: boolean) {
   muted = v;
@@ -71,6 +88,12 @@ const presets: Record<Tone, { freq: number; freq2?: number; dur: number; type: O
 
 export function playSfx(tone: Tone) {
   if (muted) return;
+  if (reduced && DECORATIVE.has(tone)) return;
+  if (touch && tone === "hover") return;
+  // Global rate limit: never stack more than ~12 blips a second.
+  const t = typeof performance !== "undefined" ? performance.now() : Date.now();
+  if (t - lastPlay < 80) return;
+  lastPlay = t;
   const c = getCtx();
   if (!c) return;
   if (c.state === "suspended") return; // waits for user gesture
