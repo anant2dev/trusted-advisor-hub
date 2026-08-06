@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { playSfx } from "@/lib/sfx";
+import { isLowPowerDevice } from "@/lib/motion";
 
 const BOOT_LINES = [
   "initialising secure session",
@@ -29,7 +30,7 @@ export function Preloader() {
     document.body.style.overflow = "hidden";
 
     const start = performance.now();
-    const DURATION = 1700;
+    const DURATION = isLowPowerDevice() ? 700 : 1000;
     let raf = 0;
     const tick = (now: number) => {
       const t = Math.min(1, (now - start) / DURATION);
@@ -42,7 +43,7 @@ export function Preloader() {
         setTimeout(() => {
           setVisible(false);
           document.body.style.overflow = "";
-        }, 320);
+        }, 160);
       }
     };
     raf = requestAnimationFrame(tick);
@@ -62,7 +63,7 @@ export function Preloader() {
           className="fixed inset-0 z-[999] flex flex-col items-center justify-center bg-background"
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, filter: "blur(8px)" }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
+          transition={{ duration: 0.35, ease: "easeInOut" }}
         >
           <div
             aria-hidden

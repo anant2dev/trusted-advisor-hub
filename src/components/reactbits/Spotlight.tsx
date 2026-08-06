@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 // Aceternity Spotlight — large soft radial highlight, fades in.
 export function Spotlight({
   className,
-  fill = "#F4C430",
+  fill = "#FFC93C",
 }: {
   className?: string;
   fill?: string;

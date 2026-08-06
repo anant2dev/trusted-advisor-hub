@@ -26,10 +26,12 @@ import { HoverEffect } from "@/components/aceternity/hover-effect";
 import { PageTransition } from "@/components/site/PageTransition";
 import { FAQSection } from "@/components/site/FAQSection";
 import { AnimeReveal, AnimeBlockReveal } from "@/components/anime/AnimeReveal";
+import { useEffect, useState } from "react";
+import { getHeroVariant, trackAb, HERO_COPY, type HeroVariant } from "@/lib/ab";
 
 import { cn } from "@/lib/utils";
 import { assetUrl } from "@/lib/assets";
-import { ldScript, organizationLd, personLd, planCatalogLd, SITE_URL } from "@/lib/seo";
+import { ldScript, organizationLd, personLd, planCatalogLd, speakableLd, qaLd, SITE_URL } from "@/lib/seo";
 import trophy1 from "@/assets/trophies/1781413121551.asset.json";
 import trophy2 from "@/assets/trophies/IMG_20260614_104134.asset.json";
 import trophy3 from "@/assets/trophies/IMG_20260614_104441.asset.json";
@@ -66,6 +68,23 @@ export const Route = createFileRoute("/")({
       ldScript(organizationLd()),
       ldScript(personLd()),
       ldScript(planCatalogLd()),
+      ldScript(speakableLd()),
+      ldScript(
+        qaLd([
+          {
+            q: "Who is the best LIC advisor in Agra?",
+            a: "Ram Singh Rathore is an IRDAI-licensed LIC of India advisor based in Jawahar Nagar, Khandari Road, Agra, with over 20 years of experience, Distinguished DM Club membership and 1000+ families protected.",
+          },
+          {
+            q: "How can I find the right LIC plan without talking to an agent?",
+            a: "Use the free 60-second Plan Finder quiz. Six questions about your goal, age, horizon, budget and dependents score all 18 LIC plans and return the top two matches with eligibility details and honest caveats. Nothing is stored and no sign-up is needed.",
+          },
+          {
+            q: "Does an LIC consultation cost anything?",
+            a: "No. Consultations with Ram Singh Rathore are free, unhurried and carry no obligation. You can reach him on WhatsApp at 9837016351 or by email at ramsinghrathore250@gmail.com.",
+          },
+        ]),
+      ),
       ldScript({
         "@context": "https://schema.org",
         "@type": "WebSite",
@@ -81,10 +100,19 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const { theme } = useTheme();
+  const [variant, setVariant] = useState<HeroVariant>("a");
+  const copy = HERO_COPY[variant];
+
+  useEffect(() => {
+    const v = getHeroVariant();
+    setVariant(v);
+    trackAb("hero_view", v);
+  }, []);
+
   const auroraStops: [string, string, string] =
     theme === "dark"
-      ? ["#0a1929", "#2A6BB0", "#F4C430"]
-      : ["#7FB5E6", "#3E8FD6", "#F4C430"];
+      ? ["#0a1929", "#2A6BB0", "#FFC93C"]
+      : ["#7FB5E6", "#3E8FD6", "#FFC93C"];
   return (
     <PageTransition>
       {/* Hero */}
@@ -92,7 +120,7 @@ function Index() {
         <div className="pointer-events-none absolute inset-0 opacity-40 dark:opacity-70">
           <Aurora colorStops={auroraStops} amplitude={0.7} blend={0.5} speed={0.5} />
         </div>
-        <Spotlight className="-top-40 left-0 md:-top-20 md:left-60" fill="#F4C430" />
+        <Spotlight className="-top-40 left-0 md:-top-20 md:left-60" fill="#FFC93C" />
         {/* Readability scrim: lifts text contrast over aurora */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-background/0 dark:from-background/80 dark:via-background/40" />
         <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-gold/10 blur-3xl" />
@@ -100,36 +128,39 @@ function Index() {
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-24">
           <div className="animate-fade-up">
             <span className="inline-flex items-center gap-2 rounded-full border border-navy/15 bg-white px-3.5 py-1.5 text-xs font-semibold text-navy shadow-sm">
-              <MagicStar size={14} variant="Bold" color="#F4C430" />
+              <MagicStar size={14} variant="Bold" color="#FFC93C" />
               Authorized LIC of India Advisor
             </span>
             <h1 className="mt-5 text-4xl font-extrabold leading-[1.1] text-navy sm:text-5xl lg:text-6xl">
-              <SplitText text="Securing Families for Over" />{" "}
+              <SplitText key={`${variant}-lead`} text={copy.lead} />{" "}
               <span className="relative inline-block">
                 <span className="relative z-10">
-                  <SplitText text="20 Years" delay={0.4} />
+                  <SplitText key={`${variant}-hl`} text={copy.highlight} delay={0.4} />
                 </span>
                 <span className="absolute inset-x-0 bottom-1 -z-0 h-3 bg-gold/40" />
               </span>{" "}
-              <SplitText text="with Trust & Transparency." delay={0.6} />
+              <SplitText key={`${variant}-tail`} text={copy.tail} delay={0.6} />
             </h1>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-ink-soft sm:text-lg">
-              Expert financial planning and life insurance solutions tailored to
-              your family's future — honest advice, zero pressure, and absolute
-              privacy.
+              {copy.sub}
             </p>
-            <div className="mt-8 flex flex-wrap items-center gap-3">
-              <Link to="/book-appointment">
-                <ShimmerButton className="group">
-                  Secure Your Future
-                  <ArrowRight size={16} variant="Bold" color="#F4C430" className="ml-2 transition-transform group-hover:translate-x-1" />
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+              <Link
+                to="/plan-finder"
+                onClick={() => trackAb("hero_primary_cta_click", variant)}
+                className="w-full sm:w-auto"
+              >
+                <ShimmerButton className="group w-full justify-center sm:w-auto">
+                  {copy.primaryCta}
+                  <ArrowRight size={16} variant="Bold" color="#FFC93C" className="ml-2 transition-transform group-hover:translate-x-1" />
                 </ShimmerButton>
               </Link>
               <Link
-                to="/plans"
-                className="inline-flex items-center gap-2 rounded-xl border border-navy/20 bg-white px-6 py-3.5 text-sm font-semibold text-navy shadow-sm transition-all hover:border-navy hover:bg-slate-bg"
+                to="/book-appointment"
+                onClick={() => trackAb("hero_secondary_cta_click", variant)}
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-navy/20 bg-white px-6 py-3.5 text-sm font-semibold text-navy shadow-sm transition-all hover:border-navy hover:bg-slate-bg sm:w-auto"
               >
-                Explore Plans
+                Talk to the advisor
               </Link>
             </div>
             <div className="mt-8 flex items-center gap-2 text-xs text-ink-soft">
@@ -148,10 +179,10 @@ function Index() {
                 height={1024}
                 className="aspect-square w-full rounded-2xl object-cover"
               />
-              <BorderBeam size={260} duration={10} colorFrom="#F4C430" colorTo="#003262" />
+              <BorderBeam size={260} duration={10} colorFrom="#FFC93C" colorTo="#003262" />
               <div className="absolute bottom-5 left-5 right-5 flex items-center gap-3 rounded-2xl bg-white/95 p-3.5 shadow-lg backdrop-blur">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-navy text-gold">
-                  <Cup size={20} variant="Bold" color="#F4C430" />
+                  <Cup size={20} variant="Bold" color="#FFC93C" />
                 </span>
                 <div className="min-w-0">
                   <p className="truncate text-sm font-bold text-navy">Distinguished DM Club Member</p>
@@ -174,7 +205,7 @@ function Index() {
           ].map((s, i) => (
             <FadeIn key={i} delay={i * 0.1} className="flex items-center gap-5 px-2 py-5 sm:justify-center sm:py-0">
               <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-white/10 text-gold">
-                <s.icon size={28} variant="Bold" color="#F4C430" />
+                <s.icon size={28} variant="Bold" color="#FFC93C" />
               </span>
               <div className="min-w-0">
                 <p className="text-3xl font-extrabold tracking-tight text-gold sm:text-4xl">
@@ -261,7 +292,7 @@ function Index() {
             <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
               <div className="max-w-xl">
                 <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-primary">
-                  <MagicStar size={13} variant="Bold" color="#F4C430" /> New · 60-second quiz
+                  <MagicStar size={13} variant="Bold" color="#FFC93C" /> New · 60-second quiz
                 </span>
                 <h2 className="mt-3 text-2xl font-extrabold leading-tight text-foreground sm:text-3xl">
                   Not sure which LIC plan fits you?
@@ -347,7 +378,7 @@ function Index() {
         <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[auto_1fr] lg:gap-14 lg:px-8 lg:py-24">
           <div className="flex lg:block">
             <span className="grid h-20 w-20 shrink-0 place-items-center rounded-2xl bg-gold/15 text-gold ring-1 ring-gold/30">
-              <Lock1 size={36} variant="Bold" color="#F4C430" />
+              <Lock1 size={36} variant="Bold" color="#FFC93C" />
             </span>
           </div>
           <div>

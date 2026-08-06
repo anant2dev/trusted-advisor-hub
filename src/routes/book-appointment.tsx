@@ -73,7 +73,7 @@ export const Route = createFileRoute("/book-appointment")({
   component: AppointmentPage,
 });
 
-const planNames = ALL_PLANS.map((p) => p.name);
+const planNames: string[] = ALL_PLANS.map((p) => p.name);
 
 const beneficiaries = ["Self", "Spouse", "Child", "Parents", "Dependent"] as const;
 const ageGroups = [
@@ -109,6 +109,16 @@ function AppointmentPage() {
     message: "",
   });
   const [error, setError] = useState<string | null>(null);
+  const [touched, setTouched] = useState<{ name?: boolean; phone?: boolean }>({});
+
+  const nameError = !form.name.trim() ? "Please enter your full name." : null;
+  const phoneError = !form.phone.trim()
+    ? "Please enter a phone number we can reach you on."
+    : !/^[0-9+\-\s()]{7,20}$/.test(form.phone.trim())
+      ? "That doesn't look like a valid phone number."
+      : null;
+  const readyToSend = !nameError && !phoneError;
+  const filled = [form.name.trim(), form.phone.trim(), form.plan].filter(Boolean).length;
 
   const update =
     <K extends keyof typeof form>(key: K) =>
@@ -127,12 +137,10 @@ function AppointmentPage() {
 
   const handleFormSubmit = (e: FormEvent, method: "whatsapp" | "email") => {
     e.preventDefault();
-    if (!form.name.trim() || !form.phone.trim()) {
-      setError("Please enter your name and phone number.");
-      return;
-    }
-    if (!/^[0-9+\-\s()]{7,20}$/.test(form.phone.trim())) {
-      setError("Please enter a valid phone number.");
+    setTouched({ name: true, phone: true });
+    if (nameError || phoneError) {
+      setError(nameError ?? phoneError);
+      document.getElementById(nameError ? "name" : "phone")?.focus();
       return;
     }
     setError(null);
@@ -176,7 +184,7 @@ function AppointmentPage() {
               {reasons.map((r) => (
                 <li key={r.title} className="flex items-start gap-3.5 rounded-xl bg-white p-4 shadow-sm">
                   <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-navy text-gold">
-                    <r.icon size={20} variant="Bold" color="#F4C430" />
+                    <r.icon size={20} variant="Bold" color="#FFC93C" />
                   </span>
                   <div className="min-w-0">
                     <p className="text-sm font-bold text-navy">{r.title}</p>
@@ -206,19 +214,35 @@ function AppointmentPage() {
               <div className="sm:col-span-2">
                 <label htmlFor="name" className={labelCls}>Full Name *</label>
                 <input id="name" className={fieldCls} placeholder="e.g. Rajesh Kumar"
+                  autoComplete="name" enterKeyHint="next"
+                  aria-invalid={touched.name && !!nameError}
+                  aria-describedby={touched.name && nameError ? "name-error" : undefined}
+                  onBlur={() => setTouched((t) => ({ ...t, name: true }))}
                   value={form.name} onChange={update("name")} required maxLength={80} />
+                {touched.name && nameError && (
+                  <p id="name-error" className="mt-1.5 text-xs font-medium text-destructive">{nameError}</p>
+                )}
               </div>
 
               <div>
                 <label htmlFor="email" className={labelCls}>Email Address</label>
                 <input id="email" type="email" className={fieldCls} placeholder="you@example.com"
+                  autoComplete="email" inputMode="email"
                   value={form.email} onChange={update("email")} maxLength={120} />
+                <p className="mt-1.5 text-xs text-ink-soft">Optional — only if you prefer email over WhatsApp.</p>
               </div>
 
               <div>
                 <label htmlFor="phone" className={labelCls}>Phone / WhatsApp *</label>
                 <input id="phone" type="tel" className={fieldCls} placeholder="+91 98xxxxxx21"
+                  autoComplete="tel" inputMode="tel" enterKeyHint="done"
+                  aria-invalid={touched.phone && !!phoneError}
+                  aria-describedby={touched.phone && phoneError ? "phone-error" : undefined}
+                  onBlur={() => setTouched((t) => ({ ...t, phone: true }))}
                   value={form.phone} onChange={update("phone")} required maxLength={20} />
+                {touched.phone && phoneError && (
+                  <p id="phone-error" className="mt-1.5 text-xs font-medium text-destructive">{phoneError}</p>
+                )}
               </div>
 
               <div>
@@ -242,7 +266,7 @@ function AppointmentPage() {
                 </select>
                 {planFromUrl && planNames.includes(planFromUrl) && (
                   <p className="mt-1.5 inline-flex items-center gap-1.5 text-xs font-medium text-navy">
-                    <TickCircle size={14} variant="Bold" color="#F4C430" />
+                    <TickCircle size={14} variant="Bold" color="#FFC93C" />
                     Auto-selected from your previous page
                   </p>
                 )}
@@ -257,25 +281,50 @@ function AppointmentPage() {
             </div>
 
             {error && (
-              <p className="mt-4 rounded-lg border border-destructive/30 bg-destructive/5 px-3 py-2 text-sm text-destructive">
+              <p
+                role="alert"
+                aria-live="assertive"
+                className="mt-4 rounded-lg border border-destructive/30 bg-destructive/5 px-3 py-2 text-sm text-destructive"
+              >
                 {error}
               </p>
             )}
 
-            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+            {/* Single, unmistakable primary action — email demoted to a quiet alternative. */}
+            <div className="mt-6">
+              <div className="mb-3 flex items-center gap-3">
+                <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-slate-bg">
+                  <div
+                    className="h-full rounded-full bg-gradient-to-r from-navy to-gold transition-[width] duration-300"
+                    style={{ width: `${Math.round((filled / 3) * 100)}%` }}
+                  />
+                </div>
+                <span className="text-[11px] font-semibold text-ink-soft" aria-live="polite">
+                  {readyToSend ? "Ready to send" : "2 quick fields left"}
+                </span>
+              </div>
+
               <button
                 type="submit"
                 onClick={(e) => handleFormSubmit(e, "whatsapp")}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-[#25D366] px-5 py-3.5 text-sm font-bold text-white shadow-md transition-all hover:scale-[1.02] hover:opacity-95"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#25D366] px-6 py-4 text-base font-bold text-white shadow-lg transition-all hover:scale-[1.01] hover:opacity-95 active:scale-[0.99]"
               >
-                <Whatsapp size={20} variant="Bold" color="#FFFFFF" /> Send via WhatsApp
+                <Whatsapp size={22} variant="Bold" color="#FFFFFF" /> Send on WhatsApp — instant reply
               </button>
+              <p className="mt-2 text-center text-xs text-ink-soft">
+                Opens WhatsApp with your details pre-filled. You send it — nothing is submitted here.
+              </p>
+
+              <div className="my-4 flex items-center gap-3 text-[11px] uppercase tracking-wider text-ink-soft">
+                <span className="h-px flex-1 bg-border" /> or <span className="h-px flex-1 bg-border" />
+              </div>
+
               <button
                 type="submit"
                 onClick={(e) => handleFormSubmit(e, "email")}
-                className="inline-flex items-center justify-center gap-2 rounded-xl bg-navy px-5 py-3.5 text-sm font-bold text-white shadow-md transition-all hover:scale-[1.02] hover:bg-navy-deep"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-navy/25 bg-white px-5 py-3 text-sm font-semibold text-navy transition-all hover:bg-slate-bg"
               >
-                <Sms size={20} variant="Bold" color="#F4C430" /> Send via Email
+                <Sms size={18} variant="Bold" color="#003262" /> Send by email instead
               </button>
             </div>
 

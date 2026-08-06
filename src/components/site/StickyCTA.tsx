@@ -46,12 +46,12 @@ export function StickyCTA() {
                 to="/book-appointment"
                 className="group inline-flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-navy px-3.5 py-2.5 text-sm font-bold text-white shadow-md transition-all hover:bg-navy-deep hover:scale-[1.02] sm:flex-none"
               >
-                <Call size={16} variant="Bold" color="#F4C430" />
+                <Call size={16} variant="Bold" color="#FFC93C" />
                 Book Appointment
                 <ArrowRight
                   size={14}
                   variant="Bold"
-                  color="#F4C430"
+                  color="#FFC93C"
                   className="transition-transform group-hover:translate-x-0.5"
                 />
               </Link>

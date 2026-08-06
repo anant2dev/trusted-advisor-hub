@@ -6,7 +6,7 @@ export function BorderBeam({
   size = 220,
   duration = 9,
   delay = 0,
-  colorFrom = "#F4C430",
+  colorFrom = "#FFC93C",
   colorTo = "#1a4b8c",
 }: {
   className?: string;

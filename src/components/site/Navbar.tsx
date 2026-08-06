@@ -15,10 +15,10 @@ export function Navbar() {
       <div className="hidden border-b border-border/60 bg-navy text-white md:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-1.5 text-[11px] sm:px-6 lg:px-8">
           <span className="flex items-center gap-1.5 text-white/85">
-            <Location size={13} variant="Bold" color="#F4C430" /> {ADDRESS}
+            <Location size={13} variant="Bold" color="#FFC93C" /> {ADDRESS}
           </span>
           <a href={`tel:+${PHONE_DISPLAY.replace(/\D/g, "")}`} className="flex items-center gap-1.5 font-medium hover:text-gold">
-            <Call size={13} variant="Bold" color="#F4C430" /> {PHONE_DISPLAY}
+            <Call size={13} variant="Bold" color="#FFC93C" /> {PHONE_DISPLAY}
           </a>
         </div>
       </div>
@@ -54,7 +54,7 @@ export function Navbar() {
             to="/book-appointment"
             className="group hidden items-center gap-2 rounded-lg bg-navy px-4 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:bg-navy-deep hover:scale-[1.02] active:scale-100 md:inline-flex"
           >
-            <Call size={16} variant="Bold" color="#F4C430" className="transition-transform group-hover:rotate-12" />
+            <Call size={16} variant="Bold" color="#FFC93C" className="transition-transform group-hover:rotate-12" />
             Consult Now
           </Link>
           <button
@@ -87,11 +87,11 @@ export function Navbar() {
               onClick={() => setOpen(false)}
               className="mt-2 inline-flex items-center justify-center gap-2 rounded-lg bg-navy px-4 py-3 text-sm font-semibold text-white shadow-md"
             >
-              <Call size={16} variant="Bold" color="#F4C430" />
+              <Call size={16} variant="Bold" color="#FFC93C" />
               Consult Now
             </Link>
             <a href={`tel:+${PHONE_DISPLAY.replace(/\D/g, "")}`} className="mt-1 flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
-              <Call size={12} variant="Bold" color="#F4C430" /> {PHONE_DISPLAY}
+              <Call size={12} variant="Bold" color="#FFC93C" /> {PHONE_DISPLAY}
             </a>
           </nav>
         </div>

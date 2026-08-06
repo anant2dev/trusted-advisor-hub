@@ -104,7 +104,7 @@ function AboutPage() {
       <section className="bg-gradient-to-b from-slate-bg to-white">
         <div className="mx-auto max-w-5xl px-4 py-20 sm:px-6 lg:px-8">
           <span className="inline-flex items-center gap-2 rounded-full border border-navy/15 bg-white px-3.5 py-1.5 text-xs font-semibold text-navy shadow-sm">
-            <ShieldTick size={14} variant="Bold" color="#F4C430" /> About the Advisor
+            <ShieldTick size={14} variant="Bold" color="#FFC93C" /> About the Advisor
           </span>
           <h1 className="mt-5 text-4xl font-extrabold leading-tight text-navy sm:text-5xl">
             Two decades of quiet, consistent service —{" "}
@@ -157,7 +157,7 @@ function AboutPage() {
                           : "bg-white text-navy/60 ring-border")
                     }
                   >
-                    <c.icon size={24} variant="Bold" color={c.state === "active" ? "#003262" : c.state === "done" ? "#F4C430" : "#003262"} />
+                    <c.icon size={24} variant="Bold" color={c.state === "active" ? "#003262" : c.state === "done" ? "#FFC93C" : "#003262"} />
                   </div>
                   <div className="mt-5 rounded-2xl border border-border bg-white p-5 text-center shadow-md transition-all hover:-translate-y-1 hover:shadow-xl">
                     <p className="text-xs font-semibold uppercase tracking-wider text-ink-soft">
@@ -189,7 +189,7 @@ function AboutPage() {
                 LIC excellence — quietly earned, never advertised.
               </p>
             </div>
-            <MagicStar size={28} variant="Bold" color="#F4C430" />
+            <MagicStar size={28} variant="Bold" color="#FFC93C" />
           </div>
 
           <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -207,7 +207,7 @@ function AboutPage() {
                     className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-navy/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-gold backdrop-blur">
-                    {i % 2 === 0 ? <Cup size={12} variant="Bold" color="#F4C430" /> : <Medal size={12} variant="Bold" color="#F4C430" />}
+                    {i % 2 === 0 ? <Cup size={12} variant="Bold" color="#FFC93C" /> : <Medal size={12} variant="Bold" color="#FFC93C" />}
                     {t.year}
                   </span>
                 </div>
@@ -222,7 +222,7 @@ function AboutPage() {
             <FadeIn delay={trophies.length * 0.05}>
               <div className="flex h-full flex-col items-center justify-center rounded-2xl border-2 border-dashed border-gold/40 bg-gradient-to-br from-gold/10 via-transparent to-navy/5 p-8 text-center">
                 <span className="grid h-14 w-14 place-items-center rounded-2xl bg-navy text-gold">
-                  <MagicStar size={26} variant="Bold" color="#F4C430" />
+                  <MagicStar size={26} variant="Bold" color="#FFC93C" />
                 </span>
                 <p className="mt-4 text-base font-bold text-foreground">
                   …and many more in the cabinet.

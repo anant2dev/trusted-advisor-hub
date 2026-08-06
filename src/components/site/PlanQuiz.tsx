@@ -55,15 +55,17 @@ export function PlanQuiz({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-3xl border border-border bg-card p-6 shadow-xl sm:p-8",
+        "relative overflow-hidden rounded-3xl border border-border bg-card p-5 shadow-xl sm:p-8",
         className,
       )}
+      role="group"
+      aria-label="LIC plan finder quiz"
     >
       {/* editor-style header strip */}
       <div className="mb-5 flex items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary/10">
-            <MagicStar size={18} variant="Bold" color="#F4C430" />
+            <MagicStar size={18} variant="Bold" color="#FFC93C" />
           </span>
           <div>
             <p className="text-sm font-bold text-foreground">Plan Finder</p>
@@ -76,7 +78,7 @@ export function PlanQuiz({ className }: { className?: string }) {
           <button
             type="button"
             onClick={back}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-border px-3 py-1.5 text-xs font-semibold text-foreground transition-colors hover:bg-accent/20"
+            className="inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-border px-3.5 py-2 text-xs font-semibold text-foreground transition-colors hover:bg-accent/20"
           >
             <ArrowLeft2 size={14} variant="Bold" color="currentColor" /> Back
           </button>
@@ -84,7 +86,14 @@ export function PlanQuiz({ className }: { className?: string }) {
       </div>
 
       {/* progress */}
-      <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted">
+      <div
+        className="h-1.5 w-full overflow-hidden rounded-full bg-muted"
+        role="progressbar"
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={progress}
+        aria-label="Quiz progress"
+      >
         <motion.div
           className="h-full rounded-full bg-gradient-to-r from-primary to-gold"
           initial={false}
@@ -103,11 +112,11 @@ export function PlanQuiz({ className }: { className?: string }) {
             transition={{ duration: 0.25 }}
             className="mt-6"
           >
-            <h3 className="text-lg font-extrabold leading-snug text-foreground sm:text-xl">
+            <h3 className="text-balance text-xl font-extrabold leading-snug tracking-tight text-foreground sm:text-2xl">
               {q.question}
             </h3>
-            <p className="mt-1.5 text-sm text-muted-foreground">{q.helper}</p>
-            <div className="mt-5 grid gap-2.5">
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{q.helper}</p>
+            <div className="mt-6 grid gap-3">
               {q.options.map((o) => {
                 const active = answers[q.id] === o.id;
                 return (
@@ -115,11 +124,12 @@ export function PlanQuiz({ className }: { className?: string }) {
                     key={o.id}
                     type="button"
                     onClick={() => choose(o.id)}
+                    aria-pressed={active}
                     className={cn(
-                      "group flex w-full items-start justify-between gap-3 rounded-xl border px-4 py-3.5 text-left transition-all hover:-translate-y-0.5 hover:shadow-md",
+                      "group flex min-h-14 w-full items-center justify-between gap-3 rounded-2xl border px-4 py-4 text-left transition-all motion-safe:hover:-translate-y-0.5 hover:shadow-md active:scale-[0.99]",
                       active
-                        ? "border-primary bg-primary/10"
-                        : "border-border bg-background hover:border-primary/50",
+                        ? "border-primary bg-primary/10 ring-1 ring-primary/30"
+                        : "border-border bg-background hover:border-primary/60",
                     )}
                   >
                     <span className="min-w-0">
@@ -132,7 +142,7 @@ export function PlanQuiz({ className }: { className?: string }) {
                       size={18}
                       variant="Bold"
                       color="currentColor"
-                      className="mt-0.5 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary"
+                      className="shrink-0 text-muted-foreground transition-transform motion-safe:group-hover:translate-x-1 group-hover:text-primary"
                     />
                   </button>
                 );
@@ -193,7 +203,7 @@ export function PlanQuiz({ className }: { className?: string }) {
                           <TickCircle
                             size={16}
                             variant="Bold"
-                            color="#F4C430"
+                            color="#FFC93C"
                             className="mt-0.5 shrink-0"
                           />
                           {b}
