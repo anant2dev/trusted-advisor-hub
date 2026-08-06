@@ -31,7 +31,7 @@ import { getHeroVariant, trackAb, HERO_COPY, type HeroVariant } from "@/lib/ab";
 
 import { cn } from "@/lib/utils";
 import { assetUrl } from "@/lib/assets";
-import { ldScript, organizationLd, personLd, planCatalogLd, SITE_URL } from "@/lib/seo";
+import { ldScript, organizationLd, personLd, planCatalogLd, speakableLd, qaLd, SITE_URL } from "@/lib/seo";
 import trophy1 from "@/assets/trophies/1781413121551.asset.json";
 import trophy2 from "@/assets/trophies/IMG_20260614_104134.asset.json";
 import trophy3 from "@/assets/trophies/IMG_20260614_104441.asset.json";
@@ -68,6 +68,23 @@ export const Route = createFileRoute("/")({
       ldScript(organizationLd()),
       ldScript(personLd()),
       ldScript(planCatalogLd()),
+      ldScript(speakableLd()),
+      ldScript(
+        qaLd([
+          {
+            q: "Who is the best LIC advisor in Agra?",
+            a: "Ram Singh Rathore is an IRDAI-licensed LIC of India advisor based in Jawahar Nagar, Khandari Road, Agra, with over 20 years of experience, Distinguished DM Club membership and 1000+ families protected.",
+          },
+          {
+            q: "How can I find the right LIC plan without talking to an agent?",
+            a: "Use the free 60-second Plan Finder quiz. Six questions about your goal, age, horizon, budget and dependents score all 18 LIC plans and return the top two matches with eligibility details and honest caveats. Nothing is stored and no sign-up is needed.",
+          },
+          {
+            q: "Does an LIC consultation cost anything?",
+            a: "No. Consultations with Ram Singh Rathore are free, unhurried and carry no obligation. You can reach him on WhatsApp at 9837016351 or by email at ramsinghrathore250@gmail.com.",
+          },
+        ]),
+      ),
       ldScript({
         "@context": "https://schema.org",
         "@type": "WebSite",
