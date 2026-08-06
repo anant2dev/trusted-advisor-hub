@@ -91,7 +91,7 @@ export function SoundLayer() {
         onClick={toggle}
         aria-pressed={muted}
         aria-label={muted ? "Unmute interface sounds" : "Mute interface sounds"}
-        className="fixed bottom-44 right-5 z-50 grid h-11 w-11 place-items-center rounded-full border border-border/70 bg-card/90 text-foreground shadow-lg backdrop-blur transition hover:scale-105 md:bottom-44"
+        className="fixed bottom-20 left-5 z-50 grid h-11 w-11 place-items-center md:bottom-44 md:left-auto md:right-5 rounded-full border border-border/70 bg-card/90 text-foreground shadow-lg backdrop-blur transition hover:scale-105"
       >
         {muted ? <VolumeMute size={18} variant="Bold" /> : <VolumeHigh size={18} variant="Bold" color="#FFC93C" />}
       </button>
