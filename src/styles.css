@@ -108,7 +108,7 @@
   --ring: oklch(0.39 0.09 250);
   --navy: oklch(0.39 0.09 250);
   --navy-deep: oklch(0.27 0.07 248);
-  --gold: oklch(0.78 0.12 230);
+  --gold: oklch(0.84 0.165 88);
   --slate-bg: oklch(0.95 0.012 230);
   --ink: oklch(0.27 0.04 250);
   --ink-soft: oklch(0.50 0.03 250);
@@ -149,7 +149,7 @@
   --ring: oklch(0.74 0.10 235);
   --navy: oklch(0.55 0.10 240);
   --navy-deep: oklch(0.22 0.04 250);
-  --gold: oklch(0.82 0.11 230);
+  --gold: oklch(0.86 0.17 90);
   --slate-bg: oklch(0.24 0.04 250);
   --ink: oklch(0.96 0.01 250);
   --ink-soft: oklch(0.78 0.02 250);
@@ -318,3 +318,39 @@
     -3px -3px 10px color-mix(in oklab, white 5%, transparent),
     inset 1px 1px 0 color-mix(in oklab, white 6%, transparent);
 }
+
+
+/* ---------------------------------------------------------------
+   Motion policy — honour prefers-reduced-motion everywhere.
+   Decorative motion stops; state changes stay instant but visible.
+   --------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .animate-fade-up,
+  [data-motion="decorative"] {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}
+
+/* Visible, consistent keyboard focus on every interactive element. */
+@layer base {
+  :where(a, button, input, select, textarea, [role="button"], [tabindex]):focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+    border-radius: 0.5rem;
+  }
+}
+
+/* Gold used as a surface always pairs with ink for AA contrast. */
+.on-gold { color: oklch(0.24 0.05 250); }
