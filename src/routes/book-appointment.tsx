@@ -109,6 +109,16 @@ function AppointmentPage() {
     message: "",
   });
   const [error, setError] = useState<string | null>(null);
+  const [touched, setTouched] = useState<{ name?: boolean; phone?: boolean }>({});
+
+  const nameError = !form.name.trim() ? "Please enter your full name." : null;
+  const phoneError = !form.phone.trim()
+    ? "Please enter a phone number we can reach you on."
+    : !/^[0-9+\-\s()]{7,20}$/.test(form.phone.trim())
+      ? "That doesn't look like a valid phone number."
+      : null;
+  const readyToSend = !nameError && !phoneError;
+  const filled = [form.name.trim(), form.phone.trim(), form.plan].filter(Boolean).length;
 
   const update =
     <K extends keyof typeof form>(key: K) =>
@@ -127,12 +137,10 @@ function AppointmentPage() {
 
   const handleFormSubmit = (e: FormEvent, method: "whatsapp" | "email") => {
     e.preventDefault();
-    if (!form.name.trim() || !form.phone.trim()) {
-      setError("Please enter your name and phone number.");
-      return;
-    }
-    if (!/^[0-9+\-\s()]{7,20}$/.test(form.phone.trim())) {
-      setError("Please enter a valid phone number.");
+    setTouched({ name: true, phone: true });
+    if (nameError || phoneError) {
+      setError(nameError ?? phoneError);
+      document.getElementById(nameError ? "name" : "phone")?.focus();
       return;
     }
     setError(null);
