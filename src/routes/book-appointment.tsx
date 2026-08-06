@@ -73,7 +73,7 @@ export const Route = createFileRoute("/book-appointment")({
   component: AppointmentPage,
 });
 
-const planNames = ALL_PLANS.map((p) => p.name);
+const planNames: string[] = ALL_PLANS.map((p) => p.name);
 
 const beneficiaries = ["Self", "Spouse", "Child", "Parents", "Dependent"] as const;
 const ageGroups = [
