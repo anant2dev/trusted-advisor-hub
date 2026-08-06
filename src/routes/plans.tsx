@@ -1,3 +1,4 @@
+import { rememberPlan } from "@/components/site/SmartNudge";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { TickCircle, ArrowRight, ShieldTick, Global, Verify, People, Clock } from "iconsax-react";
 import { ALL_PLANS } from "@/lib/site";
