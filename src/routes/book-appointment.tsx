@@ -214,19 +214,35 @@ function AppointmentPage() {
               <div className="sm:col-span-2">
                 <label htmlFor="name" className={labelCls}>Full Name *</label>
                 <input id="name" className={fieldCls} placeholder="e.g. Rajesh Kumar"
+                  autoComplete="name" enterKeyHint="next"
+                  aria-invalid={touched.name && !!nameError}
+                  aria-describedby={touched.name && nameError ? "name-error" : undefined}
+                  onBlur={() => setTouched((t) => ({ ...t, name: true }))}
                   value={form.name} onChange={update("name")} required maxLength={80} />
+                {touched.name && nameError && (
+                  <p id="name-error" className="mt-1.5 text-xs font-medium text-destructive">{nameError}</p>
+                )}
               </div>
 
               <div>
                 <label htmlFor="email" className={labelCls}>Email Address</label>
                 <input id="email" type="email" className={fieldCls} placeholder="you@example.com"
+                  autoComplete="email" inputMode="email"
                   value={form.email} onChange={update("email")} maxLength={120} />
+                <p className="mt-1.5 text-xs text-ink-soft">Optional — only if you prefer email over WhatsApp.</p>
               </div>
 
               <div>
                 <label htmlFor="phone" className={labelCls}>Phone / WhatsApp *</label>
                 <input id="phone" type="tel" className={fieldCls} placeholder="+91 98xxxxxx21"
+                  autoComplete="tel" inputMode="tel" enterKeyHint="done"
+                  aria-invalid={touched.phone && !!phoneError}
+                  aria-describedby={touched.phone && phoneError ? "phone-error" : undefined}
+                  onBlur={() => setTouched((t) => ({ ...t, phone: true }))}
                   value={form.phone} onChange={update("phone")} required maxLength={20} />
+                {touched.phone && phoneError && (
+                  <p id="phone-error" className="mt-1.5 text-xs font-medium text-destructive">{phoneError}</p>
+                )}
               </div>
 
               <div>
