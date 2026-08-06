@@ -116,6 +116,7 @@ function PlansPage() {
                 <Link
                   to="/book-appointment"
                   search={{ plan: p.name }}
+                  onClick={() => rememberPlan(p.name)}
                   className="mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-navy px-4 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:bg-navy-deep hover:scale-[1.02]"
                 >
                   Check Eligibility / Inquire
