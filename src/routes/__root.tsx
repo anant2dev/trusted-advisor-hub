@@ -19,6 +19,7 @@ import { WhatsAppFab } from "../components/site/WhatsAppFab";
 import { StickyCTA } from "../components/site/StickyCTA";
 import { ThemeProvider } from "../components/site/ThemeProvider";
 import { SoundLayer } from "../components/site/SoundLayer";
+import { SmartNudge } from "../components/site/SmartNudge";
 import { Preloader } from "../components/site/Preloader";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
@@ -196,8 +197,14 @@ function RootComponent() {
               style={{ background: "radial-gradient(circle, #f472b6, transparent 65%)" }}
             />
           </div>
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:text-primary-foreground"
+          >
+            Skip to main content
+          </a>
           <Navbar />
-          <main className="flex-1">
+          <main id="main" className="flex-1">
             {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
             <Outlet />
           </main>
@@ -205,6 +212,7 @@ function RootComponent() {
           <WhatsAppFab />
           <StickyCTA />
           <SoundLayer />
+          <SmartNudge />
           <Preloader />
           {/* Spacer so sticky CTA never overlaps footer content */}
           <div aria-hidden className="h-16 md:h-20" />
