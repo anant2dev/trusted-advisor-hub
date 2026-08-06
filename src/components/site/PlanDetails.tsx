@@ -46,7 +46,7 @@ export function PlanDetails({ slug }: { slug: string }) {
           >
             <div className="space-y-3 pt-3">
               <p className="flex gap-2 text-[13px] leading-relaxed text-foreground/85">
-                <InfoCircle size={16} variant="Bold" color="#F4C430" className="mt-0.5 shrink-0" />
+                <InfoCircle size={16} variant="Bold" color="#FFC93C" className="mt-0.5 shrink-0" />
                 <span>{d.plainEnglish}</span>
               </p>
 
@@ -76,7 +76,7 @@ export function PlanDetails({ slug }: { slug: string }) {
               </p>
 
               <p className="flex gap-2 text-[12px] leading-relaxed text-muted-foreground">
-                <Warning2 size={14} variant="Bold" color="#F4C430" className="mt-0.5 shrink-0" />
+                <Warning2 size={14} variant="Bold" color="#FFC93C" className="mt-0.5 shrink-0" />
                 <span><strong className="text-foreground">Not ideal for:</strong> {d.notIdealFor}</span>
               </p>
 

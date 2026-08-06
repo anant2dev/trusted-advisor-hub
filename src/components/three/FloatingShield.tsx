@@ -17,7 +17,7 @@ const Scene = lazy(async () => {
         gl={{ antialias: true, alpha: true, powerPreference: "low-power" }}
       >
         <ambientLight intensity={0.6} />
-        <directionalLight position={[3, 4, 5]} intensity={1.2} color="#F4C430" />
+        <directionalLight position={[3, 4, 5]} intensity={1.2} color="#FFC93C" />
         <directionalLight position={[-4, -2, -3]} intensity={0.6} color="#3E8FD6" />
         <Float speed={1.6} rotationIntensity={0.9} floatIntensity={1.4}>
           <Icosahedron args={[1.35, 1]}>
@@ -34,7 +34,7 @@ const Scene = lazy(async () => {
         <Float speed={1.2} rotationIntensity={0.4} floatIntensity={0.8}>
           <mesh position={[1.9, 1.2, -1]}>
             <torusGeometry args={[0.35, 0.11, 24, 60]} />
-            <meshStandardMaterial color="#F4C430" metalness={0.9} roughness={0.2} />
+            <meshStandardMaterial color="#FFC93C" metalness={0.9} roughness={0.2} />
           </mesh>
         </Float>
         <Environment preset="city" />

@@ -176,7 +176,7 @@ function AppointmentPage() {
               {reasons.map((r) => (
                 <li key={r.title} className="flex items-start gap-3.5 rounded-xl bg-white p-4 shadow-sm">
                   <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-navy text-gold">
-                    <r.icon size={20} variant="Bold" color="#F4C430" />
+                    <r.icon size={20} variant="Bold" color="#FFC93C" />
                   </span>
                   <div className="min-w-0">
                     <p className="text-sm font-bold text-navy">{r.title}</p>
@@ -242,7 +242,7 @@ function AppointmentPage() {
                 </select>
                 {planFromUrl && planNames.includes(planFromUrl) && (
                   <p className="mt-1.5 inline-flex items-center gap-1.5 text-xs font-medium text-navy">
-                    <TickCircle size={14} variant="Bold" color="#F4C430" />
+                    <TickCircle size={14} variant="Bold" color="#FFC93C" />
                     Auto-selected from your previous page
                   </p>
                 )}
@@ -275,7 +275,7 @@ function AppointmentPage() {
                 onClick={(e) => handleFormSubmit(e, "email")}
                 className="inline-flex items-center justify-center gap-2 rounded-xl bg-navy px-5 py-3.5 text-sm font-bold text-white shadow-md transition-all hover:scale-[1.02] hover:bg-navy-deep"
               >
-                <Sms size={20} variant="Bold" color="#F4C430" /> Send via Email
+                <Sms size={20} variant="Bold" color="#FFC93C" /> Send via Email
               </button>
             </div>
 

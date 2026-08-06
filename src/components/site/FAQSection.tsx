@@ -47,7 +47,7 @@ export function FAQSection({
       <div className="mx-auto max-w-3xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center text-center">
           <span className="grid h-12 w-12 place-items-center rounded-2xl bg-navy text-gold shadow-md">
-            <MessageQuestion size={22} variant="Bold" color="#F4C430" />
+            <MessageQuestion size={22} variant="Bold" color="#FFC93C" />
           </span>
           <h2 className="mt-4 text-3xl font-extrabold text-navy sm:text-4xl">{title}</h2>
           <p className="mt-3 max-w-xl text-sm leading-relaxed text-ink-soft">{intro}</p>

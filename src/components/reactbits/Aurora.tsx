@@ -73,7 +73,7 @@ function hexToRgb(hex: string): [number, number, number] {
 }
 
 export default function Aurora(props: AuroraProps) {
-  const { colorStops = ["#003262", "#F4C430", "#1a4b8c"], amplitude = 1.0, blend = 0.5 } = props;
+  const { colorStops = ["#003262", "#FFC93C", "#1a4b8c"], amplitude = 1.0, blend = 0.5 } = props;
   const propsRef = useRef<AuroraProps>(props);
   propsRef.current = props;
   const ctnDom = useRef<HTMLDivElement | null>(null);

@@ -83,8 +83,8 @@ function Index() {
   const { theme } = useTheme();
   const auroraStops: [string, string, string] =
     theme === "dark"
-      ? ["#0a1929", "#2A6BB0", "#F4C430"]
-      : ["#7FB5E6", "#3E8FD6", "#F4C430"];
+      ? ["#0a1929", "#2A6BB0", "#FFC93C"]
+      : ["#7FB5E6", "#3E8FD6", "#FFC93C"];
   return (
     <PageTransition>
       {/* Hero */}
@@ -92,7 +92,7 @@ function Index() {
         <div className="pointer-events-none absolute inset-0 opacity-40 dark:opacity-70">
           <Aurora colorStops={auroraStops} amplitude={0.7} blend={0.5} speed={0.5} />
         </div>
-        <Spotlight className="-top-40 left-0 md:-top-20 md:left-60" fill="#F4C430" />
+        <Spotlight className="-top-40 left-0 md:-top-20 md:left-60" fill="#FFC93C" />
         {/* Readability scrim: lifts text contrast over aurora */}
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background/90 via-background/60 to-background/0 dark:from-background/80 dark:via-background/40" />
         <div className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-gold/10 blur-3xl" />
@@ -100,7 +100,7 @@ function Index() {
         <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:px-8 lg:py-24">
           <div className="animate-fade-up">
             <span className="inline-flex items-center gap-2 rounded-full border border-navy/15 bg-white px-3.5 py-1.5 text-xs font-semibold text-navy shadow-sm">
-              <MagicStar size={14} variant="Bold" color="#F4C430" />
+              <MagicStar size={14} variant="Bold" color="#FFC93C" />
               Authorized LIC of India Advisor
             </span>
             <h1 className="mt-5 text-4xl font-extrabold leading-[1.1] text-navy sm:text-5xl lg:text-6xl">
@@ -122,7 +122,7 @@ function Index() {
               <Link to="/book-appointment">
                 <ShimmerButton className="group">
                   Secure Your Future
-                  <ArrowRight size={16} variant="Bold" color="#F4C430" className="ml-2 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight size={16} variant="Bold" color="#FFC93C" className="ml-2 transition-transform group-hover:translate-x-1" />
                 </ShimmerButton>
               </Link>
               <Link
@@ -148,10 +148,10 @@ function Index() {
                 height={1024}
                 className="aspect-square w-full rounded-2xl object-cover"
               />
-              <BorderBeam size={260} duration={10} colorFrom="#F4C430" colorTo="#003262" />
+              <BorderBeam size={260} duration={10} colorFrom="#FFC93C" colorTo="#003262" />
               <div className="absolute bottom-5 left-5 right-5 flex items-center gap-3 rounded-2xl bg-white/95 p-3.5 shadow-lg backdrop-blur">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-navy text-gold">
-                  <Cup size={20} variant="Bold" color="#F4C430" />
+                  <Cup size={20} variant="Bold" color="#FFC93C" />
                 </span>
                 <div className="min-w-0">
                   <p className="truncate text-sm font-bold text-navy">Distinguished DM Club Member</p>
@@ -174,7 +174,7 @@ function Index() {
           ].map((s, i) => (
             <FadeIn key={i} delay={i * 0.1} className="flex items-center gap-5 px-2 py-5 sm:justify-center sm:py-0">
               <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-white/10 text-gold">
-                <s.icon size={28} variant="Bold" color="#F4C430" />
+                <s.icon size={28} variant="Bold" color="#FFC93C" />
               </span>
               <div className="min-w-0">
                 <p className="text-3xl font-extrabold tracking-tight text-gold sm:text-4xl">
@@ -261,7 +261,7 @@ function Index() {
             <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:justify-between">
               <div className="max-w-xl">
                 <span className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-primary">
-                  <MagicStar size={13} variant="Bold" color="#F4C430" /> New · 60-second quiz
+                  <MagicStar size={13} variant="Bold" color="#FFC93C" /> New · 60-second quiz
                 </span>
                 <h2 className="mt-3 text-2xl font-extrabold leading-tight text-foreground sm:text-3xl">
                   Not sure which LIC plan fits you?
@@ -347,7 +347,7 @@ function Index() {
         <div className="relative mx-auto grid max-w-6xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[auto_1fr] lg:gap-14 lg:px-8 lg:py-24">
           <div className="flex lg:block">
             <span className="grid h-20 w-20 shrink-0 place-items-center rounded-2xl bg-gold/15 text-gold ring-1 ring-gold/30">
-              <Lock1 size={36} variant="Bold" color="#F4C430" />
+              <Lock1 size={36} variant="Bold" color="#FFC93C" />
             </span>
           </div>
           <div>

@@ -63,7 +63,7 @@ export function PlanQuiz({ className }: { className?: string }) {
       <div className="mb-5 flex items-center justify-between gap-3">
         <div className="flex items-center gap-2">
           <span className="grid h-9 w-9 place-items-center rounded-lg bg-primary/10">
-            <MagicStar size={18} variant="Bold" color="#F4C430" />
+            <MagicStar size={18} variant="Bold" color="#FFC93C" />
           </span>
           <div>
             <p className="text-sm font-bold text-foreground">Plan Finder</p>
@@ -193,7 +193,7 @@ export function PlanQuiz({ className }: { className?: string }) {
                           <TickCircle
                             size={16}
                             variant="Bold"
-                            color="#F4C430"
+                            color="#FFC93C"
                             className="mt-0.5 shrink-0"
                           />
                           {b}

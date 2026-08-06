@@ -39,9 +39,9 @@ export function Footer() {
         <div>
           <h4 className="text-sm font-semibold text-gold">Office Hours</h4>
           <ul className="mt-4 space-y-2.5 text-sm text-white/75">
-            <li className="flex items-center gap-2"><Clock size={16} variant="Bold" color="#F4C430" /> Mon – Sat · 10:00 – 19:00</li>
-            <li className="flex items-center gap-2"><Clock size={16} variant="Bold" color="#F4C430" /> Sun · By appointment</li>
-            <li className="flex items-start gap-2"><Location size={16} variant="Bold" color="#F4C430" className="mt-0.5 shrink-0" /> {ADDRESS}</li>
+            <li className="flex items-center gap-2"><Clock size={16} variant="Bold" color="#FFC93C" /> Mon – Sat · 10:00 – 19:00</li>
+            <li className="flex items-center gap-2"><Clock size={16} variant="Bold" color="#FFC93C" /> Sun · By appointment</li>
+            <li className="flex items-start gap-2"><Location size={16} variant="Bold" color="#FFC93C" className="mt-0.5 shrink-0" /> {ADDRESS}</li>
           </ul>
         </div>
 
@@ -50,12 +50,12 @@ export function Footer() {
           <ul className="mt-4 space-y-2.5 text-sm text-white/75">
             <li>
               <a href={`tel:+${WHATSAPP_NUMBER}`} className="flex items-center gap-2 hover:text-gold">
-                <Call size={16} variant="Bold" color="#F4C430" /> {PHONE_DISPLAY}
+                <Call size={16} variant="Bold" color="#FFC93C" /> {PHONE_DISPLAY}
               </a>
             </li>
             <li>
               <a href={`mailto:${EMAIL}`} className="flex items-center gap-2 break-all hover:text-gold">
-                <Sms size={16} variant="Bold" color="#F4C430" /> {EMAIL}
+                <Sms size={16} variant="Bold" color="#FFC93C" /> {EMAIL}
               </a>
             </li>
             <li>
@@ -65,7 +65,7 @@ export function Footer() {
                 rel="noreferrer"
                 className="flex items-center gap-2 hover:text-gold"
               >
-                <Whatsapp size={16} variant="Bold" color="#F4C430" /> WhatsApp Chat
+                <Whatsapp size={16} variant="Bold" color="#FFC93C" /> WhatsApp Chat
               </a>
             </li>
           </ul>

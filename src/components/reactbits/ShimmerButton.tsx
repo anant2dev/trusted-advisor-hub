@@ -13,7 +13,7 @@ export function ShimmerButton({
       style={
         {
           "--spread": "90deg",
-          "--shimmer-color": "#F4C430",
+          "--shimmer-color": "#FFC93C",
           "--radius": "12px",
           "--speed": "2.6s",
           "--cut": "0.08em",

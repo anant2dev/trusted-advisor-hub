@@ -13,7 +13,7 @@ export function Glossary() {
       <div className="mx-auto max-w-4xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="text-center">
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3.5 py-1.5 font-mono text-xs font-semibold uppercase tracking-widest text-foreground">
-            <Book1 size={14} variant="Bold" color="#F4C430" /> Jargon decoder
+            <Book1 size={14} variant="Bold" color="#FFC93C" /> Jargon decoder
           </span>
           <h2 className="mt-4 text-3xl font-extrabold text-foreground sm:text-4xl">
             Every insurance word, in plain English.

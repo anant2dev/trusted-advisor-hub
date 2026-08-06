@@ -19,7 +19,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
       }
     >
       {isDark ? (
-        <Sun1 size={18} variant="Bold" color="#F4C430" />
+        <Sun1 size={18} variant="Bold" color="#FFC93C" />
       ) : (
         <Moon size={18} variant="Bold" color="#003262" />
       )}

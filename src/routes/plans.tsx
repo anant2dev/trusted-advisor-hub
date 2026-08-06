@@ -57,7 +57,7 @@ function PlansPage() {
       <section className="bg-gradient-to-b from-slate-bg to-white">
         <div className="mx-auto max-w-4xl px-4 py-20 text-center sm:px-6 lg:px-8">
           <span className="inline-flex items-center gap-2 rounded-full border border-navy/15 bg-white px-3.5 py-1.5 text-xs font-semibold text-navy shadow-sm">
-            <ShieldTick size={14} variant="Bold" color="#F4C430" /> LIC of India · Curated Selection
+            <ShieldTick size={14} variant="Bold" color="#FFC93C" /> LIC of India · Curated Selection
           </span>
           <h1 className="mt-5 text-4xl font-extrabold leading-tight text-navy sm:text-5xl">
             Curated LIC Plans for{" "}
@@ -119,7 +119,7 @@ function PlansPage() {
                   className="mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-navy px-4 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:bg-navy-deep hover:scale-[1.02]"
                 >
                   Check Eligibility / Inquire
-                  <ArrowRight size={16} variant="Bold" color="#F4C430" className="transition-transform group-hover:translate-x-1" />
+                  <ArrowRight size={16} variant="Bold" color="#FFC93C" className="transition-transform group-hover:translate-x-1" />
                 </Link>
               </FadeIn>
             ))}
@@ -165,7 +165,7 @@ function PlansPage() {
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-gold backdrop-blur">
-              <Global size={14} variant="Bold" color="#F4C430" /> Pan-India · NRI Coverage
+              <Global size={14} variant="Bold" color="#FFC93C" /> Pan-India · NRI Coverage
             </span>
             <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
               From Agra to your time-zone — one advisor, lifelong.
@@ -178,7 +178,7 @@ function PlansPage() {
             <ul className="mt-6 grid grid-cols-2 gap-2.5 text-sm">
               {["Agra · HQ", "Delhi · Mumbai", "Dubai · GCC", "Singapore", "London · UK", "New York · USA"].map((c) => (
                 <li key={c} className="flex items-center gap-2 text-white/85">
-                  <TickCircle size={16} variant="Bold" color="#F4C430" /> {c}
+                  <TickCircle size={16} variant="Bold" color="#FFC93C" /> {c}
                 </li>
               ))}
             </ul>

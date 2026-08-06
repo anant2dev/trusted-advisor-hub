@@ -88,7 +88,7 @@ function PlanFinderPage() {
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
           <div className="mx-auto max-w-3xl text-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-card px-3.5 py-1.5 text-xs font-semibold text-primary shadow-sm">
-              <ShieldTick size={14} variant="Bold" color="#F4C430" /> Free · No sign-up
+              <ShieldTick size={14} variant="Bold" color="#FFC93C" /> Free · No sign-up
             </span>
             <h1 className="mt-5 text-4xl font-extrabold leading-tight text-foreground sm:text-5xl">
               Which LIC plan actually fits{" "}
@@ -105,7 +105,7 @@ function PlanFinderPage() {
             {points.map((p) => (
               <div key={p.title} className="rounded-2xl border border-border bg-card p-4 shadow-sm">
                 <span className="grid h-10 w-10 place-items-center rounded-lg bg-primary/10">
-                  <p.icon size={20} variant="Bold" color="#F4C430" />
+                  <p.icon size={20} variant="Bold" color="#FFC93C" />
                 </span>
                 <p className="mt-3 text-sm font-bold text-foreground">{p.title}</p>
                 <p className="mt-0.5 text-sm text-muted-foreground">{p.desc}</p>
