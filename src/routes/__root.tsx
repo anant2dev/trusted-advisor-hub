@@ -115,7 +115,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Distinguished DM Club member protecting 1000+ families. Book a private consultation.",
       },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      {
+        property: "og:image",
+        content: "https://bima-suraksha.vercel.app/og-preview.jpg",
+      },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { name: "twitter:card", content: "summary_large_image" },
+      {
+        name: "twitter:image",
+        content: "https://bima-suraksha.vercel.app/og-preview.jpg",
+      },
       { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
@@ -123,6 +133,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
+      { rel: "icon", type: "image/png", href: "/favicon.png" },
+      { rel: "apple-touch-icon", href: "/favicon.png" },
       {
         rel: "preconnect",
         href: "https://fonts.googleapis.com",
