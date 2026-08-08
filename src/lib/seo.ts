@@ -119,15 +119,11 @@ export function speakableLd(paths: string[] = ["h1", ".seo-answer"]) {
   };
 }
 
-/** Short Q&A block — the format AI answer engines quote most reliably. */
+/**
+ * Short Q&A block for AI answer engines.
+ * Emitted as FAQPage (not QAPage): QAPage requires a single user-submitted
+ * question with answerCount/upvoteCount, which Google flags as invalid here.
+ */
 export function qaLd(items: { q: string; a: string }[]) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "QAPage",
-    mainEntity: items.map((i) => ({
-      "@type": "Question",
-      name: i.q,
-      acceptedAnswer: { "@type": "Answer", text: i.a },
-    })),
-  };
+  return faqLd(items);
 }
