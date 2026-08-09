@@ -1,7 +1,9 @@
 import { rememberPlan } from "@/components/site/SmartNudge";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { TickCircle, ArrowRight, ShieldTick, Global, Verify, People, Clock } from "iconsax-react";
-import { ALL_PLANS } from "@/lib/site";
+import { ALL_PLANS, PLAN_GROUP_HI, type PlanGroup } from "@/lib/site";
+import { PlanCard } from "@/components/site/PlanCard";
+import { useLang } from "@/lib/i18n";
 import { FadeIn } from "@/components/reactbits/FadeIn";
 import { PageTransition } from "@/components/site/PageTransition";
 import { HoverEffect } from "@/components/aceternity/hover-effect";
@@ -13,6 +15,17 @@ import { ProcessTimeline } from "@/components/site/ProcessTimeline";
 import { PlanQuiz } from "@/components/site/PlanQuiz";
 import { ldScript, planCatalogLd, breadcrumbLd, faqLd } from "@/lib/seo";
 import { DEFAULT_FAQ } from "@/components/site/FAQSection";
+
+const PLAN_GROUP_ORDER: PlanGroup[] = [
+  "Endowment",
+  "Whole Life",
+  "Money Back",
+  "Children",
+  "Pension",
+  "Term",
+  "Micro & Mahila",
+  "Market Linked",
+];
 
 export const Route = createFileRoute("/plans")({
   head: () => ({
@@ -53,6 +66,7 @@ export const Route = createFileRoute("/plans")({
 });
 
 function PlansPage() {
+  const { lang, t } = useLang();
   return (
     <PageTransition>
       <section className="bg-gradient-to-b from-slate-bg to-white">
