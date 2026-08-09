@@ -18,6 +18,7 @@ import { Footer } from "../components/site/Footer";
 import { WhatsAppFab } from "../components/site/WhatsAppFab";
 import { StickyCTA } from "../components/site/StickyCTA";
 import { ThemeProvider } from "../components/site/ThemeProvider";
+import { LanguageProvider } from "../lib/i18n";
 import { SoundLayer } from "../components/site/SoundLayer";
 import { SmartNudge } from "../components/site/SmartNudge";
 import { Preloader } from "../components/site/Preloader";
@@ -181,6 +182,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
+        <LanguageProvider>
         <div className="flex min-h-screen flex-col bg-background text-foreground">
           {/* Coding-editor ambient backdrop: grid + neon glows, visible on all viewports */}
           <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
@@ -231,6 +233,7 @@ function RootComponent() {
         </div>
         <Analytics />
         <SpeedInsights />
+        </LanguageProvider>
       </ThemeProvider>
     </QueryClientProvider>
   );

@@ -5,9 +5,12 @@ import { NAV_LINKS, ADVISOR_NAME, ADDRESS, PHONE_DISPLAY } from "@/lib/site";
 import logo from "@/assets/bima-secure-logo.asset.json";
 import { assetUrl } from "@/lib/assets";
 import { ThemeToggle } from "./ThemeToggle";
+import { LanguageToggle } from "./LanguageToggle";
+import { useLang } from "@/lib/i18n";
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const { lang, t } = useLang();
 
   return (
     <header className="sticky top-0 z-40 w-full border-b border-border/60 bg-background/85 backdrop-blur supports-[backdrop-filter]:bg-background/70">
@@ -43,19 +46,20 @@ export function Navbar() {
               activeProps={{ className: "rounded-md px-3 py-2 text-sm font-semibold text-foreground bg-accent/20" }}
               activeOptions={{ exact: l.to === "/" }}
             >
-              {l.label}
+              {lang === "hi" ? l.labelHi : l.label}
             </Link>
           ))}
         </nav>
 
         <div className="flex items-center gap-2">
+          <LanguageToggle className="hidden sm:inline-flex" />
           <ThemeToggle />
           <Link
             to="/book-appointment"
             className="group hidden items-center gap-2 rounded-lg bg-navy px-4 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:bg-navy-deep hover:scale-[1.02] active:scale-100 md:inline-flex"
           >
             <Call size={16} variant="Bold" color="#FFC93C" className="transition-transform group-hover:rotate-12" />
-            Consult Now
+            {t("nav.consult")}
           </Link>
           <button
             aria-label="Toggle menu"
@@ -70,6 +74,12 @@ export function Navbar() {
       {open && (
         <div className="border-t border-border bg-background lg:hidden">
           <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-3">
+            <div className="mb-1 flex items-center justify-between rounded-lg bg-muted/50 px-3 py-2">
+              <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                {t("nav.language")}
+              </span>
+              <LanguageToggle />
+            </div>
             {NAV_LINKS.map((l) => (
               <Link
                 key={l.to}
@@ -79,7 +89,7 @@ export function Navbar() {
                 activeProps={{ className: "rounded-md px-3 py-2.5 text-sm font-semibold text-foreground bg-accent/20" }}
                 activeOptions={{ exact: l.to === "/" }}
               >
-                {l.label}
+                {lang === "hi" ? l.labelHi : l.label}
               </Link>
             ))}
             <Link
@@ -88,7 +98,7 @@ export function Navbar() {
               className="mt-2 inline-flex items-center justify-center gap-2 rounded-lg bg-navy px-4 py-3 text-sm font-semibold text-white shadow-md"
             >
               <Call size={16} variant="Bold" color="#FFC93C" />
-              Consult Now
+              {t("nav.consult")}
             </Link>
             <a href={`tel:+${PHONE_DISPLAY.replace(/\D/g, "")}`} className="mt-1 flex items-center justify-center gap-1.5 text-xs text-muted-foreground">
               <Call size={12} variant="Bold" color="#FFC93C" /> {PHONE_DISPLAY}
