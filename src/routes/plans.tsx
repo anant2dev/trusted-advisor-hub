@@ -86,51 +86,31 @@ function PlansPage() {
         </div>
       </section>
 
-      <section className="bg-white">
+      <section className="bg-background">
         <div className="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
-          <div className="grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {ALL_PLANS.map((p, i) => (
-              <FadeIn
-                key={p.slug}
-                delay={i * 0.06}
-                className="group relative flex flex-col rounded-2xl border border-border bg-card p-6 shadow-md transition-all hover:-translate-y-1.5 hover:border-navy/30 hover:shadow-2xl"
-              >
-                <span className="inline-flex w-fit items-center gap-1.5 rounded-full bg-gold/15 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-navy">
-                  {p.tag}
-                </span>
-                <h3 className="mt-4 text-lg font-bold leading-snug text-foreground">
-                  {p.name}
-                </h3>
-                <p className="mt-1 text-sm text-muted-foreground">{p.tagline}</p>
-
-                <ul className="mt-5 flex-1 space-y-2.5">
-                  {p.benefits.map((b) => (
-                    <li key={b} className="flex items-start gap-2 text-sm text-foreground/85">
-                      <TickCircle size={16} variant="Bold" color="#003262" className="mt-0.5 shrink-0" />
-                      <span className="leading-snug">{b}</span>
-                    </li>
+          {PLAN_GROUP_ORDER.map((group) => {
+            const plans = ALL_PLANS.filter((p) => p.group === group);
+            if (plans.length === 0) return null;
+            return (
+              <div key={group} className="pt-14 first:pt-0">
+                <div className="mb-6 flex items-baseline gap-3 border-b border-border pb-3">
+                  <h2 className="text-xl font-extrabold tracking-tight text-foreground sm:text-2xl">
+                    {lang === "hi" ? PLAN_GROUP_HI[group] : group}
+                  </h2>
+                  <span className="font-mono text-xs text-muted-foreground">{plans.length} plans</span>
+                </div>
+                <div className="grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                  {plans.map((p, i) => (
+                    <FadeIn key={p.slug} delay={Math.min(i, 4) * 0.05}>
+                      <PlanCard plan={p} />
+                    </FadeIn>
                   ))}
-                </ul>
+                </div>
+              </div>
+            );
+          })}
 
-                <PlanDetails slug={p.slug} />
-
-                <Link
-                  to="/book-appointment"
-                  search={{ plan: p.name }}
-                  onClick={() => rememberPlan(p.name)}
-                  className="mt-6 inline-flex items-center justify-center gap-2 rounded-xl bg-navy px-4 py-2.5 text-sm font-semibold text-white shadow-md transition-all hover:bg-navy-deep hover:scale-[1.02]"
-                >
-                  Check Eligibility / Inquire
-                  <ArrowRight size={16} variant="Bold" color="#FFC93C" className="transition-transform group-hover:translate-x-1" />
-                </Link>
-              </FadeIn>
-            ))}
-          </div>
-
-          <p className="mt-10 text-center text-xs text-ink-soft">
-            * Plan details are indicative. Final terms, eligibility and bonuses
-            follow the official LIC of India policy documents.
-          </p>
+          <p className="mt-12 text-center text-xs text-muted-foreground">{t("plans.disclaimer")}</p>
         </div>
       </section>
 
