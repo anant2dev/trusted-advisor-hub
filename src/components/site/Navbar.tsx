@@ -26,13 +26,15 @@ export function Navbar() {
         </div>
       </div>
 
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link to="/" className="flex items-center gap-3">
-          <img src={assetUrl(logo.url)} alt="Bima Secure logo" className="h-12 w-12 object-contain" />
-          <span className="flex flex-col leading-tight">
-            <span className="text-base font-extrabold tracking-tight text-foreground">{ADVISOR_NAME}</span>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">
-              LIC of India · Authorized Advisor
+      <div className="grid h-20 w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-2 pr-3 sm:gap-4 sm:pr-6 lg:grid-cols-[minmax(16rem,auto)_1fr_auto] lg:pr-8">
+        <Link to="/" className="flex min-w-0 items-center gap-3" aria-label={lang === "hi" ? "बीमा सुरक्षित होम" : "Bima Secure home"}>
+          <span className="h-20 w-20 shrink-0 overflow-hidden border-r border-border bg-navy sm:w-24">
+            <img src={assetUrl(logo.url)} alt="Bima Secure logo" className="h-full w-full object-cover" />
+          </span>
+          <span className="flex min-w-0 flex-col leading-tight">
+            <span className="truncate text-sm font-extrabold text-foreground sm:text-base">{ADVISOR_NAME}</span>
+            <span className="mt-1 line-clamp-2 text-[9px] uppercase leading-relaxed text-muted-foreground sm:text-[10px]">
+              {lang === "hi" ? "भारतीय जीवन बीमा निगम · अधिकृत सलाहकार" : "LIC of India · Authorized Advisor"}
             </span>
           </span>
         </Link>
@@ -51,7 +53,7 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2">
+        <div className="flex shrink-0 items-center gap-2">
           <LanguageToggle className="hidden sm:inline-flex" />
           <ThemeToggle />
           <Link
