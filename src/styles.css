@@ -181,12 +181,23 @@
   }
 
   h1, h2, h3, h4 {
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
     font-family: "GFF Devanagari", "Inter", "Hind", "Tiro Devanagari Hindi", system-ui, sans-serif;
   }
 
   :lang(hi), .font-devanagari {
     font-family: "GFF Devanagari", "Hind", "Tiro Devanagari Hindi", "Noto Sans Devanagari", sans-serif;
+  }
+
+  :lang(hi) {
+    line-height: 1.55;
+  }
+
+  :lang(hi) h1,
+  :lang(hi) h2,
+  :lang(hi) h3,
+  :lang(hi) h4 {
+    line-height: 1.3;
   }
 }
 
