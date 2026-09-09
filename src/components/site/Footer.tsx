@@ -3,8 +3,10 @@ import { Call, Sms, Location, Clock, Whatsapp } from "iconsax-react";
 import { NAV_LINKS, WHATSAPP_NUMBER, EMAIL, ADVISOR_NAME, ADDRESS, PHONE_DISPLAY } from "@/lib/site";
 import logo from "@/assets/bima-secure-logo.asset.json";
 import { assetUrl } from "@/lib/assets";
+import { useLang } from "@/lib/i18n";
 
 export function Footer() {
+  const { lang, t } = useLang();
   return (
     <footer className="bg-navy-deep text-white/90">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-4 lg:px-8">
@@ -14,22 +16,22 @@ export function Footer() {
             <div>
               <p className="text-sm font-bold text-white">{ADVISOR_NAME}</p>
               <p className="text-[10px] uppercase tracking-[0.18em] text-white/60">
-                Authorized LIC of India Agent
+                 {lang === "hi" ? "एलआईसी के अधिकृत एजेंट" : "Authorized LIC of India Agent"}
               </p>
             </div>
           </div>
           <p className="mt-4 text-sm leading-relaxed text-white/70">
-            Two decades of honest, transparent financial protection for Indian families — at home and abroad.
+             {t("footer.about")}
           </p>
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold text-gold">Quick Links</h4>
+           <h4 className="text-sm font-semibold text-gold">{t("footer.links")}</h4>
           <ul className="mt-4 space-y-2.5 text-sm">
             {NAV_LINKS.map((l) => (
               <li key={l.to}>
                 <Link to={l.to} className="text-white/75 transition-colors hover:text-gold">
-                  {l.label}
+                   {lang === "hi" ? l.labelHi : l.label}
                 </Link>
               </li>
             ))}
@@ -37,16 +39,16 @@ export function Footer() {
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold text-gold">Office Hours</h4>
+           <h4 className="text-sm font-semibold text-gold">{t("footer.hours")}</h4>
           <ul className="mt-4 space-y-2.5 text-sm text-white/75">
-            <li className="flex items-center gap-2"><Clock size={16} variant="Bold" color="#FFC93C" /> Mon – Sat · 10:00 – 19:00</li>
-            <li className="flex items-center gap-2"><Clock size={16} variant="Bold" color="#FFC93C" /> Sun · By appointment</li>
+             <li className="flex items-center gap-2"><Clock size={16} variant="Bold" color="#FFC93C" /> {t("footer.weekdays")}</li>
+             <li className="flex items-center gap-2"><Clock size={16} variant="Bold" color="#FFC93C" /> {t("footer.sunday")}</li>
             <li className="flex items-start gap-2"><Location size={16} variant="Bold" color="#FFC93C" className="mt-0.5 shrink-0" /> {ADDRESS}</li>
           </ul>
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold text-gold">Contact</h4>
+           <h4 className="text-sm font-semibold text-gold">{t("footer.contact")}</h4>
           <ul className="mt-4 space-y-2.5 text-sm text-white/75">
             <li>
               <a href={`tel:+${WHATSAPP_NUMBER}`} className="flex items-center gap-2 hover:text-gold">
@@ -65,7 +67,7 @@ export function Footer() {
                 rel="noreferrer"
                 className="flex items-center gap-2 hover:text-gold"
               >
-                <Whatsapp size={16} variant="Bold" color="#FFC93C" /> WhatsApp Chat
+                 <Whatsapp size={16} variant="Bold" color="#FFC93C" /> {t("common.whatsapp")}
               </a>
             </li>
           </ul>
@@ -74,8 +76,8 @@ export function Footer() {
 
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-2 px-4 py-5 text-xs text-white/55 sm:flex-row sm:items-center sm:px-6 lg:px-8">
-          <p>© {new Date().getFullYear()} {ADVISOR_NAME} · Authorized Life Insurance Corporation of India Agent.</p>
-          <p>Insurance is the subject matter of solicitation. Information is indicative — please verify policy T&amp;C.</p>
+           <p>© {new Date().getFullYear()} {ADVISOR_NAME} · {t("footer.copyright")}</p>
+           <p>{t("footer.disclaimer")}</p>
         </div>
       </div>
     </footer>
