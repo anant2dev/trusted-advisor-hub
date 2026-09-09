@@ -72,16 +72,13 @@ function PlansPage() {
       <section className="bg-gradient-to-b from-slate-bg to-white">
         <div className="mx-auto max-w-4xl px-4 py-20 text-center sm:px-6 lg:px-8">
           <span className="inline-flex items-center gap-2 rounded-full border border-navy/15 bg-white px-3.5 py-1.5 text-xs font-semibold text-navy shadow-sm">
-            <ShieldTick size={14} variant="Bold" color="#FFC93C" /> LIC of India · Curated Selection
+             <ShieldTick size={14} variant="Bold" color="#FFC93C" /> {t("plans.heroBadge")}
           </span>
           <h1 className="mt-5 text-4xl font-extrabold leading-tight text-navy sm:text-5xl">
-            Curated LIC Plans for{" "}
-            <span className="text-gold">Every Stage of Life.</span>
+             {t("plans.heroH1a")} <span className="text-gold">{t("plans.heroH1b")}</span>
           </h1>
           <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-ink-soft">
-            From a daughter's first dream to a retiree's peaceful evenings —
-            each plan below is hand-picked, time-tested, and personally
-            recommended after 20+ years of advisory practice.
+             {t("plans.heroIntro")}
           </p>
           <TrustBadges className="mt-10 text-left" />
         </div>
@@ -90,10 +87,10 @@ function PlansPage() {
         <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6 lg:px-8">
           <div className="mb-6 text-center">
             <h2 className="text-2xl font-extrabold text-foreground sm:text-3xl">
-              Not sure which one? Take the 60-second quiz.
+               {t("plans.quizTitle")}
             </h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              Six questions — we score all 18 plans and show your top two matches.
+               {t("plans.quizSub")}
             </p>
           </div>
           <PlanQuiz />
@@ -111,7 +108,7 @@ function PlansPage() {
                   <h2 className="text-xl font-extrabold tracking-tight text-foreground sm:text-2xl">
                     {lang === "hi" ? PLAN_GROUP_HI[group] : group}
                   </h2>
-                  <span className="font-mono text-xs text-muted-foreground">{plans.length} plans</span>
+                   <span className="font-mono text-xs text-muted-foreground">{plans.length} {t("plans.count")}</span>
                 </div>
                 <div className="grid items-start gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                   {plans.map((p, i) => (
@@ -133,10 +130,10 @@ function PlansPage() {
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-navy/70">
-              Why this short list
+               {t("plans.why")}
             </p>
             <h2 className="mt-2 text-3xl font-extrabold text-navy sm:text-4xl">
-              LIC has 30+ plans. These are the four I trust most.
+               {t("plans.whyTitle")}
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-ink-soft">
               The shortlist below survived 20 years of real-world claims, surrenders and maturities — not marketing material.
@@ -161,15 +158,13 @@ function PlansPage() {
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-gold backdrop-blur">
-              <Global size={14} variant="Bold" color="#FFC93C" /> Pan-India · NRI Coverage
+               <Global size={14} variant="Bold" color="#FFC93C" /> {t("plans.coverage")}
             </span>
             <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">
-              From Agra to your time-zone — one advisor, lifelong.
+               {t("plans.coverageTitle")}
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-white/80">
-              Whether you live in Delhi, Dubai or Detroit, the same person who issues the policy
-              will be the person who answers when your nominee calls. Digital KYC, medicals and
-              signatures are handled in your time-zone.
+               {t("plans.coverageBody")}
             </p>
             <ul className="mt-6 grid grid-cols-2 gap-2.5 text-sm">
               {["Agra · HQ", "Delhi · Mumbai", "Dubai · GCC", "Singapore", "London · UK", "New York · USA"].map((c) => (
@@ -187,8 +182,8 @@ function PlansPage() {
       <Glossary />
 
       <FAQSection
-        title="About the plans — and how I work"
-        intro="The questions families ask before choosing a specific LIC plan."
+         title={lang === "hi" ? "योजनाओं और मेरी सेवा के बारे में" : "About the plans — and how I work"}
+         intro={lang === "hi" ? "किसी एलआईसी योजना को चुनने से पहले परिवारों के सामान्य प्रश्न।" : "The questions families ask before choosing a specific LIC plan."}
       />
     </PageTransition>
   );

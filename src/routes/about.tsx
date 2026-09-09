@@ -20,6 +20,7 @@ import { TrustBadges } from "@/components/site/TrustBadges";
 import { FAQSection } from "@/components/site/FAQSection";
 import { assetUrl } from "@/lib/assets";
 import { ldScript, personLd, breadcrumbLd } from "@/lib/seo";
+import { useLang } from "@/lib/i18n";
 import trophy1 from "@/assets/trophies/1781413121551.asset.json";
 import trophy2 from "@/assets/trophies/IMG_20260614_104134.asset.json";
 import trophy3 from "@/assets/trophies/IMG_20260614_104441.asset.json";
@@ -98,33 +99,26 @@ const trophies = [
 ];
 
 function AboutPage() {
+  const { lang, t, pick } = useLang();
+  const localizedClubs = clubs.map((club, index) => ({
+    ...club,
+    status: index === 0 ? t("about.current") : index === 1 ? t("about.progress") : t("about.future"),
+    desc: pick(club.desc, ["निरंतर उत्कृष्ट कार्य और ग्राहक विश्वास के लिए विशिष्ट सदस्य।", "ज़ोनल मैनेजर क्लब की पात्रता की ओर प्रगति।", "एलआईसी सलाहकार सम्मान का सर्वोच्च लक्ष्य।"][index]),
+  }));
   return (
     <PageTransition>
       {/* Profile */}
       <section className="bg-gradient-to-b from-slate-bg to-white">
         <div className="mx-auto max-w-5xl px-4 py-20 sm:px-6 lg:px-8">
           <span className="inline-flex items-center gap-2 rounded-full border border-navy/15 bg-white px-3.5 py-1.5 text-xs font-semibold text-navy shadow-sm">
-            <ShieldTick size={14} variant="Bold" color="#FFC93C" /> About the Advisor
+             <ShieldTick size={14} variant="Bold" color="#FFC93C" /> {t("about.badge")}
           </span>
           <h1 className="mt-5 text-4xl font-extrabold leading-tight text-navy sm:text-5xl">
-            Two decades of quiet, consistent service —{" "}
-            <span className="text-gold">one family at a time.</span>
+             {t("about.h1a")} <span className="text-gold">{t("about.h1b")}</span>
           </h1>
           <div className="mt-6 grid gap-6 text-[15px] leading-[1.75] text-ink sm:text-base">
-            <p>
-              For over 20 years, my practice has been built on a single
-              principle: a life insurance policy is a promise to a family that
-              must outlive the policyholder. That promise demands honesty
-              before commission, clarity before complexity, and discretion
-              above all else.
-            </p>
-            <p>
-              I serve over a thousand Indian families — across hometowns,
-              metros, and the diaspora — with custom-fit LIC of India plans.
-              No cold calls, no pressure, no pushy upselling. Just careful
-              listening, transparent paperwork, and lifelong after-sales
-              service.
-            </p>
+             <p>{t("about.p1")}</p>
+             <p>{t("about.p2")}</p>
           </div>
           <TrustBadges className="mt-10" />
         </div>
@@ -135,17 +129,17 @@ function AboutPage() {
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-navy/70">
-              Club Membership Journey
+               {t("about.journey")}
             </p>
             <h2 className="mt-2 text-3xl font-extrabold text-navy sm:text-4xl">
-              A career measured in milestones.
+               {t("about.journeyTitle")}
             </h2>
           </div>
 
           <div className="relative mt-14">
             <div className="absolute left-1/2 top-7 hidden h-0.5 w-full -translate-x-1/2 bg-gradient-to-r from-gold via-navy/40 to-white md:block" />
             <div className="grid gap-8 md:grid-cols-3">
-              {clubs.map((c, idx) => (
+               {localizedClubs.map((c, idx) => (
                 <FadeIn key={c.label} delay={idx * 0.1} className="relative">
                   <div
                     className={
@@ -179,14 +173,13 @@ function AboutPage() {
           <div className="flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-end">
             <div>
               <p className="text-xs font-semibold uppercase tracking-[0.18em] text-navy/70">
-                Recognitions
+                 {t("about.recognitions")}
               </p>
               <h2 className="mt-2 text-3xl font-extrabold text-navy sm:text-4xl">
-                Trophies &amp; Medals Wall
+                 {t("about.trophyWall")}
               </h2>
               <p className="mt-2 max-w-xl text-sm text-ink-soft">
-                Holding 20–30 trophies and 10–12 medals across two decades of
-                LIC excellence — quietly earned, never advertised.
+                 {t("about.trophyIntro")}
               </p>
             </div>
             <MagicStar size={28} variant="Bold" color="#FFC93C" />
@@ -225,11 +218,10 @@ function AboutPage() {
                   <MagicStar size={26} variant="Bold" color="#FFC93C" />
                 </span>
                 <p className="mt-4 text-base font-bold text-foreground">
-                  …and many more in the cabinet.
+                    {t("about.moreCabinet")}
                 </p>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                  Photographing every trophy from 20+ years takes time — so only a
-                  handful are shown here. We prefer quiet service over loud display.
+                   {t("about.moreCabinetSub")}
                 </p>
               </div>
             </FadeIn>
@@ -243,17 +235,17 @@ function AboutPage() {
           <div className="flex flex-col items-start gap-6 rounded-3xl bg-navy p-8 text-white sm:flex-row sm:items-center sm:justify-between sm:p-10">
             <div>
               <h3 className="text-2xl font-extrabold sm:text-3xl">
-                Ready for a quiet, expert conversation?
+                 {t("about.ctaTitle")}
               </h3>
               <p className="mt-2 text-sm text-white/75">
-                No sales pitch. Just clarity for your family's future.
+                 {t("about.ctaSub")}
               </p>
             </div>
             <Link
               to="/book-appointment"
               className="inline-flex items-center gap-2 rounded-xl bg-gold px-5 py-3 text-sm font-bold text-navy shadow-lg transition-all hover:scale-[1.02]"
             >
-              Book Appointment <ArrowRight size={16} variant="Bold" />
+               {t("about.bookAppt")} <ArrowRight size={16} variant="Bold" />
             </Link>
           </div>
         </div>
@@ -264,13 +256,13 @@ function AboutPage() {
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-navy/70">
-              The Promise
+               {t("about.promise")}
             </p>
             <h2 className="mt-2 text-3xl font-extrabold text-navy sm:text-4xl">
-              What you actually get — not what brochures promise.
+               {t("about.promiseTitle")}
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-              Six things every family I serve receives, written down so we both stay honest.
+               {t("about.promiseSub")}
             </p>
           </div>
           <HoverEffect
@@ -288,8 +280,8 @@ function AboutPage() {
       </section>
 
       <FAQSection
-        title="Questions families ask before our first call"
-        intro="Twenty years of conversations distilled into the questions that come up the most."
+         title={pick("Questions families ask before our first call", "पहली बातचीत से पहले परिवार क्या पूछते हैं")}
+         intro={pick("Twenty years of conversations distilled into the questions that come up the most.", "बीस वर्षों की बातचीत में सबसे अधिक पूछे गए प्रश्नों के सरल उत्तर।")}
       />
     </PageTransition>
   );
