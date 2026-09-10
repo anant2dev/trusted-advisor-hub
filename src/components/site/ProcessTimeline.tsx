@@ -1,20 +1,29 @@
 import { motion } from "framer-motion";
 import { PROCESS_STEPS } from "@/lib/plan-details";
+import { useLang } from "@/lib/i18n";
 
 /** Infographic timeline explaining exactly how working together unfolds. */
 export function ProcessTimeline() {
+  const { lang, t } = useLang();
+  const hindiSteps = [
+    ["अपना लक्ष्य बताएँ", "परिवार, आय, समय और बजट की जानकारी साझा करें।"],
+    ["स्पष्ट तुलना पाएँ", "उपयुक्त योजनाओं की लाभ, सीमाओं और लागत सहित लिखित तुलना पाएँ।"],
+    ["अपनी योजना चुनें", "पूरा समय लेकर निर्णय लें — कोई दबाव या जल्दबाज़ी नहीं।"],
+    ["कागज़ात पूरे करें", "KYC, मेडिकल और हस्ताक्षर में व्यक्तिगत सहायता मिलेगी।"],
+    ["आजीवन सेवा", "प्रीमियम से क्लेम तक वही सलाहकार आपके साथ रहेगा।"],
+  ];
   return (
     <section className="bg-background">
       <div className="mx-auto max-w-5xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <p className="font-mono text-xs font-semibold uppercase tracking-[0.22em] text-primary">
-            How it actually works
+             {t("process.kicker")}
           </p>
           <h2 className="mt-3 text-3xl font-extrabold text-foreground sm:text-4xl">
-            Five steps. No pressure at any of them.
+             {t("process.title")}
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-            You can stop after step two with a written comparison in hand and never hear a sales call again.
+             {t("process.intro")}
           </p>
         </div>
 
@@ -33,9 +42,9 @@ export function ProcessTimeline() {
               </span>
               <div className="flex items-center gap-3">
                 <span className="font-mono text-xs font-bold text-primary">{s.step}</span>
-                <h3 className="text-base font-bold text-foreground">{s.title}</h3>
+                 <h3 className="text-base font-bold text-foreground">{lang === "hi" ? hindiSteps[i]?.[0] : s.title}</h3>
               </div>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{s.body}</p>
+               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{lang === "hi" ? hindiSteps[i]?.[1] : s.body}</p>
             </motion.li>
           ))}
         </ol>

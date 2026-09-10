@@ -12,14 +12,27 @@ import {
 import { QUIZ_QUESTIONS, scoreQuiz, planDetail, type QuizAnswers } from "@/lib/quiz";
 import { playSfx } from "@/lib/sfx";
 import { cn } from "@/lib/utils";
+import { useLang } from "@/lib/i18n";
+import { ALL_PLANS } from "@/lib/site";
+
+const QUESTION_HI: Record<string, { question: string; helper: string; options: string[]; hints?: string[] }> = {
+  goal: { question: "आप पॉलिसी से मुख्य रूप से क्या चाहते हैं?", helper: "अभी आपके लिए सबसे महत्वपूर्ण लक्ष्य चुनें।", options: ["बच्चे की शिक्षा या विवाह सुरक्षित करना", "मेरे बाद परिवार की सुरक्षा", "सुरक्षित बचत और गारंटीड एकमुश्त राशि", "नियमित आय बनाना", "रिटायरमेंट या पेंशन की योजना"] },
+  age: { question: "जिस व्यक्ति का बीमा होना है उसकी आयु क्या है?", helper: "प्रवेश आयु से वास्तविक पात्रता तय होती है।", options: ["18 वर्ष से कम", "18–30 वर्ष", "31–45 वर्ष", "46–55 वर्ष", "56 वर्ष या अधिक"] },
+  horizon: { question: "आप पैसा कब वापस पाना चाहते हैं?", helper: "लंबी अवधि में बोनस बढ़ने की संभावना रहती है।", options: ["तुरंत — पहले दिन से आय", "5–10 वर्ष में", "10–20 वर्ष में", "20 वर्ष बाद या आजीवन कवर"] },
+  budget: { question: "आप हर वर्ष लगभग कितना अलग रख सकते हैं?", helper: "ऐसा प्रीमियम चुनें जिसे आप आराम से जारी रख सकें।", options: ["₹25,000 से कम", "₹25,000–₹60,000", "₹60,000–₹1.5 लाख", "₹1.5 लाख से अधिक या एकमुश्त राशि"] },
+  priority: { question: "यदि एक चुनना हो, तो आपके लिए क्या अधिक महत्वपूर्ण है?", helper: "हर योजना में सुरक्षा और रिटर्न का संतुलन अलग होता है।", options: ["सबसे बड़ा जीवन बीमा कवर", "गारंटीड और निश्चित पैसा वापसी", "दोनों का संतुलित मिश्रण"] },
+  dependents: { question: "आज आपकी आय पर कौन निर्भर है?", helper: "इससे परिवार के लिए जरूरी कवर का अंदाज़ा मिलता है।", options: ["छोटे बच्चे", "जीवनसाथी", "बुज़ुर्ग माता-पिता", "कोई नहीं — यह केवल मेरे लिए है"] },
+};
 
 export function PlanQuiz({ className }: { className?: string }) {
+  const { lang, t, pick } = useLang();
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<QuizAnswers>({});
   const [done, setDone] = useState(false);
 
   const total = QUIZ_QUESTIONS.length;
   const q = QUIZ_QUESTIONS[step];
+  const qHi = QUESTION_HI[q.id];
   const results = useMemo(() => (done ? scoreQuiz(answers) : []), [done, answers]);
   const progress = done ? 100 : Math.round((step / total) * 100);
 
@@ -68,9 +81,9 @@ export function PlanQuiz({ className }: { className?: string }) {
             <MagicStar size={18} variant="Bold" color="#FFC93C" />
           </span>
           <div>
-            <p className="text-sm font-bold text-foreground">Plan Finder</p>
+             <p className="text-sm font-bold text-foreground">{t("quiz.finder")}</p>
             <p className="font-mono text-[11px] text-muted-foreground">
-              {done ? "result.json" : `question ${step + 1} / ${total}`}
+               {done ? (lang === "hi" ? "परिणाम" : "result.json") : `${lang === "hi" ? "प्रश्न" : "question"} ${step + 1} / ${total}`}
             </p>
           </div>
         </div>
@@ -80,7 +93,7 @@ export function PlanQuiz({ className }: { className?: string }) {
             onClick={back}
             className="inline-flex min-h-11 items-center gap-1.5 rounded-lg border border-border px-3.5 py-2 text-xs font-semibold text-foreground transition-colors hover:bg-accent/20"
           >
-            <ArrowLeft2 size={14} variant="Bold" color="currentColor" /> Back
+             <ArrowLeft2 size={14} variant="Bold" color="currentColor" /> {t("quiz.back")}
           </button>
         )}
       </div>
@@ -113,11 +126,11 @@ export function PlanQuiz({ className }: { className?: string }) {
             className="mt-6"
           >
             <h3 className="text-balance text-xl font-extrabold leading-snug tracking-tight text-foreground sm:text-2xl">
-              {q.question}
+               {lang === "hi" ? qHi.question : q.question}
             </h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{q.helper}</p>
+             <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{lang === "hi" ? qHi.helper : q.helper}</p>
             <div className="mt-6 grid gap-3">
-              {q.options.map((o) => {
+               {q.options.map((o, optionIndex) => {
                 const active = answers[q.id] === o.id;
                 return (
                   <button
@@ -133,7 +146,7 @@ export function PlanQuiz({ className }: { className?: string }) {
                     )}
                   >
                     <span className="min-w-0">
-                      <span className="block text-sm font-semibold text-foreground">{o.label}</span>
+                       <span className="block text-sm font-semibold text-foreground">{lang === "hi" ? qHi.options[optionIndex] : o.label}</span>
                       {o.hint && (
                         <span className="mt-0.5 block text-xs text-muted-foreground">{o.hint}</span>
                       )}
@@ -159,16 +172,16 @@ export function PlanQuiz({ className }: { className?: string }) {
             className="mt-6"
           >
             <h3 className="text-lg font-extrabold text-foreground sm:text-xl">
-              Your top {results.length} matches
+               {t("quiz.matches")}
             </h3>
             <p className="mt-1.5 text-sm text-muted-foreground">
-              Based on your goal, age band, horizon, budget and dependents. This is guidance,
-              not a quotation — the final eligibility check happens on the call.
+               {pick("Based on your goal, age, horizon, budget and dependents. This is guidance, not a quotation — final eligibility is confirmed on the call.", "आपके लक्ष्य, आयु, अवधि, बजट और आश्रितों के आधार पर। यह मार्गदर्शन है, अंतिम पात्रता बातचीत में तय होगी।")}
             </p>
 
             <div className="mt-5 grid gap-4">
               {results.map((r, i) => {
                 const d = planDetail(r.slug);
+                const plan = ALL_PLANS.find((item) => item.slug === r.slug);
                 return (
                   <motion.div
                     key={r.slug}
@@ -179,17 +192,17 @@ export function PlanQuiz({ className }: { className?: string }) {
                   >
                     <div className="flex flex-wrap items-center gap-2">
                       <span className="rounded-full bg-primary/10 px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-primary">
-                        {i === 0 ? "Best match" : "Strong alternative"}
+                         {i === 0 ? t("quiz.best") : t("quiz.alternative")}
                       </span>
                       <span className="rounded-full border border-border px-2.5 py-1 text-[11px] font-semibold text-muted-foreground">
-                        {r.tag}
+                         {lang === "hi" ? plan?.tagHi : r.tag}
                       </span>
                       <span className="ml-auto font-mono text-xs font-bold text-gold">
                         {r.match}% fit
                       </span>
                     </div>
-                    <p className="mt-3 text-base font-extrabold text-foreground">{r.name}</p>
-                    <p className="text-sm text-muted-foreground">{r.tagline}</p>
+                     <p className="mt-3 text-base font-extrabold text-foreground">{lang === "hi" ? plan?.nameHi : r.name}</p>
+                     <p className="text-sm text-muted-foreground">{lang === "hi" ? plan?.taglineHi : r.tagline}</p>
 
                     {d && (
                       <p className="mt-3 text-sm leading-relaxed text-foreground/80">
@@ -198,7 +211,7 @@ export function PlanQuiz({ className }: { className?: string }) {
                     )}
 
                     <ul className="mt-3 grid gap-1.5">
-                      {r.benefits.slice(0, 3).map((b) => (
+                       {(lang === "hi" ? plan?.benefitsHi ?? r.benefits : r.benefits).slice(0, 3).map((b) => (
                         <li key={b} className="flex items-start gap-2 text-sm text-muted-foreground">
                           <TickCircle
                             size={16}
@@ -238,7 +251,7 @@ export function PlanQuiz({ className }: { className?: string }) {
                       className="mt-4 inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2.5 text-sm font-bold text-primary-foreground shadow-md transition-transform hover:scale-[1.02]"
                     >
                       <Calendar size={18} variant="Bold" color="currentColor" />
-                      Book with {r.name} preselected
+                       {t("quiz.book")}
                     </Link>
                   </motion.div>
                 );
@@ -250,7 +263,7 @@ export function PlanQuiz({ className }: { className?: string }) {
               onClick={restart}
               className="mt-5 inline-flex items-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-accent/20"
             >
-              <Refresh2 size={16} variant="Bold" color="currentColor" /> Retake the quiz
+               <Refresh2 size={16} variant="Bold" color="currentColor" /> {t("quiz.retake")}
             </button>
           </motion.div>
         )}
