@@ -2,12 +2,14 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Call, ArrowRight, Whatsapp } from "iconsax-react";
 import { motion, AnimatePresence } from "motion/react";
 import { WHATSAPP_NUMBER } from "@/lib/site";
+import { useLang } from "@/lib/i18n";
 
 // Sticky bottom conversion bar. Hides on the booking page itself
 // (the page IS the CTA there) and on the 404 route.
 const HIDE_ON = ["/book-appointment"];
 
 export function StickyCTA() {
+  const { t, pick } = useLang();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const hidden = HIDE_ON.some((p) => pathname.startsWith(p));
 
@@ -26,10 +28,10 @@ export function StickyCTA() {
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-3">
             <div className="hidden min-w-0 sm:block">
               <p className="truncate text-sm font-bold text-foreground">
-                One unhurried call. Zero pressure.
+                 {pick("One unhurried call. Zero pressure.", "आराम से बातचीत। कोई दबाव नहीं।")}
               </p>
               <p className="truncate text-[11px] text-muted-foreground">
-                IRDAI-licensed · 20+ years · Lifetime after-sales service
+                 {pick("IRDAI-licensed · 20+ years · Lifetime after-sales service", "IRDAI लाइसेंस · 20+ वर्ष · आजीवन सेवा")}
               </p>
             </div>
             <div className="flex flex-1 items-center justify-end gap-2 sm:flex-none">
@@ -47,7 +49,7 @@ export function StickyCTA() {
                 className="group inline-flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-navy px-3.5 py-2.5 text-sm font-bold text-white shadow-md transition-all hover:bg-navy-deep hover:scale-[1.02] sm:flex-none"
               >
                 <Call size={16} variant="Bold" color="#FFC93C" />
-                Book Appointment
+                 {t("about.bookAppt")}
                 <ArrowRight
                   size={14}
                   variant="Bold"

@@ -5,6 +5,7 @@ import { PlanQuiz } from "@/components/site/PlanQuiz";
 import { TrustBadges } from "@/components/site/TrustBadges";
 import { FAQSection } from "@/components/site/FAQSection";
 import { ldScript, faqLd, breadcrumbLd, organizationLd } from "@/lib/seo";
+import { useLang } from "@/lib/i18n";
 
 const QUIZ_FAQ = [
   {
@@ -82,33 +83,31 @@ const points = [
 ];
 
 function PlanFinderPage() {
+  const { t, pick } = useLang();
   return (
     <PageTransition>
       <section className="bg-gradient-to-b from-slate-bg to-background">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
           <div className="mx-auto max-w-3xl text-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-card px-3.5 py-1.5 text-xs font-semibold text-primary shadow-sm">
-              <ShieldTick size={14} variant="Bold" color="#FFC93C" /> Free · No sign-up
+               <ShieldTick size={14} variant="Bold" color="#FFC93C" /> {t("quiz.free")}
             </span>
             <h1 className="mt-5 text-balance text-3xl font-extrabold leading-[1.12] tracking-tight text-foreground sm:text-5xl">
-              Which LIC plan actually fits{" "}
-              <span className="text-gold">your family?</span>
+               {t("quiz.title")}
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-pretty text-[15px] leading-relaxed text-muted-foreground sm:text-base">
-              Six honest questions about your goal, age, horizon and budget. We score all
-              18 LIC plans we advise on and show you the top two — with eligibility, payout
-              style and the caveats most agents skip.
+               {t("quiz.intro")}
             </p>
           </div>
 
           <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
-            {points.map((p) => (
+            {points.map((p, index) => (
               <div key={p.title} className="rounded-2xl border border-border bg-card p-4 shadow-sm transition-shadow hover:shadow-md">
                 <span className="grid h-10 w-10 place-items-center rounded-lg bg-primary/10">
                   <p.icon size={20} variant="Bold" color="#FFC93C" />
                 </span>
-                <p className="mt-3 text-sm font-bold text-foreground">{p.title}</p>
-                <p className="mt-0.5 text-[13px] leading-relaxed text-muted-foreground sm:text-sm">{p.desc}</p>
+                <p className="mt-3 text-sm font-bold text-foreground">{pick(p.title, ["60 सेकंड", "पूरी तरह निजी", "ईमानदार मिलान", "सभी एलआईसी योजनाएँ"][index])}</p>
+                <p className="mt-0.5 text-[13px] leading-relaxed text-muted-foreground sm:text-sm">{pick(p.desc, ["छह प्रश्न, रजिस्ट्रेशन नहीं, तुरंत परिणाम।", "आपके ब्राउज़र में चलता है — कुछ सेव नहीं होता।", "हर योजना की सीमाएँ भी साफ दिखाई जाती हैं।", "पूरी सूची में से मिलान किया जाता है।"][index])}</p>
               </div>
             ))}
           </div>
@@ -123,8 +122,8 @@ function PlanFinderPage() {
 
       <FAQSection
         items={QUIZ_FAQ}
-        title="About the plan finder"
-        intro="What the quiz does, what it doesn't, and what happens next."
+         title={pick("About the plan finder", "योजना खोजक के बारे में")}
+         intro={pick("What the quiz does, what it doesn't, and what happens next.", "क्विज़ क्या करती है, क्या नहीं करती और आगे क्या होगा।")}
       />
     </PageTransition>
   );

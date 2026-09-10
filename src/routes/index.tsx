@@ -7,7 +7,6 @@ import {
   Cup,
   Lock1,
   MagicStar,
-  TickCircle,
 } from "iconsax-react";
 import advisorAsset from "@/assets/advisor.jpg.asset.json";
 import { PLANS } from "@/lib/site";
@@ -399,12 +398,12 @@ function Index() {
           <HoverEffect
             className="mt-8"
             items={[
-              { title: "IRDAI-Compliant Advice", description: "Every recommendation follows IRDAI guidelines — no exotic, opaque products." },
-              { title: "Zero-Pressure Consults", description: "I share the math, you decide. No upsells, no scripts, no rushed signatures." },
-              { title: "Lifelong Service", description: "Annual reviews, claim assistance, nominee updates — for as long as the policy runs." },
-              { title: "Privacy First", description: "Your financial data never leaves my office. No CRM lists, no marketing emails." },
-              { title: "Pan-India Reach", description: "Servicing families across India and NRIs in the GCC, UK, and North America." },
-              { title: "20+ Years, One Desk", description: "Two decades of unbroken service from a single trusted advisor — not a call centre." },
+              { title: lang === "hi" ? "IRDAI अनुरूप सलाह" : "IRDAI-Compliant Advice", description: lang === "hi" ? "हर सुझाव नियमों के अनुसार और पूरी तरह स्पष्ट।" : "Every recommendation follows IRDAI guidelines — no opaque products." },
+              { title: lang === "hi" ? "बिना दबाव परामर्श" : "Zero-Pressure Consults", description: lang === "hi" ? "पूरा हिसाब समझें और निर्णय अपने समय पर लें।" : "I share the math, you decide. No upsells or rushed signatures." },
+              { title: lang === "hi" ? "आजीवन सेवा" : "Lifelong Service", description: lang === "hi" ? "पॉलिसी चलने तक समीक्षा, क्लेम और नॉमिनी सहायता।" : "Annual reviews, claim assistance and nominee updates." },
+              { title: lang === "hi" ? "गोपनीयता सर्वोपरि" : "Privacy First", description: lang === "hi" ? "आपकी वित्तीय जानकारी प्रचार में उपयोग नहीं होती।" : "Your financial data is never used for marketing." },
+              { title: lang === "hi" ? "भारत और विदेश में सेवा" : "Pan-India Reach", description: lang === "hi" ? "पूरे भारत और दुनिया भर के प्रवासी परिवारों की सेवा।" : "Serving families across India and NRIs worldwide." },
+              { title: lang === "hi" ? "20+ वर्ष, एक सलाहकार" : "20+ Years, One Desk", description: lang === "hi" ? "एक विश्वसनीय सलाहकार से दो दशकों की निरंतर सेवा।" : "Two decades of continuous service from one trusted advisor." },
             ]}
           />
         </div>

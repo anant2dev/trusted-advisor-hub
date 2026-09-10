@@ -99,7 +99,7 @@ const trophies = [
 ];
 
 function AboutPage() {
-  const { lang, t, pick } = useLang();
+  const { t, pick } = useLang();
   const localizedClubs = clubs.map((club, index) => ({
     ...club,
     status: index === 0 ? t("about.current") : index === 1 ? t("about.progress") : t("about.future"),
@@ -265,15 +265,15 @@ function AboutPage() {
                {t("about.promiseSub")}
             </p>
           </div>
-          <HoverEffect
+           <HoverEffect
             className="mt-8"
             items={[
-              { title: "IRDAI-Compliant Advice", description: "Recommendations matched to your goals — never to a commission slab. Paperwork stays in your name, never a nominee proxy.", icon: <ShieldTick size={24} variant="Bold" color="#003262" /> },
-              { title: "Lifetime After-Sales Service", description: "Premium reminders, NACH fixes, revivals, loans and claim filing — handled personally, decades after the policy is issued.", icon: <Clock size={24} variant="Bold" color="#003262" /> },
-              { title: "Absolute Privacy", description: "No CRM, no third-party leak risk. Your financial details never sit on a server, only on the LIC of India portal.", icon: <SecuritySafe size={24} variant="Bold" color="#003262" /> },
-              { title: "Family-Style 1:1 Consultation", description: "Patient listening before any recommendation. No slide decks, no scripts, no closing pressure on a first call.", icon: <Profile size={24} variant="Bold" color="#003262" /> },
-              { title: "Verified Track Record", description: "DM Club Distinguished Member · multiple Zonal & Mandal trophies · 1000+ Indian and NRI families served.", icon: <Verify size={24} variant="Bold" color="#003262" /> },
-              { title: "Pan-India & NRI Reach", description: "From Agra to the GCC, UK, Singapore and the USA — digital KYC, medicals and signatures handled end-to-end.", icon: <Award size={24} variant="Bold" color="#003262" /> },
+               { title: pick("IRDAI-Compliant Advice", "IRDAI अनुरूप सलाह"), description: pick("Recommendations matched to your goals, never a commission slab.", "सुझाव आपके लक्ष्यों के अनुसार, कमीशन के अनुसार नहीं।"), icon: <ShieldTick size={24} variant="Bold" color="#003262" /> },
+               { title: pick("Lifetime After-Sales Service", "आजीवन बिक्री-पश्चात सेवा"), description: pick("Premium reminders, revivals, loans and claims handled personally.", "प्रीमियम, पुनर्जीवन, लोन और क्लेम में व्यक्तिगत सहायता।"), icon: <Clock size={24} variant="Bold" color="#003262" /> },
+               { title: pick("Absolute Privacy", "पूर्ण गोपनीयता"), description: pick("Your financial details are never used for third-party marketing.", "आपकी वित्तीय जानकारी तीसरे पक्ष के प्रचार में उपयोग नहीं होती।"), icon: <SecuritySafe size={24} variant="Bold" color="#003262" /> },
+               { title: pick("Family-Style 1:1 Consultation", "परिवार जैसा व्यक्तिगत परामर्श"), description: pick("Patient listening before any recommendation, with no pressure.", "बिना दबाव, किसी सुझाव से पहले धैर्य से आपकी बात।"), icon: <Profile size={24} variant="Bold" color="#003262" /> },
+               { title: pick("Verified Track Record", "सत्यापित उपलब्धियाँ"), description: pick("DM Club member with 1000+ Indian and NRI families served.", "डीएम क्लब सदस्य और 1000+ भारतीय एवं प्रवासी परिवारों की सेवा।"), icon: <Verify size={24} variant="Bold" color="#003262" /> },
+               { title: pick("Pan-India & NRI Reach", "भारत और विदेश में सेवा"), description: pick("Digital KYC, medicals and signatures handled end-to-end.", "डिजिटल KYC, मेडिकल और हस्ताक्षर में पूरी सहायता।"), icon: <Award size={24} variant="Bold" color="#003262" /> },
             ]}
           />
         </div>

@@ -5,6 +5,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { MessageQuestion } from "iconsax-react";
+import { useLang } from "@/lib/i18n";
 
 export const DEFAULT_FAQ = [
   {
@@ -42,6 +43,18 @@ export function FAQSection({
   title?: string;
   intro?: string;
 }) {
+  const { lang, t } = useLang();
+  const hindiDefault = [
+    { q: "क्या आप एलआईसी के अधिकृत एजेंट हैं?", a: "हाँ — 2003 से IRDAI लाइसेंस प्राप्त और एलआईसी आगरा मंडल से जुड़े हैं। हर पॉलिसी सीधे एलआईसी द्वारा जारी होती है।" },
+    { q: "क्या मेरी जानकारी कहीं सेव होगी?", a: "नहीं। बुकिंग फॉर्म आपके डिवाइस पर चलता है और केवल व्हाट्सएप या ईमेल में तैयार संदेश खोलता है।" },
+    { q: "क्या परामर्श के लिए कोई शुल्क है?", a: "नहीं। पहली बातचीत, प्रीमियम रिमाइंडर और भविष्य की क्लेम सहायता निःशुल्क है।" },
+    { q: "मैं आगरा या भारत से बाहर रहता हूँ, क्या आप मदद कर सकते हैं?", a: "हाँ। पूरे भारत और विदेश में रहने वाले भारतीय परिवारों के लिए डिजिटल KYC, मेडिकल और हस्ताक्षर की सहायता उपलब्ध है।" },
+    { q: "पॉलिसी लेने के बाद सेवा कैसे मिलेगी?", a: "प्रीमियम, NACH, पुनर्जीवन, लोन, मैच्योरिटी और क्लेम कागज़ात में आजीवन व्यक्तिगत सहायता मिलती है।" },
+    { q: "पहली बातचीत में कितना समय लगता है?", a: "आमतौर पर 25–40 मिनट। पहले आपकी जरूरत सुनी जाती है और उसी कॉल पर निर्णय लेने का कोई दबाव नहीं होता।" },
+  ];
+  const shownItems = lang === "hi" && items === DEFAULT_FAQ ? hindiDefault : items;
+  const shownTitle = lang === "hi" && title === "Frequently asked questions" ? t("common.faq") : title;
+  const shownIntro = lang === "hi" && intro === "Honest answers to what most families ask before our first call." ? t("common.faqIntro") : intro;
   return (
     <section className="bg-white">
       <div className="mx-auto max-w-3xl px-4 py-20 sm:px-6 lg:px-8">
@@ -49,11 +62,11 @@ export function FAQSection({
           <span className="grid h-12 w-12 place-items-center rounded-2xl bg-navy text-gold shadow-md">
             <MessageQuestion size={22} variant="Bold" color="#FFC93C" />
           </span>
-          <h2 className="mt-4 text-3xl font-extrabold text-navy sm:text-4xl">{title}</h2>
-          <p className="mt-3 max-w-xl text-sm leading-relaxed text-ink-soft">{intro}</p>
+           <h2 className="mt-4 text-3xl font-extrabold text-navy sm:text-4xl">{shownTitle}</h2>
+           <p className="mt-3 max-w-xl text-sm leading-relaxed text-ink-soft">{shownIntro}</p>
         </div>
         <Accordion type="single" collapsible className="mt-10 w-full">
-          {items.map((it, i) => (
+           {shownItems.map((it, i) => (
             <AccordionItem
               key={i}
               value={"item-" + i}
