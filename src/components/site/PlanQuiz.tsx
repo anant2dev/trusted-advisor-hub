@@ -226,12 +226,12 @@ export function PlanQuiz({ className }: { className?: string }) {
 
                     {d && (
                       <div className="mt-4 grid gap-2 rounded-xl bg-muted/50 p-3 text-xs sm:grid-cols-2">
-                        <p><span className="font-semibold text-foreground">Entry age:</span> <span className="text-muted-foreground">{d.entryAge}</span></p>
-                        <p><span className="font-semibold text-foreground">Policy term:</span> <span className="text-muted-foreground">{d.policyTerm}</span></p>
-                        <p><span className="font-semibold text-foreground">Min. cover:</span> <span className="text-muted-foreground">{d.minCover}</span></p>
-                        <p><span className="font-semibold text-foreground">Payout:</span> <span className="text-muted-foreground">{d.payoutStyle}</span></p>
+                        <p><span className="font-semibold text-foreground">{t("details.entryAge")}:</span> <span className="text-muted-foreground">{d.entryAge}</span></p>
+                        <p><span className="font-semibold text-foreground">{t("details.policyTerm")}:</span> <span className="text-muted-foreground">{d.policyTerm}</span></p>
+                        <p><span className="font-semibold text-foreground">{t("details.minCover")}:</span> <span className="text-muted-foreground">{d.minCover}</span></p>
+                        <p><span className="font-semibold text-foreground">{t("details.payout")}:</span> <span className="text-muted-foreground">{d.payoutStyle}</span></p>
                         <p className="sm:col-span-2">
-                          <span className="font-semibold text-foreground">Not ideal for:</span>{" "}
+                          <span className="font-semibold text-foreground">{t("details.notIdeal")}</span>{" "}
                           <span className="text-muted-foreground">{d.notIdealFor}</span>
                         </p>
                       </div>
@@ -239,7 +239,7 @@ export function PlanQuiz({ className }: { className?: string }) {
 
                     {r.reasons.length > 0 && (
                       <p className="mt-3 text-xs text-muted-foreground">
-                        <span className="font-semibold text-foreground">Why this came up:</span>{" "}
+                        <span className="font-semibold text-foreground">{pick("Why this came up:", "यह विकल्प क्यों आया:")}</span>{" "}
                         {r.reasons.join(" · ")}
                       </p>
                     )}
