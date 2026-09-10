@@ -16,6 +16,7 @@ import { TrustBadges } from "@/components/site/TrustBadges";
 import { FAQSection } from "@/components/site/FAQSection";
 import { DEFAULT_FAQ } from "@/components/site/FAQSection";
 import { ldScript, faqLd, breadcrumbLd, organizationLd, SITE_URL } from "@/lib/seo";
+import { useLang } from "@/lib/i18n";
 
 type Search = { plan?: string };
 
@@ -92,6 +93,7 @@ const reasons = [
 ];
 
 function AppointmentPage() {
+  const { lang, t, pick } = useLang();
   const { plan: planFromUrl } = Route.useSearch();
 
   const initialPlan = useMemo(() => {
@@ -111,11 +113,11 @@ function AppointmentPage() {
   const [error, setError] = useState<string | null>(null);
   const [touched, setTouched] = useState<{ name?: boolean; phone?: boolean }>({});
 
-  const nameError = !form.name.trim() ? "Please enter your full name." : null;
+  const nameError = !form.name.trim() ? t("book.nameError") : null;
   const phoneError = !form.phone.trim()
-    ? "Please enter a phone number we can reach you on."
+    ? t("book.phoneError")
     : !/^[0-9+\-\s()]{7,20}$/.test(form.phone.trim())
-      ? "That doesn't look like a valid phone number."
+      ? t("book.phoneInvalid")
       : null;
   const readyToSend = !nameError && !phoneError;
   const filled = [form.name.trim(), form.phone.trim(), form.plan].filter(Boolean).length;
@@ -171,36 +173,35 @@ function AppointmentPage() {
           {/* Left */}
           <aside className="lg:sticky lg:top-24 lg:self-start">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-navy/70">
-              Book Appointment
+               {t("book.kicker")}
             </p>
             <h1 className="mt-2 text-3xl font-extrabold leading-tight text-navy sm:text-4xl">
-              Why book a consultation?
+               {t("book.h1")}
             </h1>
             <p className="mt-4 text-[15px] leading-relaxed text-ink-soft">
-              One unhurried call. Honest answers. A plan that fits your family —
-              not a script.
+               {t("book.sub")}
             </p>
             <ul className="mt-7 space-y-4">
-              {reasons.map((r) => (
+              {reasons.map((r, index) => (
                 <li key={r.title} className="flex items-start gap-3.5 rounded-xl bg-white p-4 shadow-sm">
                   <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-navy text-gold">
                     <r.icon size={20} variant="Bold" color="#FFC93C" />
                   </span>
                   <div className="min-w-0">
-                    <p className="text-sm font-bold text-navy">{r.title}</p>
-                    <p className="mt-0.5 text-sm leading-relaxed text-ink-soft">{r.desc}</p>
+                    <p className="text-sm font-bold text-navy">{pick(r.title, ["ईमानदार, IRDAI अनुरूप सलाह", "आजीवन बिक्री-पश्चात सेवा", "पूर्ण गोपनीयता", "परिवार जैसा व्यक्तिगत परामर्श"][index])}</p>
+                    <p className="mt-0.5 text-sm leading-relaxed text-ink-soft">{pick(r.desc, ["योजनाएँ आपके लक्ष्यों से मिलाई जाती हैं, कमीशन से नहीं।", "रिन्यूअल, क्लेम और पुनर्जीवन में व्यक्तिगत सहायता।", "कोई सूची या बाहरी संग्रह नहीं।", "किसी सुझाव से पहले धैर्य से आपकी बात सुनी जाती है।"][index])}</p>
                   </div>
                 </li>
               ))}
             </ul>
 
             <div className="mt-6 rounded-2xl border border-border bg-card p-5 shadow-sm">
-              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-navy/70">Direct Contact</p>
+              <p className="text-xs font-semibold uppercase text-navy/70">{t("book.direct")}</p>
               <p className="mt-2 text-sm font-bold text-foreground">{ADVISOR_NAME}</p>
               <p className="mt-0.5 text-sm text-muted-foreground">{ADDRESS}</p>
               <div className="mt-3 flex flex-wrap gap-2 text-sm">
                 <a href={`tel:+${WHATSAPP_NUMBER}`} className="rounded-md bg-navy px-3 py-1.5 font-semibold text-white hover:bg-navy-deep">{PHONE_DISPLAY}</a>
-                <a href={`mailto:${EMAIL}`} className="rounded-md border border-border px-3 py-1.5 font-semibold text-foreground hover:bg-accent/20">Email</a>
+                <a href={`mailto:${EMAIL}`} className="rounded-md border border-border px-3 py-1.5 font-semibold text-foreground hover:bg-accent/20">{t("common.emailButton")}</a>
               </div>
             </div>
           </aside>
@@ -212,8 +213,8 @@ function AppointmentPage() {
           >
             <div className="grid gap-5 sm:grid-cols-2">
               <div className="sm:col-span-2">
-                <label htmlFor="name" className={labelCls}>Full Name *</label>
-                <input id="name" className={fieldCls} placeholder="e.g. Rajesh Kumar"
+                <label htmlFor="name" className={labelCls}>{t("book.name")}</label>
+                <input id="name" className={fieldCls} placeholder={t("book.namePlaceholder")}
                   autoComplete="name" enterKeyHint="next"
                   aria-invalid={touched.name && !!nameError}
                   aria-describedby={touched.name && nameError ? "name-error" : undefined}
@@ -225,15 +226,15 @@ function AppointmentPage() {
               </div>
 
               <div>
-                <label htmlFor="email" className={labelCls}>Email Address</label>
+                <label htmlFor="email" className={labelCls}>{t("book.email")}</label>
                 <input id="email" type="email" className={fieldCls} placeholder="you@example.com"
                   autoComplete="email" inputMode="email"
                   value={form.email} onChange={update("email")} maxLength={120} />
-                <p className="mt-1.5 text-xs text-ink-soft">Optional — only if you prefer email over WhatsApp.</p>
+                <p className="mt-1.5 text-xs text-ink-soft">{t("book.emailHint")}</p>
               </div>
 
               <div>
-                <label htmlFor="phone" className={labelCls}>Phone / WhatsApp *</label>
+                <label htmlFor="phone" className={labelCls}>{t("book.phone")}</label>
                 <input id="phone" type="tel" className={fieldCls} placeholder="+91 98xxxxxx21"
                   autoComplete="tel" inputMode="tel" enterKeyHint="done"
                   aria-invalid={touched.phone && !!phoneError}
@@ -246,36 +247,36 @@ function AppointmentPage() {
               </div>
 
               <div>
-                <label htmlFor="beneficiary" className={labelCls}>Who is this for?</label>
+                <label htmlFor="beneficiary" className={labelCls}>{t("book.who")}</label>
                 <select id="beneficiary" className={fieldCls} value={form.beneficiary} onChange={update("beneficiary")}>
-                  {beneficiaries.map((b) => <option key={b}>{b}</option>)}
+                  {beneficiaries.map((b, i) => <option key={b} value={b}>{lang === "hi" ? ["स्वयं", "जीवनसाथी", "बच्चा", "माता-पिता", "आश्रित"][i] : b}</option>)}
                 </select>
               </div>
 
               <div>
-                <label htmlFor="age" className={labelCls}>Age Group of Insured</label>
+                <label htmlFor="age" className={labelCls}>{t("book.ageGroup")}</label>
                 <select id="age" className={fieldCls} value={form.age} onChange={update("age")}>
-                  {ageGroups.map((a) => <option key={a}>{a}</option>)}
+                  {ageGroups.map((a, i) => <option key={a} value={a}>{lang === "hi" ? ["0–5 वर्ष", "6–17 वर्ष", "18–35 वर्ष", "36–50 वर्ष", "50+ वर्ष"][i] : a}</option>)}
                 </select>
               </div>
 
               <div className="sm:col-span-2">
-                <label htmlFor="plan" className={labelCls}>Interested Policy</label>
+                <label htmlFor="plan" className={labelCls}>{t("book.plan")}</label>
                 <select id="plan" className={fieldCls} value={form.plan} onChange={update("plan")}>
-                  {planNames.map((p) => <option key={p}>{p}</option>)}
+                  {ALL_PLANS.map((p) => <option key={p.slug} value={p.name}>{lang === "hi" ? p.nameHi : p.name}</option>)}
                 </select>
                 {planFromUrl && planNames.includes(planFromUrl) && (
                   <p className="mt-1.5 inline-flex items-center gap-1.5 text-xs font-medium text-navy">
                     <TickCircle size={14} variant="Bold" color="#FFC93C" />
-                    Auto-selected from your previous page
+                    {t("book.autoSelected")}
                   </p>
                 )}
               </div>
 
               <div className="sm:col-span-2">
-                <label htmlFor="message" className={labelCls}>Additional Note</label>
+                <label htmlFor="message" className={labelCls}>{t("book.note")}</label>
                 <textarea id="message" rows={4} className={fieldCls}
-                  placeholder="Anything specific you'd like to discuss?"
+                  placeholder={t("book.notePlaceholder")}
                   value={form.message} onChange={update("message")} maxLength={600} />
               </div>
             </div>
@@ -300,7 +301,7 @@ function AppointmentPage() {
                   />
                 </div>
                 <span className="text-[11px] font-semibold text-ink-soft" aria-live="polite">
-                  {readyToSend ? "Ready to send" : "2 quick fields left"}
+                  {readyToSend ? t("book.ready") : t("book.left")}
                 </span>
               </div>
 
@@ -309,14 +310,14 @@ function AppointmentPage() {
                 onClick={(e) => handleFormSubmit(e, "whatsapp")}
                 className="inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-[#25D366] px-6 py-4 text-base font-bold text-white shadow-lg transition-all hover:scale-[1.01] hover:opacity-95 active:scale-[0.99]"
               >
-                <Whatsapp size={22} variant="Bold" color="#FFFFFF" /> Send on WhatsApp — instant reply
+                <Whatsapp size={22} variant="Bold" color="#FFFFFF" /> {t("book.sendWa")}
               </button>
               <p className="mt-2 text-center text-xs text-ink-soft">
-                Opens WhatsApp with your details pre-filled. You send it — nothing is submitted here.
+                {t("book.waHint")}
               </p>
 
               <div className="my-4 flex items-center gap-3 text-[11px] uppercase tracking-wider text-ink-soft">
-                <span className="h-px flex-1 bg-border" /> or <span className="h-px flex-1 bg-border" />
+                <span className="h-px flex-1 bg-border" /> {t("book.or")} <span className="h-px flex-1 bg-border" />
               </div>
 
               <button
@@ -324,22 +325,21 @@ function AppointmentPage() {
                 onClick={(e) => handleFormSubmit(e, "email")}
                 className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-navy/25 bg-white px-5 py-3 text-sm font-semibold text-navy transition-all hover:bg-slate-bg"
               >
-                <Sms size={18} variant="Bold" color="#003262" /> Send by email instead
+                <Sms size={18} variant="Bold" color="#003262" /> {t("book.sendEmail")}
               </button>
             </div>
 
             <p className="mt-5 flex items-start gap-2 rounded-lg bg-slate-bg px-3.5 py-3 text-xs leading-relaxed text-ink-soft">
               <Lock1 size={16} variant="Bold" color="#003262" className="mt-0.5 shrink-0" />
-              Your data is processed directly on your device and sent via secure
-              messaging. We do not store your details on any external database.
+              {t("book.privacy")}
             </p>
           </form>
         </div>
         </div>
       </section>
       <FAQSection
-        title="Before you book — common questions"
-        intro="Read these once; they answer 80% of what first-time clients ask."
+        title={pick("Before you book — common questions", "बुकिंग से पहले सामान्य प्रश्न")}
+        intro={pick("Read these once; they answer 80% of what first-time clients ask.", "पहली बार आने वाले लोगों के अधिकांश प्रश्नों के उत्तर यहाँ मिलेंगे।")}
       />
     </PageTransition>
   );
