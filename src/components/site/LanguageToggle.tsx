@@ -23,7 +23,7 @@ export function LanguageToggle({ className = "" }: { className?: string }) {
             if (l !== lang) playSfx("open");
             setLang(l);
           }}
-          className={`min-h-[36px] min-w-10 rounded-md px-2 text-xs font-bold transition-colors ${
+          className={`min-h-9 min-w-9 rounded-md px-1.5 text-xs font-bold transition-colors sm:min-w-10 sm:px-2 ${
             lang === l
               ? "bg-primary text-primary-foreground shadow-sm"
               : "text-muted-foreground hover:text-foreground"
