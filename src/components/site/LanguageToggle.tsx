@@ -12,7 +12,7 @@ export function LanguageToggle({ className = "" }: { className?: string }) {
       aria-label="Select language / भाषा चुनें"
       className={`inline-flex shrink-0 items-center gap-1 rounded-lg border border-border bg-card/70 p-0.5 ${className}`}
     >
-      <Global size={14} variant="Bold" color="#FFC93C" className="ml-1.5 shrink-0" aria-hidden />
+      <Global size={14} variant="Bold" color="#FFC93C" className="ml-1.5 hidden shrink-0 sm:block" aria-hidden />
       {(["en", "hi"] as const).map((l) => (
         <button
           key={l}

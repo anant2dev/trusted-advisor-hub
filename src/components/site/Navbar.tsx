@@ -32,8 +32,8 @@ export function Navbar() {
             <img src={assetUrl(logo.url)} alt="Bima Secure logo" className="h-full w-full object-cover" />
           </span>
           <span className="flex min-w-0 flex-col leading-tight">
-            <span className="truncate text-sm font-extrabold text-foreground sm:text-base">{ADVISOR_NAME}</span>
-            <span className="mt-1 line-clamp-2 text-[9px] uppercase leading-relaxed text-muted-foreground sm:text-[10px]">
+            <span className="text-xs font-extrabold leading-snug text-foreground sm:text-base">{ADVISOR_NAME}</span>
+            <span className="mt-1 hidden text-[10px] uppercase leading-relaxed text-muted-foreground sm:line-clamp-2">
               {lang === "hi" ? "भारतीय जीवन बीमा निगम · अधिकृत सलाहकार" : "LIC of India · Authorized Advisor"}
             </span>
           </span>
@@ -54,7 +54,7 @@ export function Navbar() {
         </nav>
 
         <div className="flex shrink-0 items-center gap-2">
-          <LanguageToggle className="hidden sm:inline-flex" />
+          <LanguageToggle className="hidden min-[360px]:inline-flex" />
           <ThemeToggle />
           <Link
             to="/book-appointment"
