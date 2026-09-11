@@ -26,13 +26,13 @@ export function Navbar() {
         </div>
       </div>
 
-      <div className="grid h-20 w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-2 pr-3 sm:gap-4 sm:pr-6 lg:grid-cols-[minmax(16rem,auto)_1fr_auto] lg:pr-8">
-        <Link to="/" className="flex min-w-0 items-center gap-3" aria-label={lang === "hi" ? "बीमा सुरक्षित होम" : "Bima Secure home"}>
-          <span className="h-20 w-20 shrink-0 overflow-hidden border-r border-border bg-navy sm:w-24">
-            <img src={assetUrl(logo.url)} alt="Bima Secure logo" className="h-full w-full object-cover" />
+      <div className="grid h-16 w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-1.5 pr-2 sm:h-20 sm:gap-3 sm:pr-6 lg:grid-cols-[minmax(16rem,auto)_1fr_auto] lg:pr-8">
+        <Link to="/" className="flex min-w-0 items-center gap-2 sm:gap-3" aria-label={lang === "hi" ? "बीमा सुरक्षित होम" : "Bima Secure home"}>
+          <span className="block size-16 max-w-16 shrink-0 overflow-hidden border-r border-border bg-navy sm:size-20 sm:max-w-20">
+            <img src={assetUrl(logo.url)} alt="Bima Secure logo" className="block size-full object-contain" />
           </span>
           <span className="flex min-w-0 flex-col leading-tight">
-            <span className="text-xs font-extrabold leading-snug text-foreground sm:text-base">{ADVISOR_NAME}</span>
+            <span className="line-clamp-2 text-[11px] font-extrabold leading-snug text-foreground sm:text-base">{ADVISOR_NAME}</span>
             <span className="mt-1 hidden text-[10px] uppercase leading-relaxed text-muted-foreground sm:line-clamp-2">
               {lang === "hi" ? "भारतीय जीवन बीमा निगम · अधिकृत सलाहकार" : "LIC of India · Authorized Advisor"}
             </span>
@@ -53,7 +53,7 @@ export function Navbar() {
           ))}
         </nav>
 
-        <div className="flex shrink-0 items-center gap-2">
+        <div className="flex shrink-0 items-center gap-1 sm:gap-2">
           <LanguageToggle className="hidden min-[360px]:inline-flex" />
           <ThemeToggle />
           <Link
@@ -64,7 +64,7 @@ export function Navbar() {
             {t("nav.consult")}
           </Link>
           <button
-            aria-label="Toggle menu"
+            aria-label={lang === "hi" ? "मेन्यू खोलें या बंद करें" : "Toggle menu"}
             onClick={() => setOpen((v) => !v)}
             className="grid h-10 w-10 place-items-center rounded-md text-foreground lg:hidden"
           >
