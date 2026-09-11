@@ -16,7 +16,7 @@ import { useLang } from "@/lib/i18n";
 import { ALL_PLANS } from "@/lib/site";
 
 const QUESTION_HI: Record<string, { question: string; helper: string; options: string[]; hints?: string[] }> = {
-  goal: { question: "आप पॉलिसी से मुख्य रूप से क्या चाहते हैं?", helper: "अभी आपके लिए सबसे महत्वपूर्ण लक्ष्य चुनें।", options: ["बच्चे की शिक्षा या विवाह सुरक्षित करना", "मेरे बाद परिवार की सुरक्षा", "सुरक्षित बचत और गारंटीड एकमुश्त राशि", "नियमित आय बनाना", "रिटायरमेंट या पेंशन की योजना"] },
+  goal: { question: "आप पॉलिसी से मुख्य रूप से क्या चाहते हैं?", helper: "अभी आपके लिए सबसे महत्वपूर्ण लक्ष्य चुनें।", options: ["बच्चे की शिक्षा या विवाह सुरक्षित करना", "मेरे बाद परिवार की सुरक्षा", "सुरक्षित बचत और गारंटीड एकमुश्त राशि", "नियमित आय बनाना", "रिटायरमेंट या पेंशन की योजना"], hints: ["तय भविष्य के पड़ाव पर पैसा मिले", "कम प्रीमियम में अधिकतम कवर", "जीवन कवर के साथ अनुशासित बचत", "एकमुश्त राशि के बजाय समय-समय पर भुगतान", "काम बंद होने के बाद आजीवन पेंशन"] },
   age: { question: "जिस व्यक्ति का बीमा होना है उसकी आयु क्या है?", helper: "प्रवेश आयु से वास्तविक पात्रता तय होती है।", options: ["18 वर्ष से कम", "18–30 वर्ष", "31–45 वर्ष", "46–55 वर्ष", "56 वर्ष या अधिक"] },
   horizon: { question: "आप पैसा कब वापस पाना चाहते हैं?", helper: "लंबी अवधि में बोनस बढ़ने की संभावना रहती है।", options: ["तुरंत — पहले दिन से आय", "5–10 वर्ष में", "10–20 वर्ष में", "20 वर्ष बाद या आजीवन कवर"] },
   budget: { question: "आप हर वर्ष लगभग कितना अलग रख सकते हैं?", helper: "ऐसा प्रीमियम चुनें जिसे आप आराम से जारी रख सकें।", options: ["₹25,000 से कम", "₹25,000–₹60,000", "₹60,000–₹1.5 लाख", "₹1.5 लाख से अधिक या एकमुश्त राशि"] },
@@ -148,7 +148,7 @@ export function PlanQuiz({ className }: { className?: string }) {
                     <span className="min-w-0">
                        <span className="block text-sm font-semibold text-foreground">{lang === "hi" ? qHi.options[optionIndex] : o.label}</span>
                       {o.hint && (
-                        <span className="mt-0.5 block text-xs text-muted-foreground">{o.hint}</span>
+                         <span className="mt-0.5 block text-xs text-muted-foreground">{lang === "hi" ? qHi.hints?.[optionIndex] : o.hint}</span>
                       )}
                     </span>
                     <ArrowRight
