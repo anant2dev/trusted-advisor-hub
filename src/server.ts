@@ -2,6 +2,13 @@ import "./lib/error-capture";
 
 import { consumeLastCapturedError } from "./lib/error-capture";
 import { renderErrorPage } from "./lib/error-page";
+import {
+  MARKDOWN_PAGES,
+  NOT_FOUND_MARKDOWN,
+  markdownResponse,
+  resolveMarkdownPath,
+  wantsMarkdown,
+} from "./lib/agent-md";
 
 type ServerEntry = {
   fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
@@ -37,6 +44,18 @@ async function normalizeCatastrophicSsrResponse(response: Response): Promise<Res
   });
 }
 
+function withVary(response: Response): Response {
+  const existing = response.headers.get("vary");
+  if (existing && /\baccept\b/i.test(existing)) return response;
+  const headers = new Headers(response.headers);
+  headers.set("vary", existing ? `${existing}, Accept` : "Accept, Accept-Encoding");
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
@@ -46,9 +65,22 @@ export default {
         return Response.redirect(url, 308);
       }
 
+      // acceptmarkdown.com content negotiation: `Accept: text/markdown` or a
+      // `.md` suffix returns the markdown twin of a page.
+      const accept = request.headers.get("accept");
+      const mdPath = resolveMarkdownPath(url.pathname);
+      if (mdPath && (wantsMarkdown(accept) || url.pathname.endsWith(".md"))) {
+        return markdownResponse(MARKDOWN_PAGES[mdPath]!);
+      }
+
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
-      return await normalizeCatastrophicSsrResponse(response);
+      const normalized = await normalizeCatastrophicSsrResponse(response);
+
+      if (normalized.status === 404 && (wantsMarkdown(accept) || !accept?.includes("text/html"))) {
+        return markdownResponse(NOT_FOUND_MARKDOWN, 404);
+      }
+      return withVary(normalized);
     } catch (error) {
       console.error(error);
       return new Response(renderErrorPage(), {

@@ -11,8 +11,10 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as Char91indexChar93RouteImport } from './routes/[index]'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PlansRouteImport } from './routes/plans'
 import { Route as PlanFinderRouteImport } from './routes/plan-finder'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BookAppointmentRouteImport } from './routes/book-appointment'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -27,6 +29,11 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PlansRoute = PlansRouteImport.update({
   id: '/plans',
   path: '/plans',
@@ -35,6 +42,11 @@ const PlansRoute = PlansRouteImport.update({
 const PlanFinderRoute = PlanFinderRouteImport.update({
   id: '/plan-finder',
   path: '/plan-finder',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BookAppointmentRoute = BookAppointmentRouteImport.update({
@@ -57,18 +69,22 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/book-appointment': typeof BookAppointmentRoute
+  '/contact': typeof ContactRoute
   '/index': typeof Char91indexChar93Route
   '/plan-finder': typeof PlanFinderRoute
   '/plans': typeof PlansRoute
+  '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/book-appointment': typeof BookAppointmentRoute
+  '/contact': typeof ContactRoute
   '/index': typeof Char91indexChar93Route
   '/plan-finder': typeof PlanFinderRoute
   '/plans': typeof PlansRoute
+  '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesById {
@@ -76,9 +92,11 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/book-appointment': typeof BookAppointmentRoute
+  '/contact': typeof ContactRoute
   '/index': typeof Char91indexChar93Route
   '/plan-finder': typeof PlanFinderRoute
   '/plans': typeof PlansRoute
+  '/privacy': typeof PrivacyRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRouteTypes {
@@ -87,27 +105,33 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/book-appointment'
+    | '/contact'
     | '/index'
     | '/plan-finder'
     | '/plans'
+    | '/privacy'
     | '/sitemap.xml'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/book-appointment'
+    | '/contact'
     | '/index'
     | '/plan-finder'
     | '/plans'
+    | '/privacy'
     | '/sitemap.xml'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/book-appointment'
+    | '/contact'
     | '/index'
     | '/plan-finder'
     | '/plans'
+    | '/privacy'
     | '/sitemap.xml'
   fileRoutesById: FileRoutesById
 }
@@ -115,9 +139,11 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   BookAppointmentRoute: typeof BookAppointmentRoute
+  ContactRoute: typeof ContactRoute
   Char91indexChar93Route: typeof Char91indexChar93Route
   PlanFinderRoute: typeof PlanFinderRoute
   PlansRoute: typeof PlansRoute
+  PrivacyRoute: typeof PrivacyRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
@@ -137,6 +163,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/plans': {
       id: '/plans'
       path: '/plans'
@@ -149,6 +182,13 @@ declare module '@tanstack/react-router' {
       path: '/plan-finder'
       fullPath: '/plan-finder'
       preLoaderRoute: typeof PlanFinderRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/book-appointment': {
@@ -179,9 +219,11 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   BookAppointmentRoute: BookAppointmentRoute,
+  ContactRoute: ContactRoute,
   Char91indexChar93Route: Char91indexChar93Route,
   PlanFinderRoute: PlanFinderRoute,
   PlansRoute: PlansRoute,
+  PrivacyRoute: PrivacyRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
