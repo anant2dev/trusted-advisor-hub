@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { HambergerMenu, CloseSquare, Call, Location } from "iconsax-react";
 import { NAV_LINKS, ADVISOR_NAME, ADDRESS, PHONE_DISPLAY } from "@/lib/site";
-import logo from "@/assets/bima-secure-logo.asset.json";
+import logo from "@/assets/bima-shield.png.asset.json";
 import { assetUrl } from "@/lib/assets";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageToggle } from "./LanguageToggle";
@@ -26,14 +26,18 @@ export function Navbar() {
         </div>
       </div>
 
-      <div className="grid h-16 w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-1.5 pr-2 sm:h-20 sm:gap-3 sm:pr-6 lg:grid-cols-[minmax(16rem,auto)_1fr_auto] lg:pr-8">
-        <Link to="/" className="flex min-w-0 items-center gap-2 sm:gap-3" aria-label={lang === "hi" ? "बीमा सुरक्षित होम" : "Bima Secure home"}>
-          <span className="block size-16 max-w-16 shrink-0 overflow-hidden border-r border-border bg-navy sm:size-20 sm:max-w-20">
-            <img src={assetUrl(logo.url)} alt="Bima Secure logo" className="block size-full object-contain" />
-          </span>
+      <div className="grid h-14 w-full grid-cols-[minmax(0,1fr)_auto] items-center gap-2 pl-3 pr-2 sm:h-16 sm:gap-3 sm:pl-6 sm:pr-6 lg:grid-cols-[minmax(14rem,auto)_1fr_auto] lg:pr-8">
+        <Link to="/" className="flex min-w-0 items-center gap-2.5" aria-label={lang === "hi" ? "बीमा सुरक्षित होम" : "Bima Secure home"}>
+          <img
+            src={assetUrl(logo.url)}
+            alt="Bima Secure logo"
+            width={171}
+            height={210}
+            className="block h-8 w-auto shrink-0 sm:h-10"
+          />
           <span className="flex min-w-0 flex-col leading-tight">
-            <span className="line-clamp-2 text-[11px] font-extrabold leading-snug text-foreground sm:text-base">{ADVISOR_NAME}</span>
-            <span className="mt-1 hidden text-[10px] uppercase leading-relaxed text-muted-foreground sm:line-clamp-2">
+            <span className="truncate text-sm font-extrabold leading-tight text-foreground sm:text-base">{ADVISOR_NAME}</span>
+            <span className="mt-0.5 hidden truncate text-[10px] uppercase tracking-wide text-muted-foreground sm:block">
               {lang === "hi" ? "भारतीय जीवन बीमा निगम · अधिकृत सलाहकार" : "LIC of India · Authorized Advisor"}
             </span>
           </span>
