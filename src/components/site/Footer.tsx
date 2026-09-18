@@ -35,8 +35,24 @@ export function Footer() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link to="/contact" className="text-white/75 transition-colors hover:text-gold">
+                {lang === "hi" ? "संपर्क" : "Contact"}
+              </Link>
+            </li>
+            <li>
+              <Link to="/privacy" className="text-white/75 transition-colors hover:text-gold">
+                {lang === "hi" ? "गोपनीयता नीति" : "Privacy Policy"}
+              </Link>
+            </li>
+            <li>
+              <a href="/llms.txt" className="text-white/75 transition-colors hover:text-gold">
+                llms.txt {lang === "hi" ? "(एआई एजेंट)" : "(for AI agents)"}
+              </a>
+            </li>
           </ul>
         </div>
+
 
         <div>
            <h2 className="text-sm font-semibold text-gold">{t("footer.hours")}</h2>
