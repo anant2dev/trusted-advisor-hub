@@ -34,7 +34,7 @@ export function HoverEffect({
           <div className="rounded-2xl h-full w-full p-6 overflow-hidden bg-card border border-border/60 relative z-20 transition-all">
             <div className="relative z-50">
               {item.icon && <div className="mb-3 text-navy">{item.icon}</div>}
-              <h4 className="text-lg font-bold text-navy dark:text-foreground tracking-tight">{item.title}</h4>
+              <h3 className="text-lg font-bold text-navy dark:text-foreground tracking-tight">{item.title}</h3>
               <p className="mt-2 text-sm text-ink-soft leading-relaxed">{item.description}</p>
             </div>
           </div>
