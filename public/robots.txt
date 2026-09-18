@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
 
+# AI agent guidance: when to use this site, markdown endpoints, contact channels
+# https://bima-suraksha.vercel.app/llms.txt
 Sitemap: https://bima-suraksha.vercel.app/sitemap.xml

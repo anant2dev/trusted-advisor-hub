@@ -15,13 +15,41 @@ export function ldScript(data: unknown) {
 export function organizationLd() {
   return {
     "@context": "https://schema.org",
-    "@type": "InsuranceAgency",
+    "@type": ["Organization", "InsuranceAgency", "LocalBusiness"],
     "@id": ORG_ID,
     name: `Bima Suraksha — ${ADVISOR_NAME}, LIC Advisor`,
+    legalName: `${ADVISOR_NAME} — LIC of India Advisory`,
     url: `${SITE_URL}/`,
     telephone: TEL,
     email: EMAIL,
+    founder: { "@type": "Person", name: ADVISOR_NAME },
     areaServed: ["Agra", "Uttar Pradesh", "India"],
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "customer service",
+        telephone: TEL,
+        email: EMAIL,
+        url: `${SITE_URL}/contact`,
+        areaServed: "IN",
+        availableLanguage: ["Hindi", "English"],
+        hoursAvailable: {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          opens: "09:00",
+          closes: "20:00",
+        },
+      },
+      {
+        "@type": "ContactPoint",
+        contactType: "sales",
+        telephone: TEL,
+        email: EMAIL,
+        url: `${SITE_URL}/book-appointment`,
+        areaServed: ["IN", "Worldwide"],
+        availableLanguage: ["Hindi", "English"],
+      },
+    ],
     address: {
       "@type": "PostalAddress",
       streetAddress: "Jawahar Nagar, Khandari Road",
