@@ -26,7 +26,7 @@ export function Footer() {
         </div>
 
         <div>
-           <h4 className="text-sm font-semibold text-gold">{t("footer.links")}</h4>
+           <h2 className="text-sm font-semibold text-gold">{t("footer.links")}</h2>
           <ul className="mt-4 space-y-2.5 text-sm">
             {NAV_LINKS.map((l) => (
               <li key={l.to}>
@@ -39,7 +39,7 @@ export function Footer() {
         </div>
 
         <div>
-           <h4 className="text-sm font-semibold text-gold">{t("footer.hours")}</h4>
+           <h2 className="text-sm font-semibold text-gold">{t("footer.hours")}</h2>
           <ul className="mt-4 space-y-2.5 text-sm text-white/75">
              <li className="flex items-center gap-2"><Clock size={16} variant="Bold" color="#FFC93C" /> {t("footer.weekdays")}</li>
              <li className="flex items-center gap-2"><Clock size={16} variant="Bold" color="#FFC93C" /> {t("footer.sunday")}</li>
@@ -48,7 +48,7 @@ export function Footer() {
         </div>
 
         <div>
-           <h4 className="text-sm font-semibold text-gold">{t("footer.contact")}</h4>
+           <h2 className="text-sm font-semibold text-gold">{t("footer.contact")}</h2>
           <ul className="mt-4 space-y-2.5 text-sm text-white/75">
             <li>
               <a href={`tel:+${WHATSAPP_NUMBER}`} className="flex items-center gap-2 hover:text-gold">
