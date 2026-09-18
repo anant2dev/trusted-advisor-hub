@@ -38,11 +38,35 @@ function NotFoundComponent() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
-      <div className="max-w-md text-center">
+      <div className="max-w-lg text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
         <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
         <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
+          This path doesn't exist on bima-suraksha.vercel.app. Here is where to look next.
+        </p>
+        <ul className="mx-auto mt-6 grid max-w-md gap-2 text-left text-sm">
+          {[
+            { to: "/", label: "Home — advisory overview" },
+            { to: "/about", label: "About — advisor background and credentials" },
+            { to: "/plans", label: "LIC Plans — full plan catalogue" },
+            { to: "/plan-finder", label: "Plan Finder — 60-second recommendation quiz" },
+            { to: "/book-appointment", label: "Book Appointment — free consultation" },
+            { to: "/contact", label: "Contact — phone, WhatsApp, email, address" },
+            { to: "/privacy", label: "Privacy — data practices" },
+          ].map((l) => (
+            <li key={l.to}>
+              <Link to={l.to} className="text-foreground underline underline-offset-4 hover:text-primary">
+                {l.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-6 text-xs text-muted-foreground">
+          Machine-readable index:{" "}
+          <a href="/sitemap.xml" className="underline">/sitemap.xml</a>{" "}·{" "}
+          <a href="/llms.txt" className="underline">/llms.txt</a>{" "}·{" "}
+          <a href="/llms-full.txt" className="underline">/llms-full.txt</a>. Every page is also
+          available as Markdown via <code>Accept: text/markdown</code> or a <code>.md</code> suffix.
         </p>
         <div className="mt-6">
           <Link
