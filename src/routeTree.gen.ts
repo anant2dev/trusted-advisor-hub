@@ -14,6 +14,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as BookAppointmentRouteImport } from './routes/book-appointment'
 import { Route as ContactRouteImport } from './routes/contact'
+import { Route as FamilyPlannerRouteImport } from './routes/family-planner'
 import { Route as PlanFinderRouteImport } from './routes/plan-finder'
 import { Route as PlansRouteImport } from './routes/plans'
 import { Route as PrivacyRouteImport } from './routes/privacy'
@@ -44,6 +45,11 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FamilyPlannerRoute = FamilyPlannerRouteImport.update({
+  id: '/family-planner',
+  path: '/family-planner',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PlanFinderRoute = PlanFinderRouteImport.update({
   id: '/plan-finder',
   path: '/plan-finder',
@@ -70,6 +76,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/book-appointment': typeof BookAppointmentRoute
   '/contact': typeof ContactRoute
+  '/family-planner': typeof FamilyPlannerRoute
   '/index': typeof Char91indexChar93Route
   '/plan-finder': typeof PlanFinderRoute
   '/plans': typeof PlansRoute
@@ -81,6 +88,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/book-appointment': typeof BookAppointmentRoute
   '/contact': typeof ContactRoute
+  '/family-planner': typeof FamilyPlannerRoute
   '/index': typeof Char91indexChar93Route
   '/plan-finder': typeof PlanFinderRoute
   '/plans': typeof PlansRoute
@@ -93,6 +101,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/book-appointment': typeof BookAppointmentRoute
   '/contact': typeof ContactRoute
+  '/family-planner': typeof FamilyPlannerRoute
   '/index': typeof Char91indexChar93Route
   '/plan-finder': typeof PlanFinderRoute
   '/plans': typeof PlansRoute
@@ -106,6 +115,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/book-appointment'
     | '/contact'
+    | '/family-planner'
     | '/index'
     | '/plan-finder'
     | '/plans'
@@ -117,6 +127,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/book-appointment'
     | '/contact'
+    | '/family-planner'
     | '/index'
     | '/plan-finder'
     | '/plans'
@@ -128,6 +139,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/book-appointment'
     | '/contact'
+    | '/family-planner'
     | '/index'
     | '/plan-finder'
     | '/plans'
@@ -140,6 +152,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   BookAppointmentRoute: typeof BookAppointmentRoute
   ContactRoute: typeof ContactRoute
+  FamilyPlannerRoute: typeof FamilyPlannerRoute
   Char91indexChar93Route: typeof Char91indexChar93Route
   PlanFinderRoute: typeof PlanFinderRoute
   PlansRoute: typeof PlansRoute
@@ -184,6 +197,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/family-planner': {
+      id: '/family-planner'
+      path: '/family-planner'
+      fullPath: '/family-planner'
+      preLoaderRoute: typeof FamilyPlannerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/plan-finder': {
       id: '/plan-finder'
       path: '/plan-finder'
@@ -220,6 +240,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   BookAppointmentRoute: BookAppointmentRoute,
   ContactRoute: ContactRoute,
+  FamilyPlannerRoute: FamilyPlannerRoute,
   Char91indexChar93Route: Char91indexChar93Route,
   PlanFinderRoute: PlanFinderRoute,
   PlansRoute: PlansRoute,
