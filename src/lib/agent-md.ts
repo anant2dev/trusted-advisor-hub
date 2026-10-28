@@ -20,6 +20,36 @@ Every page is also available as Markdown: send \`Accept: text/markdown\` or appe
 `;
 
 export const MARKDOWN_PAGES: Record<string, string> = {
+  "/family-planner": `# Bima Suraksha Family Life-stage Planner
+
+An educational family-planning experience in Hindi and English. Choose your current
+family stage (starting out, married, raising children or approaching retirement),
+then choose your priority: family protection, child's education, long-term savings
+or retirement. The suggested goal can be changed.
+
+## Build a family roadmap
+
+Enter a whole-year horizon from 1 to 40 years and optionally your own target amount
+in today's rupees. The roadmap connects your current family stage, a practical
+next step and your personal goal year. The target is not a premium quotation,
+estimated policy return, maturity amount or guarantee.
+
+## Explore and discuss
+
+Up to two catalogue options may be shown with premium structures, payout types
+and limitations. A shortlist is educational, not eligibility approval or a purchase
+recommendation. Child entry age, policy version, current availability and contractual
+benefit timing must be confirmed with the advisor. If there is no defensible
+match, the page offers a consultation rather than forcing a recommendation.
+
+The selected policy can be passed to the existing booking form, together with
+your stage, goal and horizon. Review the brief and choose WhatsApp or email to
+send it yourself. No account is required and planner answers are not saved.
+
+[Open the planner](${SITE_URL}/family-planner)
+[Browse LIC plans](${SITE_URL}/plans)
+[Book a consultation](${SITE_URL}/book-appointment)
+${FOOTER}`,
   "/": `# Bima Suraksha — Ram Singh Rathore, LIC Advisor in Agra
 
 Life insurance advisory for LIC of India policies, run by Ram Singh Rathore, a
@@ -41,6 +71,7 @@ ${CONTACT_BLOCK}
 - [About](${SITE_URL}/about) — background, track record, awards.
 - [LIC Plans](${SITE_URL}/plans) — full catalogue with eligibility and examples.
 - [Plan Finder](${SITE_URL}/plan-finder) — 60-second quiz, top 2 recommendations.
+- [Family Planner](${SITE_URL}/family-planner) — family milestones and educational roadmap.
 - [Book Appointment](${SITE_URL}/book-appointment) — free consultation request.
 - [Contact](${SITE_URL}/contact) — phone, WhatsApp, email, office address, map.
 - [Privacy](${SITE_URL}/privacy) — what is and is not collected.

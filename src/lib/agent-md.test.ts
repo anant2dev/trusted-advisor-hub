@@ -26,6 +26,7 @@ describe("resolveMarkdownPath", () => {
     expect(resolveMarkdownPath("/about/")).toBe("/about");
     expect(resolveMarkdownPath("/about.md")).toBe("/about");
     expect(resolveMarkdownPath("/index.md")).toBe("/");
+    expect(resolveMarkdownPath("/family-planner.md")).toBe("/family-planner");
   });
 
   it("returns null for unknown paths", () => {
@@ -36,10 +37,10 @@ describe("resolveMarkdownPath", () => {
 
 describe("markdown payloads", () => {
   it("covers every public page with substantial content", () => {
-    for (const path of ["/", "/about", "/plans", "/plan-finder", "/book-appointment", "/contact", "/privacy"]) {
+    for (const path of ["/", "/about", "/plans", "/plan-finder", "/family-planner", "/book-appointment", "/contact", "/privacy"]) {
       expect(MARKDOWN_PAGES[path], path).toBeTruthy();
-      expect(MARKDOWN_PAGES[path]!.length, path).toBeGreaterThan(500);
-      expect(MARKDOWN_PAGES[path]!.startsWith("# "), path).toBe(true);
+      expect(MARKDOWN_PAGES[path]?.length, path).toBeGreaterThan(500);
+      expect(MARKDOWN_PAGES[path]?.startsWith("# "), path).toBe(true);
     }
   });
 

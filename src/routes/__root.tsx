@@ -8,6 +8,7 @@ import {
   HeadContent,
   Scripts,
   ScriptOnce,
+  type ErrorComponentProps,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 
@@ -81,7 +82,7 @@ function NotFoundComponent() {
   );
 }
 
-function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
+function ErrorComponent({ error, reset }: ErrorComponentProps) {
   console.error(error);
   const router = useRouter();
   useEffect(() => {
@@ -140,17 +141,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Distinguished DM Club member protecting 1000+ families. Book a private consultation.",
       },
       { property: "og:type", content: "website" },
-      {
-        property: "og:image",
-        content: "https://bima-suraksha.vercel.app/og-preview.jpg",
-      },
-      { property: "og:image:width", content: "1200" },
-      { property: "og:image:height", content: "630" },
       { name: "twitter:card", content: "summary_large_image" },
-      {
-        name: "twitter:image",
-        content: "https://bima-suraksha.vercel.app/og-preview.jpg",
-      },
       { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
