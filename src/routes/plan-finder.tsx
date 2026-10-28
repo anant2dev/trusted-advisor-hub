@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
 import { ShieldTick, Timer1, Lock1, Judge } from "iconsax-react";
 import { PageTransition } from "@/components/site/PageTransition";
 import { PlanQuiz } from "@/components/site/PlanQuiz";
@@ -98,6 +99,11 @@ function PlanFinderPage() {
             <p className="mx-auto mt-5 max-w-2xl text-pretty text-[15px] leading-relaxed text-muted-foreground sm:text-base">
                {t("quiz.intro")}
             </p>
+          </div>
+
+          <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-y border-border py-6">
+            <div><h2 className="text-xl font-semibold text-foreground">{pick("Plan your family's next chapter", "परिवार के अगले पड़ाव की तैयारी")}</h2><p className="mt-2 text-base text-muted-foreground">{pick("Start with a milestone, then explore a personal roadmap.", "लक्ष्य चुनें और परिवार की समयरेखा देखें।")}</p></div>
+            <Button asChild className="min-h-11 whitespace-normal"><Link to="/family-planner">{pick("Family Life-stage Planner", "परिवार के पड़ावों की योजना")}</Link></Button>
           </div>
 
           <div className="mt-10 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">

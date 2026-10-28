@@ -17,12 +17,14 @@ import { FAQSection } from "@/components/site/FAQSection";
 import { DEFAULT_FAQ } from "@/components/site/FAQSection";
 import { ldScript, faqLd, breadcrumbLd, organizationLd, SITE_URL } from "@/lib/seo";
 import { useLang } from "@/lib/i18n";
+import { familySummary, parseFamilyContext, type FamilyInput } from "@/lib/family-planner";
 
-type Search = { plan?: string };
+type Search = { plan?: string } & Partial<FamilyInput>;
 
 export const Route = createFileRoute("/book-appointment")({
   validateSearch: (search: Record<string, unknown>): Search => ({
     plan: typeof search.plan === "string" ? search.plan : undefined,
+    ...parseFamilyContext(search),
   }),
   head: () => ({
     meta: [
@@ -94,7 +96,9 @@ const reasons = [
 
 function AppointmentPage() {
   const { lang, t, pick } = useLang();
-  const { plan: planFromUrl } = Route.useSearch();
+  const search = Route.useSearch();
+  const { plan: planFromUrl } = search;
+  const brief = familySummary(parseFamilyContext(search), lang);
 
   const initialPlan = useMemo(() => {
     if (planFromUrl && planNames.includes(planFromUrl)) return planFromUrl;
@@ -135,7 +139,8 @@ function AppointmentPage() {
     `*Beneficiary:* ${encodeURIComponent(form.beneficiary)}%0A` +
     `*Age Group:* ${encodeURIComponent(form.age)}%0A` +
     `*Interested Plan:* ${encodeURIComponent(form.plan)}%0A` +
-    `*Message:* ${encodeURIComponent(form.message || "—")}`;
+    `*Message:* ${encodeURIComponent(form.message || "—")}` +
+    (brief ? `%0A%0A${encodeURIComponent(brief)}` : "");
 
   const handleFormSubmit = (e: FormEvent, method: "whatsapp" | "email") => {
     e.preventDefault();
@@ -211,6 +216,13 @@ function AppointmentPage() {
             onSubmit={(e) => e.preventDefault()}
             className="rounded-3xl border border-border bg-white p-6 shadow-xl sm:p-8"
           >
+            {brief && (
+              <div className="mb-6 border-l-2 border-primary bg-primary/5 p-4">
+                <h2 className="text-base font-semibold text-foreground">{pick("Your family planning brief", "परिवार की योजना का सार")}</h2>
+                <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-muted-foreground">{brief}</p>
+                <p className="mt-3 text-sm text-muted-foreground">{pick("Included in the message you choose to send.", "आपके चुने हुए संदेश में यह सार शामिल होगा।")}</p>
+              </div>
+            )}
             <div className="grid gap-5 sm:grid-cols-2">
               <div className="sm:col-span-2">
                 <label htmlFor="name" className={labelCls}>{t("book.name")}</label>
