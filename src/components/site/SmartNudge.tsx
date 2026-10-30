@@ -4,6 +4,7 @@ import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { CloseCircle, MagicStar, Whatsapp } from "iconsax-react";
 import { WHATSAPP_NUMBER } from "@/lib/site";
 import { playSfx } from "@/lib/sfx";
+import { useLang } from "@/lib/i18n";
 
 // A quiet, personal nudge — greets by local time, remembers where the visitor
 // left off, and only ever appears once per session on non-booking pages.
@@ -12,17 +13,19 @@ const DISMISS_KEY = "nudge:dismissed";
 const VISITS_KEY = "visits:count";
 const LAST_PLAN_KEY = "plan:last";
 
-function greeting() {
+function greeting(hi: boolean) {
   const h = new Date().getHours();
-  if (h < 5) return "Up late";
-  if (h < 12) return "Good morning";
-  if (h < 17) return "Good afternoon";
-  return "Good evening";
+  if (h < 5) return hi ? "देर रात तक जाग रहे हैं" : "Up late";
+  if (h < 12) return hi ? "सुप्रभात" : "Good morning";
+  if (h < 17) return hi ? "नमस्कार" : "Good afternoon";
+  return hi ? "शुभ संध्या" : "Good evening";
 }
 
 export function SmartNudge() {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const reduce = useReducedMotion();
+  const { lang, pick } = useLang();
+  const hi = lang === "hi";
   const [open, setOpen] = useState(false);
   const [visits, setVisits] = useState(1);
   const [lastPlan, setLastPlan] = useState<string | null>(null);
@@ -50,14 +53,14 @@ export function SmartNudge() {
   if (pathname.startsWith("/book-appointment")) return null;
 
   const headline = lastPlan
-    ? `Still thinking about ${lastPlan}?`
+    ? pick(`Still thinking about ${lastPlan}?`, `क्या आप अभी भी ${lastPlan} के बारे में सोच रहे हैं?`)
     : visits > 1
-      ? `${greeting()} — welcome back.`
-      : `${greeting()}. Not sure where to start?`;
+      ? pick(`${greeting(false)} — welcome back.`, `${greeting(true)} — फिर से स्वागत है।`)
+      : pick(`${greeting(false)}. Not sure where to start?`, `${greeting(true)}। समझ नहीं आ रहा कहाँ से शुरू करें?`);
 
   const body = lastPlan
-    ? "Ask one specific question about it on WhatsApp — no form, no follow-up calls."
-    : "Take the 60-second plan finder, or ask a single question directly. Both are free.";
+    ? pick("Ask one specific question about it on WhatsApp — no form, no follow-up calls.", "इसके बारे में WhatsApp पर एक सवाल पूछें — कोई फ़ॉर्म नहीं, कोई बार-बार कॉल नहीं।")
+    : pick("Take the 60-second plan finder, or ask a single question directly. Both are free.", "60 सेकंड का प्लान फ़ाइंडर आज़माएँ, या सीधे एक सवाल पूछें। दोनों बिल्कुल मुफ़्त।");
 
   return (
     <AnimatePresence>
@@ -65,7 +68,7 @@ export function SmartNudge() {
         <motion.aside
           key="nudge"
           role="complementary"
-          aria-label="Helpful suggestion"
+          aria-label={pick("Helpful suggestion", "उपयोगी सुझाव")}
           initial={reduce ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.96 }}
           animate={reduce ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
           exit={reduce ? { opacity: 0 } : { opacity: 0, y: 20, scale: 0.96 }}
@@ -76,7 +79,7 @@ export function SmartNudge() {
             type="button"
             data-sfx-skip
             onClick={dismiss}
-            aria-label="Dismiss suggestion"
+            aria-label={pick("Dismiss suggestion", "सुझाव बंद करें")}
             className="absolute right-2 top-2 grid h-8 w-8 place-items-center rounded-full text-muted-foreground hover:bg-muted"
           >
             <CloseCircle size={18} variant="Bold" color="currentColor" />
@@ -92,18 +95,18 @@ export function SmartNudge() {
               onClick={dismiss}
               className="inline-flex min-h-10 items-center rounded-lg bg-navy px-3 py-2 text-xs font-bold text-white hover:bg-navy-deep"
             >
-              Find my plan
+              {pick("Find my plan", "मेरा प्लान खोजें")}
             </Link>
             <a
               href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-                lastPlan ? `Hi, I have a question about ${lastPlan}.` : "Hi, I have a quick question about LIC plans.",
+                lastPlan ? pick(`Hi, I have a question about ${lastPlan}.`, `नमस्ते, मेरा ${lastPlan} के बारे में एक सवाल है।`) : pick("Hi, I have a quick question about LIC plans.", "नमस्ते, मेरा LIC प्लान के बारे में एक छोटा सा सवाल है।"),
               )}`}
               target="_blank"
               rel="noreferrer"
               onClick={dismiss}
               className="inline-flex min-h-10 items-center gap-1.5 rounded-lg border border-border px-3 py-2 text-xs font-bold text-foreground hover:bg-accent/20"
             >
-              <Whatsapp size={14} variant="Bold" color="#25D366" /> Ask one question
+              <Whatsapp size={14} variant="Bold" color="#25D366" /> {pick("Ask one question", "एक सवाल पूछें")}
             </a>
           </div>
         </motion.aside>
