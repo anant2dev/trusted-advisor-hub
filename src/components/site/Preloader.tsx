@@ -2,6 +2,14 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { playSfx } from "@/lib/sfx";
 import { isLowPowerDevice } from "@/lib/motion";
+import { useLang } from "@/lib/i18n";
+
+const BOOT_LINES_HI = [
+  "सुरक्षित सत्र शुरू हो रहा है",
+  "LIC प्लान सूची लोड हो रही है",
+  "सलाहकार की पहचान सत्यापित हो रही है",
+  "आपकी परामर्श डेस्क तैयार हो रही है",
+];
 
 const BOOT_LINES = [
   "initialising secure session",
@@ -18,6 +26,8 @@ export function Preloader() {
   const [visible, setVisible] = useState(false);
   const [pct, setPct] = useState(0);
   const [line, setLine] = useState(0);
+  const { lang } = useLang();
+  const lines = lang === "hi" ? BOOT_LINES_HI : BOOT_LINES;
 
   useEffect(() => {
     let seen = false;
@@ -79,7 +89,7 @@ export function Preloader() {
 
           <div className="relative w-[min(88vw,420px)]">
             <div className="flex items-baseline justify-between font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
-              <span>Bima Suraksha</span>
+              <span>{lang === "hi" ? "बीमा सुरक्षा" : "Bima Suraksha"}</span>
               <span className="tabular-nums text-foreground">{pct.toString().padStart(3, "0")}%</span>
             </div>
 
@@ -92,7 +102,7 @@ export function Preloader() {
 
             <div className="mt-4 h-5 font-mono text-[11px] text-muted-foreground">
               <motion.span key={line} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }}>
-                › {BOOT_LINES[line]}…
+                › {lines[line]}…
               </motion.span>
             </div>
           </div>
