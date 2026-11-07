@@ -167,7 +167,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Tiro+Devanagari+Hindi&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Hind:wght@400;500;600;700&family=Tiro+Devanagari+Hindi&display=swap",
       },
     ],
   }),
@@ -213,18 +213,6 @@ function RootComponent() {
                 WebkitMaskImage:
                   "radial-gradient(ellipse at 50% 0%, black 30%, transparent 75%)",
               }}
-            />
-            <div
-              className="absolute -top-32 -left-24 h-[420px] w-[420px] rounded-full blur-3xl opacity-40 dark:opacity-60"
-              style={{ background: "radial-gradient(circle, #22d3ee, transparent 65%)" }}
-            />
-            <div
-              className="absolute top-40 -right-24 h-[420px] w-[420px] rounded-full blur-3xl opacity-40 dark:opacity-60"
-              style={{ background: "radial-gradient(circle, #a855f7, transparent 65%)" }}
-            />
-            <div
-              className="absolute bottom-0 left-1/3 h-[380px] w-[380px] rounded-full blur-3xl opacity-30 dark:opacity-50"
-              style={{ background: "radial-gradient(circle, #f472b6, transparent 65%)" }}
             />
           </div>
           <a

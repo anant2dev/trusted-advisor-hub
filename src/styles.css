@@ -363,5 +363,10 @@
   }
 }
 
+@utility font-editorial {
+  font-family: "Instrument Serif", "Tiro Devanagari Hindi", Georgia, serif;
+  letter-spacing: -0.01em;
+}
+
 /* Gold used as a surface always pairs with ink for AA contrast. */
 .on-gold { color: oklch(0.24 0.05 250); }
