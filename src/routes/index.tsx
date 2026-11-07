@@ -194,11 +194,9 @@ function Index() {
             { icon: People, value: 1000, suffix: "+", label: t("home.statFamilies") },
             { icon: Cup, value: 0, suffix: "DM", label: t("home.statClub"), text: true },
           ].map((s, i) => (
-            <FadeIn key={i} delay={i * 0.1} className="flex items-center gap-5 px-2 py-5 sm:justify-center sm:py-0">
-              <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-white/10 text-gold">
-                <s.icon size={28} variant="Bold" color="#FFC93C" />
-              </span>
+            <FadeIn key={i} delay={i * 0.1} className="px-2 py-5 sm:px-8 sm:py-0">
               <div className="min-w-0">
+                <p className="mb-2 font-mono text-[10px] uppercase tracking-[0.22em] text-white/50">0{i + 1}</p>
                 <p className="text-3xl font-extrabold tracking-tight text-gold sm:text-4xl">
                   {s.text ? (
                     <ShinyText text={s.suffix} className="text-gold" />
