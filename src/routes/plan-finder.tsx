@@ -90,7 +90,7 @@ function PlanFinderPage() {
       <section className="bg-gradient-to-b from-slate-bg to-background">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-card px-3.5 py-1.5 text-xs font-semibold text-primary shadow-sm">
+            <span className="inline-flex items-center gap-2 border-l-2 border-gold pl-3 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
                <ShieldTick size={14} variant="Bold" color="#FFC93C" /> {t("quiz.free")}
             </span>
             <h1 className="mt-5 text-balance text-3xl font-extrabold leading-[1.12] tracking-tight text-foreground sm:text-5xl">

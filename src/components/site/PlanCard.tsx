@@ -24,10 +24,10 @@ export function PlanCard({ plan }: { plan: PlanEntry }) {
           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
         />
         <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-navy/70 via-navy/10 to-transparent" />
-        <span className="absolute left-3 top-3 rounded-full bg-gold px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-navy shadow">
+        <span className="absolute left-3 top-3 rounded-sm bg-gold px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider text-navy shadow">
           {hi ? plan.tagHi : plan.tag}
         </span>
-        <span className="absolute right-3 top-3 rounded-full bg-navy/85 px-2.5 py-1 font-mono text-[11px] font-bold text-white backdrop-blur">
+        <span className="absolute right-3 top-3 rounded-sm bg-navy/85 px-2 py-0.5 font-mono text-[11px] font-bold text-white backdrop-blur">
           {t("common.planNo")} {plan.planNo}
         </span>
       </div>
