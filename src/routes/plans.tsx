@@ -71,7 +71,7 @@ function PlansPage() {
     <PageTransition>
       <section className="bg-gradient-to-b from-slate-bg to-white">
         <div className="mx-auto max-w-4xl px-4 py-20 text-center sm:px-6 lg:px-8">
-          <span className="inline-flex items-center gap-2 rounded-full border border-navy/15 bg-white px-3.5 py-1.5 text-xs font-semibold text-navy shadow-sm">
+          <span className="inline-flex items-center gap-2 border-l-2 border-gold pl-3 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-navy">
              <ShieldTick size={14} variant="Bold" color="#FFC93C" /> {t("plans.heroBadge")}
           </span>
           <h1 className="mt-5 text-4xl font-extrabold leading-tight text-navy sm:text-5xl">
@@ -157,7 +157,7 @@ function PlansPage() {
       <section className="relative overflow-hidden bg-navy text-white">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-gold backdrop-blur">
+            <span className="inline-flex items-center gap-2 border-l-2 border-gold pl-3 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-gold">
                <Global size={14} variant="Bold" color="#FFC93C" /> {t("plans.coverage")}
             </span>
             <h2 className="mt-5 text-3xl font-extrabold leading-tight sm:text-4xl">

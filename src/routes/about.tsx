@@ -110,7 +110,7 @@ function AboutPage() {
       {/* Profile */}
       <section className="bg-gradient-to-b from-slate-bg to-white">
         <div className="mx-auto max-w-5xl px-4 py-20 sm:px-6 lg:px-8">
-          <span className="inline-flex items-center gap-2 rounded-full border border-navy/15 bg-white px-3.5 py-1.5 text-xs font-semibold text-navy shadow-sm">
+          <span className="inline-flex items-center gap-2 border-l-2 border-gold pl-3 font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-navy">
              <ShieldTick size={14} variant="Bold" color="#FFC93C" /> {t("about.badge")}
           </span>
           <h1 className="mt-5 text-4xl font-extrabold leading-tight text-navy sm:text-5xl">
@@ -199,7 +199,7 @@ function AboutPage() {
                     loading="lazy"
                     className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-navy/90 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-gold backdrop-blur">
+                  <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 rounded-sm bg-navy/90 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-gold backdrop-blur">
                     {i % 2 === 0 ? <Cup size={12} variant="Bold" color="#FFC93C" /> : <Medal size={12} variant="Bold" color="#FFC93C" />}
                     {t.year}
                   </span>
