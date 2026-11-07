@@ -131,7 +131,7 @@ function Index() {
             </p>
             <h1 className="mt-6 text-4xl font-extrabold leading-[1.08] tracking-tight text-foreground sm:text-5xl lg:text-[4rem]">
               <SplitText key={`${variant}-lead`} text={copy.lead} />{" "}
-              <em className="font-editorial font-normal not-italic text-primary [font-style:italic]">
+              <em className="font-editorial font-normal italic text-primary">
                 <SplitText key={`${variant}-hl`} text={copy.highlight} delay={0.4} />
               </em>{" "}
               <SplitText key={`${variant}-tail`} text={copy.tail} delay={0.6} />
